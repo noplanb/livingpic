@@ -1,0 +1,64 @@
+NOTIFICATION MODEL
+------------------
+x Complete out the notification model
+  - inviter -> user.id
+  - invitee -> user.id
+  - contact_detail -> contact_detail.id (the contact detail that was used to send the notification)
+  - social_action -> enum[:tag, :invite, :like, :comment, :threshold, :participation, :share(to non occasion attendee)]
+  - occasion -> occasion.id
+  - object -> the photo, video, comment, like etc the notification pertained to.
+  - status -> enum[:initialized, :sent, :opened (for email), :clicked]
+  - content_version (for A-B testing of copy for click through. Is there a better way?)
+  - No need for text and title?
+
+x Notification Content (Model? but not in the db just in the code?)
+  - channel -> enum[:email, sms]
+  - social_action -> See above
+  - version -> string? integer?
+  - text -> string
+  - email -> template name or id?
+
+x Seed data for Notification Content
+  - SMS
+  - These are the version(1) SMS messages for each of the social_actions we can try: (we should be able to change them overtime and have an admin screen that shows A-B click through for different versions and statistical confidence based on sample size for various ones.) 
+    - Social Action (SA): Invite :: "FROM Mark S: See great photos of Susan's Wedding live! Click www.LivingPic.com/i/asdfasdf"
+    - SA : Tag : "FROM Mark S: I just saw a nice photo of you at Susan's Wedding. Click www.LivingPic.com/i/asdfasdf"
+    - SA : Comment : "FROM Mark S: I just commented on a nice photo of you at Susan's Wedding. Click www.LivingPic.com/i/asdfasdf"
+    - SA : Like : "FROM Mark S: I just liked a photo of you at Susan's Wedding. Click www.LivingPic.com/i/asdfasdf"
+    - SA : Album threshold : "The Living Album for Susan's Wedding just crossed 50 photos! Click www.LivingPic.com/i/asdfasdf"
+    - SA : Participation : "Brian L has started snapping Living Photos of Susan's Wedding! Click www.LivingPic.com/i/asdfasdf"
+    o SA : Share : (future phase)
+    
+  o Email templates (future phase - we wont sent emails in the first alpha test release)
+    
+  
+NOTIFICATION ACTIONS (Methods and process)
+--------------------
+x When a social action by and individual on and object at and occasion involving an invitee occurs. 
+
+  - Determine whether and how to send notification based on:
+    o invitee notification preference settings (future phase)
+    o number of other notifications recently sent to invitee and how important this one is (future phase)
+    
+  - Which contact_detail to use:
+    - User does not have the app 
+      - Send via SMS if a phone contact detail validates as a mobile (by external provider?).
+      - Otherwise send on all emails
+    - User does have app and is registered
+      - Send via app notification
+      o Send via preferred email as well if preference set by user (future phase)
+  
+  - Create set status for and send notification.
+    - Encode notification.id in the linkback to the landing page. 
+  
+- When an action by an invitee occurs (email open, email click, sms click) update the notification and contact_detail status approriately
+
+  
+FF NOTES
+--------
+The notification class encapsulates the notification attempts we have made for a given user
+A notification is triggered by some event, usually a social action on the part of another user, but could also be a 
+system event such as the album hitting some threshold. So it could just reference an event, which could have a kind and (optionally)
+an object that it references.  The object then points to a who and what, e.g. a photo_tagging, or a like (user, photo), or a comment (user, photo)
+
+

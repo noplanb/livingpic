@@ -1,0 +1,18 @@
+ - Strategy 1: 
+   - Method
+     x Create a div will cover the entire screen. 
+     x Use JS to size this div to the height and width of the screen.
+     x Add a background picture to the div.
+     x Use css background-size:cover; background_position: center center
+   - Test
+     - Test code:
+       - app: shortcuts/background_cover
+       - browser: landing/background_cover_test
+     - Test results:
+       x Android browser 4.2 works.
+       x Android 4.2 webview works 
+       x Android 2.2 webview works
+       x iPhone browser ios 6.0.1 works
+       x iPhone 6.1.2 webview works
+  - Conclusion
+    x This strategy works

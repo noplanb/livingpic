@@ -1,0 +1,33 @@
+<table border="0" cellspacing="0" cellpadding="0" class="dataTable occasion_stats">
+  <tr>
+    <th valign="top">Name</th>
+    <th valign="top">Creator</th>
+    <th valign="top">Num Photos</th>
+    <th valign="top">Participants</th>
+    <th valign="top">Added photos</th>
+    <th valign="top">Viewed gallery</th>
+    <th valign="top">Photos<br/> /user</th>
+    <th valign="top">Gallery_views<br/> /user</th>
+    <th valign="top">Photo_views<br/> /user</th>
+    <th valign="top">Comments<br/> /user</th>
+    <th valign="top">Likes<br/> /user</th>
+    <th valign="top">Details</th>
+  </tr>
+    <% @stats.each do |stat| %>
+      <% stat = stat.symbolize_keys %>
+      <tr class="">
+        <td><%= stat[:name] %> [<%= stat[:id] %>]</td>
+        <td><%= stat[:creator] %></td>
+        <td><%= stat[:num_photos] %></td>
+        <td><%= stat[:num_participants] %></td>
+        <td><%= stat[:percent_added_photos] %>%</td>
+        <td><%= stat[:percent_viewed_gallery] %>%</td>
+        <td><%= stat[:photos_per_participant] %></td>
+        <td><%= stat[:gallery_views_per_participant] %></td>
+        <td><%= stat[:photo_views_per_participant] %></td>
+        <td><%= stat[:comments_per_participant] %></td>
+        <td><%= stat[:likes_per_participant] %></td>
+        <td><a href="participants?occasion_id=<%= stat[:id] %>">Details</a></td>
+      </tr>
+    <% end %>
+</table>

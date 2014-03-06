@@ -1,0 +1,11 @@
+#test_photo_orientation{
+  .thumb{background-size:cover; background-repeat:no-repeat; height:150px; width:150px;}
+  .image{width:150px; }
+  .marker{width:5px; height:5px; background:red; position:absolute; z-index:10; top:0; left:0;}
+}
+#test_android_overflow.page{overflow:hidden;}
+#occasions
+#test_android_overflow{
+  .android_head{position:fixed; height:100px; background:lightblue; }
+  .android_content{padding-top:100px;}
+}

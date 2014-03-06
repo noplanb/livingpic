@@ -1,0 +1,25 @@
+<!-- deprecate when unknown_user2 is working without JQM -->
+<div id="unknown_user" data-role="page"  data-theme="c">
+  <%= render :partial => 'header', :locals => {:data_theme => "b"} %>
+  
+  <div data-role="content" >    
+    <%= render :partial => '/shared/box_begin' %>
+    <h1>Please sign up</h1>
+    <form>
+      <label for="first_name">First name:</label>
+      <input type="text" name="first_name" id="edit_first_name" value=""  placeholder="First name"/>
+      <label for="last_name">Last name:</label>
+      <input type="text" name="last_name" id="edit_last_name" value=""  placeholder="Last name"/>
+      <label for="mobile_number">Mobile number:</label>
+      <%= render :partial => "/app/phone_w_country/phone_w_country_entry_field", :locals => {:id => "unknown_user_phone", :placeholder => "Mobile number" } %>
+      <div class="button_box">
+        <div data-role="button"
+        data-theme="b" 
+        data-transition="slide" 
+        class=""
+        onclick="submit_new_user_name($(this).closest('form').serializeArray())">Submit</div>
+      </div>
+    </form>
+    <%= render :partial => '/shared/box_end' %>
+  </div>
+</div>

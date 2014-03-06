@@ -1,0 +1,42 @@
+2013-06-03
+Tests on Android:
+in livingpic.test
+Uninstall App
+Comment out PushHandler.init()
+Run from Eclipse
+AndroidManifest.xml intent filter for Pushwoosh commented out
+** Webintent Works
+
+Uncommented PushHandler.init() in application.js in the livingpic.test
+Did not resinstall app
+Just build w/ eclipse
+** Webintent Works
+
+Clean, but did not reinstall App
+** Webintent doesn't work
+
+Run it again 
+** webintent works on the second try (have breakpoints)
+
+Now testing with the CLI build.  Deleted the app on the device.  Uncommented that intent-filter lines I had commented out in the manifest
+** This time it worked on the third try
+
+Moved PushHandler.init() after Boot.initialize() in the deviceready sequence and rebuilt using CLI. Did NOT reinstall.
+** Worked on the 4th try
+
+Now moved the PushHandler.init() to be after the webintent call in the boot sequence.  Now it works!!!
+
+Now the problem is that the message doesn't show in the notification:  Putting a display of the notificaiton message in PushHandler notification event handler I see:
+
+06-03 18:04:37.096: D/CordovaLog(13126): Notification = {"message":"Someone just added photos to the 'test_ff' album","foregroud":false,"collapse_key":"do_not_collapse","from":"926360415491","onStart":true,"custom":"{\"c\":606}"}
+
+The message is clearly OK, but it does not show.
+
+2013-05-28
+Android push notification
+
+adb -d logcat
+
+Can pass the sound in the notification message.  Set it to "default" for default.
+the token ID can change each time, so need to update the token with the device each time.
+

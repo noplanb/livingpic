@@ -1,0 +1,4 @@
+<% num_reviews = defined?(num_reviews) && num_reviews || 3 %>
+<% app_reviews[0..num_reviews-1].each do |ar| %>
+  <%= render :partial => "review", :locals => {:ar  => ar} %>
+<% end %>

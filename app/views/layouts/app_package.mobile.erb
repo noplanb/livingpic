@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  class="mobile">
+  <head>
+    <title><%= site_name %></title>
+    
+    <!-- These metas should probably be deleted as they are handled by phonegap build -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name = "format-detection" content = "telephone=no"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    
+    <link rel="stylesheet" type="text/css" href="css/application.css" />
+    
+    <script type="text/javascript" charset="utf-8">
+      // Sani: I use this for configuration settings that have to be in place before any scripts are loaded 
+      // even before boot.js is run on the device. Probably not the best place for them. Try to keep them to a minimum.
+      // Later we can move them to a config.js file that is loaded first in the manifest.
+      // window.WeinreServerURL = "http://www.trymyui.com:91" + "<%= `hostname`.match(/farhad/i) ? '71' : '70' %>"
+      window.WeinreServerURL = "http://<%= NoPlanB::MyIp.local_ip %>:8080"
+    </script>
+    <!-- WARNING - In v3.0 cordova.js has to be at the www level, not in a js subdirectory -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/application.js"></script>
+
+    <!--  with the plugin model, webintent is loaded automatically-->
+    <%- if requires_weinre -%>
+      <script type="text/javascript" src="js/weinre.js"></script>
+    <%- end -%>
+
+    <!-- Our custom plugins -->
+    <script type="text/javascript" src="js/AlbumInterface.js"></script>
+        
+  </head>
+  
+  <body> 
+
+    <!-- BEGIN NPB TEMPLATE GENERATED CODE -->
+    <%= yield %>
+    <!-- END NPB TEMPLATE GENERATED CODE -->
+    
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<div id="admin" class="page">
+  <%= render :partial => "app/admin/header" %>
+  <div class="content inset" >
+    Host url = '<span class="current_url"></span>', 
+    Current user is <span class="current_user"></span><br/>
+    <div class="button_box">
+      <div class="flat_button blue"  data-instaclick="AdminController.show_log()">Show log</div>
+      <div class="flat_button blue"  data-instaclick="AdminController.show_change_host()">Change host</div>
+      <div class="flat_button blue"  data-instaclick="AdminController.show_set_user()">Set User</div>
+      <div class="flat_button blue"  data-instaclick="Pager.change_page('test_pages')" >Test Pages</div>
+      <div class="flat_button blue"  data-instaclick="AdminController.restart_weinre()" >Restart Weinre</div>
+      <div class="flat_button blue log_to_console"  data-instaclick="AdminController.toggle_log_to_console()" ></div>
+      <div class="flat_button grey"  data-instaclick="AdminController.exit()">Exit</div>
+    </div>
+  </div>
+</div>
+
+<div id="log_file" class="page">
+  <%= render :partial => "app/admin/header" %>
+  <div class="content inset">
+    <div class="button_box">
+      <span class="flat_button blue"  data-instaclick="AdminController.clear_log()">Clear Log</span>
+      <span class="flat_button blue"  data-instaclick="AdminController.enter()" >Continue</span> 
+      <span class="flat_button blue"  data-instaclick="Logger.upload()" >Upload</span> 
+    </div>
+    <div class="contents">
+    </div>
+  </div>
+</div>
+
+<div id="admin_auth" class="page">
+  <%= render :partial => "app/admin/header" %>
+  <div class="content inset">
+    <fieldset>
+      <label for="admin_auth_code">Enter admin password</label>
+      <input id="admin_auth_code" type="text" placeholder="Admin password"></input>
+      <div class="button_box">
+        <span class="flat_button grey" data-instaclick="Pager.back()">Cancel</span>
+        <span class="flat_button blue"  data-instaclick="AdminController.authenticate()">Enter</span> 
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<div id="change_host" class="page">
+  <%= render :partial => "app/admin/header" %>
+  <div class="content inset">
+    <h2>Change Host</h2>
+    <div style="margin:10px">Enter last part or the complete IP address</div>
+    <fieldset>
+      <input id="admin_auth_code" type="text" placeholder="Host IP"></input>
+      <div class="button_box">
+        <span class="flat_button grey"  data-instaclick="AdminController.enter()">Cancel</span>
+        <span class="flat_button blue"  data-instaclick="AdminController.change_host()" class="needsclick_disabled">Enter</span> 
+      </div>
+      <div class="button_box">
+        <div class="flat_button blue"  data-instaclick="AdminController.change_host('production')">Production</div>
+        <div class="flat_button blue"  data-instaclick="AdminController.change_host('staging')">Staging</div>
+      </div>
+    </fieldset>
+  </div>  
+</div>
+
+
+<div id="set_user" class="page">
+  <%= render :partial => "app/admin/header" %>
+  <div class="content inset">
+    <h2>Set the User</h2>
+    <fieldset>
+      <input id="set_user_id" type="tel" placeholder="User ID"></input>
+      <div class="button_box">
+        <span class="flat_button grey"  data-instaclick="AdminController.enter()">Cancel</span>
+        <span class="flat_button blue"  data-instaclick="AdminController.set_user()">Enter</span> 
+        <span class="flat_button blue"  data-instaclick="AdminController.reset_user()">Reset</a>
+      </div>
+    </fieldset>
+  </div>  
+</div>

@@ -1,0 +1,2 @@
+<!-- This has to be app_manifest.js rather than application.js because if it is, it will try to bring in the public/asset.application.js which will likely be stale -->
+<%= render :partial  => "/layouts/mobile", :locals => {:js_manifest => "app_manifest.js"} %>

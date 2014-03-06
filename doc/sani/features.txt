@@ -1,0 +1,4 @@
+ - Add a title on photo create
+ - Double tap to enlarge pic
+ - Swipe
+ - 

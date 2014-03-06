@@ -1,0 +1,46 @@
+Offline ability - network
+  - Photo capture and upload.
+  - Photo gallery and browse.
+  
+Landing pages and FTUI
+
+In app experience Use during
+  - Notifications of album changes
+  - 
+  
+Metrics
+
+Christmas release
+ - Offlineability.
+ - Monitoring.
+ - Optional tags in-flow only
+ - Testing through landing and invites. 
+ - Photoswipe - photo by so and so
+ 
+ - In app experience
+   - Invites on new occasion create
+   - Permanent invite link on gallery for occasion
+   
+- FTUI
+  - Not at this occasion takes you into the app with no occasion set.
+  - Ftui same color as app.
+  - Landing page for non registered.
+  - Link into the app for registered.
+  - Notifications for registered take you to appropriate place like photo for a tag.
+  
+  
+  - Webintent with android. 
+  
+
+Powder Fiesta.
+-------------
+  - Change footer to put camera in bottom as well as top
+  
+  
+  - Name
+    - Sitename powder fiesta.
+    - Splash page photo
+    
+
+ - gallery change from float to inline block
+

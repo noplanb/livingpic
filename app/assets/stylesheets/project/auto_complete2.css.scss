@@ -1,0 +1,42 @@
+// ==================================
+// = Invite page css and animations =
+// ==================================
+$search_bar_height:55px;
+$search_bar_padding:10px;
+$search_bar_inner_height: $search_bar_height - 2*$search_bar_padding;
+
+// Static
+.auto_complete_page2.theme_dark, .auto_complete_page2.pic_background{
+  .auto_complete_search_bar{
+    background:#353535; border-top: 1px solid #555; border-bottom:1px solid #555;
+  }
+  .auto_complete_search_results_box{background:$dark_background;}
+}
+
+.auto_complete_page2{
+  .autocomplete_head{position:fixed; top:0; left:10px; right:10px; z-index:10; background:$dark_background;}
+  
+  h3{padding-bottom:12px;}
+  
+  .auto_complete_search_results_box{
+//    bottom:0;
+    -webkit-overflow-scrolling:touch; position:absolute; top:$search_bar_height; right:0; left:0; margin:0; cursor:pointer;
+    .list_item{font-weight:bold; padding:15px 10px; border-bottom:1px solid #555;  position:relative;}
+    .icon{position:absolute; right:15px; color:#eee;}
+  }
+
+  .auto_complete_search_bar{
+    margin-top:15px; padding:$search_bar_padding; height:$search_bar_inner_height; overflow:hidden; position:relative; z-index:1; clear:both;
+    .done_button{margin-right:6px;}
+    .flat_button{padding-right:5px; padding-left:5px;;}
+  } 
+  
+  .auto_complete_picked_items_box{
+    .picked_item{
+      position:relative; padding-left:5px; padding-right:2.5em; margin:0px 10px 10px 0px; float:left;
+      font-size:17px;
+      .icon{position:absolute; right:.75em; top:4px; color:white;}
+    }
+  }
+  
+}

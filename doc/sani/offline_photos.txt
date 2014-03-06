@@ -1,0 +1,66 @@
+Requirements
+
+Not Blocked Offline UE
+ - Allows you to create a photo and save in an existing occasion while offline.
+ - Allows you to see the gallery for existing occasions while offline with any photos that you have added to them while you were offline. Non local photos in the gallery will show spinners. 
+ - Allows you to go to an offline version of the occasions page even if you have rebooted the app.
+   - Thumbs may show up as spinners if you are offline. 
+ 
+Blocked Offline UE
+ - Alert - Dialog - Internet connection lost. Check network connection and try again. x-Skip It  x-Try Again
+ - Create a new occasion for a photo. 
+   - Alert on submit occasion
+ - Invite 
+   - Alert on submit invites
+ - Tag
+   - Alert on submit tags
+ - Browse photoswipe
+   - Spinner spins forever
+ 
+ 
+UI changes for tag and invite.
+  - Go to the gallery with the photo
+
+x Save a photo to an existing occasion while offline.
+  x You get occasions and galleries for the occasions up front.
+  x Occasions and galleries are saved in local storage
+  x You can continue to prepend local photos to existing galleries more than just the first one.
+  x This should work today lets test.
+
+x Farhad: Flush photos that have been captured while offline. 
+
+x Get rid of "new" for new occasions
+  x Set it to null
+  x Test if blank? on the server side.
+  
+- On create new occasion
+  x Check connectivity and throw up an error.
+  x Try to send the occasion 
+    - Success (pass back occasion and occasions)
+      - Save the id to the for the current occasion
+      - Update the occasions with occasions
+      - Continue
+    - Failure 
+      - Throw up an error
+  - Error Dialog
+    - Try again 
+      - Closes the dialog with expectation that the user will click the button again
+    - Abort 
+      - Does not kill the current occasion.
+      - Goes home
+      
+Todo:
+  x Create the error dialog.
+  x Create the ajax request to post the new occasion.
+    
+Testing:
+  x No connection
+    x Save in exiting allows
+    x Change name save in new blocks
+    x Confirm new blocks
+  x No server
+    x Save in exiting allows
+    - Change name save in new blocks
+    - Confirm new blocks
+  - Go home
+    

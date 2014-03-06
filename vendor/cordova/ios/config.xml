@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget id='com.noplanbees.livingpic' version='0.0.1' xmlns='http://www.w3.org/ns/widgets' xmlns:cdv='http://cordova.apache.org/ns/1.0'>
+  <name>
+    LivingPic
+  </name>
+  <description>
+     A Photo Sharing Application
+  </description>
+  <access origin='*'/>
+  <feature name='LocalStorage'>
+    <param name='ios-package' value='CDVLocalStorage'/>
+  </feature>
+  <feature name='PushNotification'>
+    <param name='ios-package' value='PushNotification'/>
+  </feature>
+  <feature name='Camera'>
+    <param name='ios-package' value='CDVCamera'/>
+  </feature>
+  <feature name='Console'>
+    <param name='ios-package' value='CDVLogger'/>
+  </feature>
+  <feature name='Contacts'>
+    <param name='ios-package' value='CDVContacts'/>
+  </feature>
+  <feature name='Device'>
+    <param name='ios-package' value='CDVDevice'/>
+  </feature>
+  <feature name='File'>
+    <param name='ios-package' value='CDVFile'/>
+  </feature>
+  <feature name='FileTransfer'>
+    <param name='ios-package' value='CDVFileTransfer'/>
+  </feature>
+  <feature name='Geolocation'>
+    <param name='ios-package' value='CDVLocation'/>
+  </feature>
+  <feature name='InAppBrowser'>
+    <param name='ios-package' value='CDVInAppBrowser'/>
+  </feature>
+  <feature name='NetworkStatus'>
+    <param name='ios-package' value='CDVConnection'/>
+  </feature>
+  <feature name='AlbumInterface'>
+    <param name='ios-package' value='AlbumInterface'/>
+  </feature>
+  <author email='support@livingpic.com' href='http://cordova.io'>
+     LivingPic Team
+  </author>
+  <content src='index.html'/>
+  <preference name='fullscreen' value='true'/>
+  <preference name='orientation' value='portrait'/>
+  <preference name='DisallowOverscroll' value='true'/>
+  <preference name="BackgroundColor" value="0x4682B4"/>
+  
+  <preference name="HideKeyboardFormAccessoryBar" value="true"/>
+  <preference name='KeyboardDisplayRequiresUserAction' value='false'/>
+  
+  <preference name='EnableViewportScale' value='false'/>
+  <preference name='AllowInlineMediaPlayback' value='true'/>
+  <preference name='MediaPlaybackRequiresUserAction' value='false'/>
+  <preference name='BackupWebStorage' value='none'/>
+  <preference name='TopActivityIndicator' value='gray'/>
+  
+  <preference name='AutoHideSplashScreen' value='true'/>
+  <preference name='FadeSplashScreen' value='false'/>
+  <preference name='FadeSplashScreenDuration' value='.01'/>
+  <preference name='ShowSplashScreenSpinner' value='false'/>
+  
+  <preference name='SuppressesIncrementalRendering' value='false'/>
+  
+  <preference name='KeyboardShrinksView' value='false'/>
+  
+  <preference name='GapBetweenPages' value='0'/>
+  <preference name='PageLength' value='0'/>
+  <preference name='PaginationBreakingMode' value='page'/>
+  <preference name='PaginationMode' value='unpaginated'/>
+</widget>

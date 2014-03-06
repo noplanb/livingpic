@@ -1,0 +1,13 @@
+Made it so that weinre always loads even when running in the browser. That way we can debug the phone when running in the browser.
+
+
+--This line, and those below, will be ignored--
+
+D    javascripts/app_package/weinre
+A  + javascripts/vendor/weinre
+M    javascripts/project/app/boot.js.coffee
+M    javascripts/project/app/tag_pic.js.coffee
+M    javascripts/project/app/local_storage.js.coffee
+M    javascripts/project/app/contacts.js.coffee
+M    javascripts/project/app/occasions.js.coffee
+M    javascripts/project/shared/convenience.js.coffee

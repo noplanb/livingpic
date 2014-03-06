@@ -1,0 +1,13 @@
+<div id="gallery" data-role="page" data-theme="a" >
+  <%= render :partial => 'gallery_head', :locals => {:fullscreen => false, :context => :gallery} %>
+  <div class="content">
+    <%= render :partial => "participants" %>
+    <%= render :partial => "add_photos_banner" %>
+    <div class="no_pics_deprecated" style='text-align:center; padding:20px 0px 50px; display:none'>
+      No Photos. Take one! &nbsp;&nbsp; <%= render :partial => "camera_button_content" %>
+    </div>
+    <div class="pics" style="margin-top:10px"></div>
+  </div>
+  
+  <%= render :partial => "footer", :locals => {:no_admin => true}%>
+</div>

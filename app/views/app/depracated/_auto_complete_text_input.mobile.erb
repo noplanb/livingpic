@@ -1,0 +1,36 @@
+<%- 
+  theme = defined?(theme) && theme || "c"
+  placeholder = defined?(placeholder) && placeholder || "Type a name"
+  margin = defined?(margin) && margin || "0px -15px"
+  
+  done_width = defined?(done_width) && done_width || "140px"
+  done_txt = defined?(done_txt) && done_txt || "Done"
+  done_theme = defined?(done_theme) && done_theme || "b"
+  done_onclick = defined?(done_onclick) && done_onclick 
+  
+  cancel_theme = defined?(cancel_theme) && cancel_theme || "a"
+  cancel_txt = defined?(cancel_txt) && cancel_txt || "Cancel"
+  cancel_onclick = defined?(cancel_onclick) && cancel_onclick 
+  
+-%>
+<div class="ui-listview-filter ui-bar-<%= theme %>" style="margin:<%= margin %>">
+  
+  <table border="0" cellspacing="0" cellpadding="0" style="width:100%">
+    <col style="width:auto">
+    <col style="width:<%= done_width %>">
+    <tr>
+      <td>
+        <div class="ui-input-search ui-shadow-inset ui-btn-corner-all ui-btn-shadow ui-icon-searchfield ui-body-<%= theme %>">
+          <input class="auto_complete_search_input_field ui-input-text ui-body-<%= theme %>" data-role="none" placeholder="<%= placeholder %>">    
+
+        </div>
+      </td>
+      <td class="right">
+        <span style="margin-right:0px" onclick="<%= done_onclick %>" data-role="button" data-inline="true" data-mini="true" data-theme="<%= done_theme %>" data-show_spinner="true" class="done_button"><%= done_txt %></span> 
+        <span style="margin-left:0px" onclick="<%= cancel_onclick %>" data-role="button" data-inline="true" data-mini="true" data-theme="<%= cancel_theme %>" data-show_spinner="true" class="cancel_button"><%= cancel_txt %></span> 
+      </td>
+    </tr>
+  </table>
+  
+  
+</div>

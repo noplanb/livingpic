@@ -1,0 +1,64 @@
+x Auto completion for the contact list.
+
+x local store contact_list
+  x id
+  x fullname
+  x first_name
+  x last_name
+
+x When the auto_complete class is instantiated pull in a version of the contact list
+  x id
+  x fullname  
+
+x Search
+  x Matching
+    x When the first letter search for beginning with
+    x When the second or more letter is typed search the whole string.
+  x Put these matches in a previous matches array.
+    x These previous matches arrays are indexed by match strings 
+  x Use the previous match arrays if the are the answer rather than matching fresh.
+  x Use the previous match arrays to search into rather than the entire list if they are a superset of the search result.
+    
+x Display
+  x Create and populate a list of the matches when anything changes in the search.
+  x On first keystroke
+    x Header is eliminated
+    x Search bar is fixed at the top of the page
+    x Search bar doesnt scroll with names, names scroll under it
+  - On first select
+    - Box appears under search bar with selected name
+    - Box is fixed as well.
+    - Selected name appears in the box with an x to remove.
+  - On each select
+    
+
+  - When something is selected in the search it
+    - 
+
+- Performance enhancement
+  - Create a hash with first letter that is 50 long for each letter.
+  - Use this hash to return first letter searches.
+  - But also do a first letter search as usual  
+  
+todo
+  x Create a page call auto_complete
+  x Create a js file for auto_complete
+  x Create a class
+  
+notes
+  - instantiator of AutoComplete should give:  
+    - The input to be monitored for search.
+    - The box where picks are shown.
+    - The box where search results are shown
+
+  - AutoComplete should handle
+    - Checking to see if anything has been entered in the box
+      - Displaying the search results
+        - Callback on displaying results
+    - Checking to see if any search result was picked
+      - Adding the picked item to the displayed list
+      - Call back on search results picked
+    - Checking to see if any of the picked items were deleted
+      - Removing the deleted item from the picked list
+      - Call back on pick list deletion.
+  

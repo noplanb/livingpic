@@ -1,0 +1,149 @@
+Store release:
+-------------
+ANDROID_RELEASE_VERSION_CODE = "6"
+ANDROID_RELEASE_VERSION_NAME = "1.2"
+
+
+User Feedback
+-------------
+ - New Album button top right of albums.
+ - Trim android and iphone permissions to only what we need.
+ - Add caption then change album removes the entry you made in the caption.
+ - Wording
+   - Are you at album doesnt make sense in some cases during sign up ftui.
+   - People at album doesnt make sense in add people
+ - When you come in to see a picture from a link it should make that album your current occasion.
+ - Wording on adding new participants in ftui for brand new invitee.
+ 
+ 
+ 
+ 
+ 
+ BUGS
+ ----
+  - Jills phone got stuck while I clicked done in ftui when it asked who else I know at the occasion. Same on Sani Galaxy.
+    - Need to also incorporate a skip here.
+  - Photos disappear from gallery.
+  - When you come in from a link to a photo newly added by someone else it shows you the photo but when you click back to the album it is not there.
+  - Photos taken on iphone and jills phone come in sideways then are fixed by the server.
+  
+ 
+ 
+ To Do
+ -----
+ 
+ o Google contacts dont work for merged contacts. 
+ 
+ 
+ x Invite issues
+   x Clean registration merge with existing invites.
+   x Clean registration phone is saved properly for notification in the future.
+ 
+ x Notifications for comments need to go to the comment itself.
+ 
+ x Show comments on gallery page.
+ 
+ - Make it zippier
+   x Cache the photos
+   o Make the static button pushes faster - jqm hold off on those?
+   
+ o Iphone contact decline recovery.
+  
+ o Photo enlarge
+ 
+ x Swipe or next
+ 
+ x Launch is slow
+ 
+ x Doesn't rotate on the iphone.
+ 
+ x Cancel button on posting an image to the occasion. 
+ 
+ x Distorted picture on iphone when you snap and are asked to save to occasion.
+ 
+ - Sweatsedo picture is by Steve Bader on web and by Farhad Fazaneh on 
+ 
+ x Photo title.
+   x Add a title field to the occasion for pic form
+   x Save the title to Picture.last
+   x Add a title field to the photo in the db
+   x Save the title field in the db when the photo is saved.
+   x Clear the caption input field on the phone before displaying occasion for pic.
+   x Bring the title field in with the photos
+   x Display the title field in the gallery
+   x Display the title field field in the pic detail
+
+ - New launch icon
+ 
+ - Place in store
+   
+  
+BUGS
+----
+  FARHAD
+  ------
+  - Iphone user decides not to allow contacts access. Need to ask again when needed. Do not fail.
+  
+  - Update to cordova 2.3
+  
+  x Occasions page. The pics that are used to represent the occasion are original which is very big and takes a long time to download. They should be thumb_sq. 
+  x Pic detail page. The pics that are used for pic detail are original which is very big and takes a long time to download. They should be "mobile""
+  x Occasion for pic - Page disappears immediately after I have taken a photo and does not let me fill it in.
+  x On android occasionally a photo that is pointing to a local file wont load.
+  x In a gallery with all photos pointing to local  files. Go to airplane mode. Many of the photos that had been loading before dont load.
+  x With all photos for a gallery and for all the details loaded locally. Go to airplane mode. Go to pic detail page. Many dont load.
+  - Server side: Merge new users who identify themselves with a phone number
+  
+  x People not showing correctly in gallery page for a brand new album
+    x Start Fresh :: New uninvited user :: Create an album :: Add a person from your contact list to the album :: Click see photos of album :: People shows no one added.
+  
+  x Missing empty album thumb for occasions page: 
+    x Start Fresh :: New uninvited user :: Create an album :: Click see photos of album :: Click all to see occasions list :: Thumbnail placeholder for album which says no pics doesnt appear.
+  
+  x Phone bricks after airplane mode.
+    x Got to a gallery with photos :: Make sure a few are loaded locally (Probably not essential) :: Change airplane mode :: Click all to go to occasions :: The phone bricks here you cant click admin or any of the albums. Going back from airplane mode doesnt fix it. 
+    
+  
+  x Two users on the same gallery 1 from webbrowser 1 on android :: Webbrowser user creates a photo :: device user clicks on a link http://192...:3000/fta?xx where xx = Notification.last.id :: He should be taken to the detail for the photo but he is taken to the occasion gallery instead.
+  
+  
+  
+  
+  
+  SANI
+  ----
+  x New user loading the app with no invite or cookie. 
+    x We allow anything for a phone number. Should enforce a real US phone number.
+    
+  x Ftui - Fresh user / Are you at an occasion where you would like to take a photo? / no / Goes to take a photo anyway.
+  x Ftui - Fresh user / Are you at an occasion where you would like to take a photo? / Yes / Change wording to talk about album rather than occasion.
+  
+  x Autocomplete background should cover the done button.  
+  
+  x People "who else is at album name?" shorten to just "who else?"  
+  x Android - Swipe forward in pic detail doesnt work after the first pic sometimes. Swipe forward doesnt loop back to the beginning after the end. 
+  x Make the check mark that farhad has for local photos into a period after the by name
+  
+  x Text for all notifications change from powder fiesta.
+  
+  x Invite splash page is blank when there is no pic in the occasion. Made it steelblue
+  x Caption text does not clear between photos.
+  
+  x Remove animation from masonry. (it was never there but now set to false explicitly)
+  
+  x When I take a new picture it shows up in the gallery but with the wrong aspect ratio aparently.
+  
+  x Android :: Force close :: Start from icon :: Notice start up :: Switch apps using :: Come back to app :: Notice resume with webintent= null. Start from link give device ready. Start from ui gives resume. Therefore never do any message handling for android on resume.
+  
+  o Swipeleft and right on pic_detail sometimes doesnt work. Cant repeat.
+    
+  x Startup when connected to internet but cant reach the server takes a long time. This is due to checkin timing out. 
+  
+  x Capture a pic. :: Save in an album :: Try to go to the detail page :: Should alert picture is loading.
+  
+  x Swiping up with a little left or right triggers a swipe left or right. - Fixed for android. Need to test on iphone.
+  
+  
+  
+    
+  

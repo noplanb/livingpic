@@ -1,0 +1,139 @@
+When transform translate3d is applied to an image that is pulled using the AlbumInterface on the iphone. It appears not adjust for the camera orientation when displaying vertical images.
+
+QUESTION: Does this happen in Safari as well?
+TRY: Download the images and show them on safari.
+  - Use the paperclip original pic. Result. 
+
+Capture an image of an F with the phone in the 4 possible orientations. Button-right, button-down, button-left, button-top
+All iphone below is sanis iphone
+All safari below is 
+
+iPhone - Raw Images no download
+  - No translate 3d
+    - All 4 have the correct width and height and properly rotate the image within the frame.
+  - Translate 3d
+    - Button-right - w/h correct image rotation correct
+    - Button-down - w/h correct image rotation wrong (rotate 90 literal from camera)
+    - Button- left - w/h correct image rotation wrong (upside down literal from camera)
+    - Button - up - w/h correct image rotation wrong (rotate 90 literal from camera)
+
+iPhone - Paperclip converted images (:phone)
+  - No translate 3d - all correct.
+  - translate 3d - all correct.
+  
+safari - pic(:original)
+  - No translate3d
+    - Button-right - all correct
+    - Button-bottom - w/h wrong (is landscape should be portrait) rotation is wrong but correct in frame.
+    - Button-left - w/h correct. Rotation is wrong. Upside down.
+    - Button-top - w/h wrong (is landscape should be portrait) rotation is wrong but correct in frame.
+  - translate3d
+    - Same as above.
+
+safari - pic(:phone)
+   - No translate3d - all correct
+   - translate3d - all correct
+
+
+What does ImageMagick think the format is for the images:
+  (:original)
+    b_right - orientation: TL, W:2048 H:1536 (landscape)
+    b_bot   - orientation: RT, W:2048 H:1536 (landscape)
+    b_left  - orientation: RB, W:2048 H:1536 (landscape)
+    b_top   - orientation: LB, W:2048 H:1536 (landscape)
+  CONCLUSION - the camera on iphone is attaching the correct orientation and w/h info to the image. However the gpu layer is ignoring that exif info regarding orientation and putting the image as is.
+    
+  (:phone)
+    b_right - orientation: TL, W:960 H:720 (landscape)
+    b_bot   - orientation: TL, W:720 H:960 (portrait)
+    b_left  - orientation: TL, W:960 H:720 (landscape)
+    b_top   - orientation: TL, W:720 H:960 (portrait)
+  CONCLUSION - When paperclip uses ImageMagick to resize our photos it puts them all as orientation TopLeft gives the appropriate width and height and puts the pixels in appropriately.
+  
+SOLUTION:
+  - Get the exif orientation info for the photo in javascript. Farhad can provide this from the objective c.
+  - Rotate and size the image appropriately if we are showing it in a transform.
+
+
+ZOOMER: incorporate orientation into the zoomer
+
+ x SnapTransforCalculator
+   x gets 
+     x el
+   x gives
+     x pre_snap_css
+     x snap_transform
+     x pre_snap_width and height.
+
+ - Test
+   x Firefox 
+     x gallery_picker
+     x gallery
+   - Android
+     - gallery
+     - gallery_picker
+   x iphone
+     x gallery
+     - gallery_picker
+   x create test page with all photos and orientations
+     x F raw in all 4 orientations
+     x The 4Fs above converted and normalized to orientation 0
+ 
+ x Remove photo_orientation_adjuster when zoomer is working.
+
+Testpage with all combinations
+------------------------------
+  x Photos controller method test_orientation_json
+    x Copies the test_orientation directory into public
+    x For each photo it pulls orientation width and height from imagemagick
+    x Sends a json of url, orientation, width, height to the client.
+  x Load the photos
+  x Debug for all cases.
+  x Test android
+  x Test iphone
+  
+
+Figure out the mapping between the orientation that ios gives and the standard
+------------------------------------------------------------------------------
+                  Standard        Ios
+ - btn_right          0            1
+ - btn_down           3            6
+ - btn_left -         1            3
+ - btn_up             2            8
+
+
+MORE DETAILS
+------------
+  - Is the reason that android works that all photos are normalized to orientation 0?
+    - Test with photos downloaded from our server with various orientations. 
+  - When we save a photo we need to save its orientation width and height so that it can zoom in the gallery before a download happens. 
+  - Do we want to handle orientation on the server the same way we do aspect ratio and always provide it?
+
+TODO
+  - Photo
+    - Make sure to clear the orientation when downloading and saving a photo or pass the orientation in every case from the server.
+    - Look at handling orientation the same way we handle aspect ratio on the server.
+  - GalleryHandler
+    - pass the photo in when invoking the zoomer
+  - Gallerypicker
+    - Save the orientation with the photo when saving.
+  - AlbumInterface
+    - Compensate for the orientation we are getting from the api now 0-3 vs 1-8
+    
+PROBLEM
+-------
+The zoomer got really slow for launching and for panning photos.
+
+  Cause - zoomer relies on current_position which relies on the original position of the photo. A lot of calculations are required for this with the current implementation of snap_transform_calculator and pre_snap_css_calculator.
+  
+  Solution - Cache all the calculated expressions in the PreSnapCssCalculator and the SnapTransformCalculator.
+  Works.
+
+
+Android Orientation Issues
+--------------------------
+Android does not orientation compensation either when the jpg is used as an img-src or as a background-url. 
+Android however normalizes all photos captured on the device so all files we get that were captured by the android camera will be normalized and require
+no orientation compensation. There is a possibility of an image coming in via email or otherwise that requires orientation compensation but this is 
+out of scope of this implementation.
+

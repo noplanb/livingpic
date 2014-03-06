@@ -1,0 +1,39 @@
+ x Figure out how current capture works.
+ 
+ x Occasion_for_pic page:
+   x Get the page to work in its original form
+     x Display pic in background.
+     x Populate name selector properly. 
+     
+   x Change occasion_for_pic to use Pager.change_page
+   x Change occasion name selector use new one.
+   x Ad hock new occasion confirmation. 
+   
+ - Test on phone:
+   x Add photo to current occasion 
+     x with caption
+     x without caption
+     x cancel
+   x Add photo to different occasion
+     x Spelled but not picked
+     x with caption 
+     x without caption
+     x cancel
+   x Add photo to new occasion
+     x with caption
+     x without caption
+     x cancel
+     - Blank text
+     - Cancel confirmation
+    
+     
+  x Make all the buttons instaclick
+    x Name selector
+      x Cancel
+      x Submit
+    x Form
+      x Save current
+      x Cancel
+      
+  
+   

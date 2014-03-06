@@ -1,0 +1,8 @@
+#=Timestamp 2014-03-01 16:07:45 -0800
+<% puts ">"*5 + "Processing test_images.js.coffee.erb" %>
+
+class window.TestImages
+  @show: => 
+    $("#test_cam_img_js").css("border", "1px solid blue")
+    $("#test_cam_img_js").css("background-image", "url('<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/camera.png' %>')")
+    Pager.change_page "test_images"

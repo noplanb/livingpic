@@ -1,0 +1,2 @@
+module OccasionHelper
+end

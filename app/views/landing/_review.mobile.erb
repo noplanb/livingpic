@@ -1,0 +1,6 @@
+<li class="app_review"> 
+  <a href="#" onclick="$(this).parent().toggleClass('npb-wrap')"> 
+    <h3 style="margin-top:0"><%= render :partial => "/shared/stars", :locals => {:num_stars => 5} %> &nbsp;&nbsp;<%= ar.title %></h3>
+    <p><%= ar.description %> - <%= ar.author %></p>
+  </a>
+</li>

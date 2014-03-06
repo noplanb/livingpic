@@ -1,0 +1,7 @@
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA1withRSA) with a validity of 20,000 days
+	for: CN=Sani Elfishawy, OU=LivingPic, O=No Plan B, L=Woodside, ST=California, C=US
+pw: S*a1
+
+app/android_keys/livingpic_1.0.keystore
+
+

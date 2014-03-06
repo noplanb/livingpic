@@ -1,0 +1,44 @@
+How to create a thumbnail from a picture:
+- It seems that canvas provides the capability to resize an image.  Per http://stackoverflow.com/questions/961913/image-resize-before-upload
+  you can use a snippet like this:
+  
+  var file = YOUR_FILE,
+      fileType = file.type,
+      reader = new FileReader();
+
+  reader.onloadend = function() {
+    var image = new Image();
+        image.src = reader.result;
+
+    image.onload = function() {
+      var maxWidth = 960,
+          maxHeight = 960,
+          imageWidth = image.width,
+          imageHeight = image.height;
+
+      if (imageWidth > imageHeight) {
+        if (imageWidth > maxWidth) {
+          imageHeight *= maxWidth / imageWidth;
+          imageWidth = maxWidth;
+        }
+      }
+      else {
+        if (imageHeight > maxHeight) {
+          imageWidth *= maxHeight / imageHeight;
+          imageHeight = maxHeight;
+        }
+      }
+
+      var canvas = document.createElement('canvas');
+      canvas.width = imageWidth;
+      canvas.height = imageHeight;
+
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
+
+      // The resized file ready for upload
+      var finalFile = canvas.toDataURL(fileType);
+    }
+  }
+
+  reader.readAsDataURL(file);

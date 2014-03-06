@@ -1,0 +1,24 @@
+Supporting connectivity issues:
+- taking and posting photos:
+ - log the photo params and upload later.  We should include tags, etc.
+- logging errors
+ - autoload when connectivity is restored
+- monitors
+ - none
+- registration
+ - save and try again later
+- logging page changes?
+
+We can try to create a method that is essentially ajax, but adds the following:
+  - retries: 0, count, or nil (meaning infinite?)
+  - error_message: indicates the error message to display if there is a problem
+  - if it's drop, then we need to queue the params and the function, then try again later
+
+x Get the session stuff working
+ x Remember me should never expire as we want app to be cookied for ever and dealing with forgetting who the device is will probably not be well handled or a pleasant experience for the user.
+ x Get current_user working.
+ x My stubs for app registration are in app_controller. They should really be moved into user_controller. However app is where I keep all the preloaded views for the entire app and because they call the app with various registration scenarios for testing I put them in there.
+ 
+x Architect and build out the backend for notification etc. 
+- Error handler on client reports back to the server all errors.
+

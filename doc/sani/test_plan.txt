@@ -1,0 +1,148 @@
+App Release
+===========
+
+Ftui
+----
+ - Fresh
+ - Invitee
+ - existing occasion
+ - Go to album.
+
+ - Fresh 
+ - Invitee
+ - No occasion
+ - Capture a pic
+
+ - Fresh 
+ - New user
+ - No occasion
+ - Capture a pic
+ - No occasion button
+
+ - Fresh 
+ - New user
+ - New occasion 
+ - Go to Got to gallery for occasion
+ 
+ - Fresh 
+ - Invitee
+ - But gets the app not via the invite. 
+ - Enter phone number
+ - Match user existing user in db using phone number
+ - Link to correct occasion.
+ 
+ - IOS
+ - Fresh 
+ - Decline contact list access.
+ 
+ 
+Add picture
+----------
+  - Using camera
+  - From gallery
+  - Change occasion
+    - Enter a new one
+    - Pick a different old
+  - Add a caption
+
+Location
+--------
+  - Iphone
+    - Check that location is properly initialized
+      - Startup
+      - Resume
+  
+  - Android
+    - Check that location is properly initialized
+      - Startup
+      - Resume
+
+Click from notification
+-----------------------
+  Android
+    - App closed
+      - Check cookies
+      - Invite Existing user :: Gallery for occasion
+      x Invite New User :: Complete registration
+      - Photo added 
+       ! Photo local :: Detail for photo (broken for device seems to work on browser)
+       ! Photo not local :: Detail for photo
+      - Comment added :: Detail for photo
+    - App resumed
+      - Check cookies
+      - Invite Existing user :: Gallery for occasion
+      - Invite New User :: Complete registration
+      - Photo added :: Detail for photo
+      - Comment added :: Detail for photo
+      - Resume NOT due to a click on a notification :: Stays on whatever page you left.
+    
+  iphone
+    - App closed
+      - Check cookies
+      - Invite Existing user :: Gallery for occasion
+      - Invite New User :: Complete registration
+      - Photo added :: Detail for photo
+      - Comment added :: Detail for photo
+    - App resumed
+      - Check cookies
+      - Invite :: Gallery for occasion
+      - Invite New User :: Complete registration
+      - Photo added :: Detail for photo
+      - Comment added :: Detail for photo
+      x Resume NOT due to a click on a notification :: Stays on whatever page you left.
+
+
+Resume vs Startup
+-----------------
+  - Android
+    - User brings app back to foreground
+      - After a previously starting up on a link
+      - After not previously starting up on a link and wenintent is null
+    - FTA link brings the app to foreground
+    - Coming back from camera causes resume. 
+      - after previously starting up on a link
+      
+
+  
+    
+Offline
+-------
+  - Photos cached on the phone are properly being shown android / ios.
+  - Photos that are viewed and come in from the server are being cached android / ios
+    
+Pic Detail
+----------
+  - Add comment
+  - Like
+
+Resume
+------
+  - On gallery page should refresh
+  x Not on gallery page should not change
+
+Invites
+-------
+ - Notification to non registered user who does not have the app => link to a landing page with a link to the store depending on type of device?
+   - Remove the app from the device
+   - Clear all cookie data associated with the browser on the device
+   - In the browser go to the landing for a valid invite: http:192.168.1.76:3000/l/67
+   - Upload the app
+   - Launch the app
+   - Check that check_cookies finds the user and his notification in the session.
+ - Notification to non registered user who has the app => link to the app => to registration based on notification?
+ - Registered user who has the app => link to the app => to target of notification.
+   - FTA page redirect to the app.
+ 
+ 
+Notifications
+-------------
+ - New picture or comment goes to the detail of the picture.
+  - Back from detail goes to the gallery for that pictures occasion. 
+  
+  
+Setup
+-----
+ - Drop and add server db
+ - Clear data on the phone
+ - Load the app
+ - 

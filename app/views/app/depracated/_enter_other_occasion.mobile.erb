@@ -1,0 +1,26 @@
+<div id="enter_other_occasion" data-role="dialog"  data-theme="c">
+  
+  <div data-role="header" data-theme="b">
+    <h1>Occasion</h1>
+  </div>  
+  
+  <div data-role="content" >
+    <h1>Excellent!</h1>
+    Give the album a name.
+    <form id="occasion_name">
+      <label for="name">Album name:</label>
+      <input type="text" name="name" id="occasion_name" value=""  placeholder="Name of the album or occasion"/>
+      <div class="button_box">
+        <a href="#confirm_other_occasion" data-role="button" data-inline="true" data-rel="back">Cancel</a>
+        <span data-role="button" 
+              data-theme="b" 
+              data-transition="slide" 
+              data-inline="true"
+              class="needsclick_disabled"
+              onclick="submit_occasion_name($('#occasion_name').serializeArray())">Submit</div>
+      </span>
+    </form>
+  </div>
+  
+  
+</div>

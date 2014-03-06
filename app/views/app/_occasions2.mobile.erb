@@ -1,0 +1,25 @@
+<div id="occasions2" class="page">
+  <div class="header left_buttons_1 right_buttons_1">
+    <div class="button left_1 icon icon_add" data-instaclick="NewOccasionController2.show()"></div>
+    <div class="text  npb-admin"><div class="title">Albums</div></div>
+    <div class="button right_1 icon icon_camera" data-instaclick="capture_pic()"></div>
+  </div>
+
+  <div class="content">
+  </div>
+</div>
+
+
+<div id="new_occasion" class="page">
+  <%= render :partial => "ftui_header", :locals => {:title => "New Album"}%>
+  
+  <div class="content inset" >
+    <h1>New Album</h1>
+    Please enter your new album name.  We will tag it with your location so it's better organized.<br/><br/>
+    <input type="text" name="name" class="new_occasion_name" value=""  placeholder="Album name"/>
+    <div class="button_box">
+      <span class="flat_button grey" data-instaclick="Pager.back()">Cancel</span>
+      <span class="new_occasion_submit flat_button blue">Enter</span> 
+    </div>
+  </div>
+</div>

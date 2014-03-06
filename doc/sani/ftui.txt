@@ -1,0 +1,66 @@
+Change the FTUI pages so they dont rely on JQM
+
+  x Fresh, New user, No invite, 
+    x welcome (lets get you set up) -> 
+    x unknown_user (first last phone) -> 
+    x store_release_welcome (lets get started by snapping a photo) -> merged into what_next2
+    x snap a photo
+    x occasion_for_pic
+    x gallery2
+  
+  x Fresh, Invitee, Existing occasion
+    x welcome (lets get you set up) -> 
+    x confirm_known_user (do we have your name right) ->
+      x no - edit_name - (sorry about that, first and last)
+    x what_next - (you depwere invited to the shared photo album for... Go to album)
+
+  x Iphone
+    x confirm_check_cookies
+  
+  
+Todo - 
+  x welcome2
+    x ftui_header
+  x unknown_user2
+    x phone_w_country
+  x confirm_known_user2
+    x edit_user2
+  x what_next2
+    x merge store_release_welcome into what next
+    
+  x Deprecate 
+    x all unused ftui html
+    x all unused ftui js
+
+Test
+ - Platforms
+   4 firefox  
+   1, 2, 3, 4 ios
+   1,2,3,4 andr - 
+   1, 2, 3, 4 andr +
+ 
+ - 1 
+ - Invitee with no app
+ - Landing page
+ - Link to store
+ - Download app
+ - Register based on invite
+ - Go  to album
+ 
+ - 2 
+ - Invitee has app but not registered
+ - Link to app
+ - Ftui for registration
+ 
+ - 3
+ - Invitee has app and is registered
+ - notification to go to existing occasion
+ - Go to album.
+ 
+ - 4 
+ - New user no invite
+ - Register
+ - No occasion
+ - Capture a pic
+ - No occasion button
+ 

@@ -1,0 +1,175 @@
+// ===========
+// = General =
+// ===========
+body{line-height:1.3; margin:0; padding:0; font-family: Helvetica, Arial, sans-serif; }
+h1{@include h1_css;}
+h2{@include h2_css;}
+h3{@include h3_css;}
+
+p{margin:0.6em 0em;}
+
+.indent{padding-left:10%;}
+.inset{padding:0px 15px;}
+
+.center{text-align:center;}
+.right{text-align:right;}
+.bold{font-weight:bold;}
+
+.lighter{color: #666;}
+
+.small{font-size:10px;}
+.smaller{font-size:smaller;}
+.medium{font-size:12px;}
+
+a.no_underline, .no_underline a{text-decoration: none;}
+.pseudo_link{color: #2489CE; text-decoration:underline; cursor:pointer;}
+
+.table {
+  display:table;
+}
+
+.row {
+  display:table-row;
+}
+
+.cell {
+  display: table-cell;
+  padding-left: 10px;
+  vertical-align: top;
+}
+
+
+// =========
+// = Icons =
+// =========
+.icon, .large_icon{background-position:center;  background-repeat: no-repeat; cursor:pointer;}
+.icon{width:30px; height:30px;}
+.large_icon{width:100px; height:100px;}
+.icon_circle_arrow{@include icon_circle_arrow;}
+.icon_up_arrow{@include icon_up_arrow;}
+.icon_camera{@include icon_camera;}
+.icon_large_camera{@include icon_large_camera;}
+.icon_gallery_pick{@include icon_gallery_pick;}
+.icon_bullet_list{@include icon_bullet_list;}
+.icon_people{@include icon_people;} 
+.icon_check_green{@include icon_check_green;}
+.icon_check_grey{@include icon_check_grey;}
+.icon_edit{@include icon_edit;}
+.icon_add{@include icon_add;}
+
+.spin_animate{@include spin_animate;}
+
+// =================
+// = LoaderSpinner =
+// =================
+#fullpage_loader_spinner { 
+  @include loader_spinner;
+  display:none; opacity:0.70; z-index:2000; 
+  position:absolute; top:0; left:0; bottom:0; right:0;
+  background-color:#060606; background-repeat:no-repeat; background-position: center;
+  line-height:0;
+}
+
+// ==============================================================
+// = Edit_textarea - Text area for adding comments and captions =
+// ==============================================================
+.edit_textarea{
+  position:absolute; top:0px; left:0px; right:0px; 
+  transform: translate3d(0px,-160px,0px); -webkit-transform: translate3d(0px,-160px,0px); -webkit-backface-visibility: hidden;
+  border-top: 2px solid $purple; border-bottom:1px solid $purple; border-left:none; border-right:none; 
+  z-index:10; margin:0px; padding:0px; background:white;
+  table{width:100%;}
+  td{padding:0px 8px 0px 0px;}
+  textarea{
+    box-shadow:none; border-radius:0px; height:75px; border:none; margin:0px; font-size:17px; padding:4px 0px 0px 4px;
+    background:white; height:150px; max-height:190px;
+  }
+  .button_col{width:80px;}
+  .flat_button{margin: 30px 0px; font-size:16px;}
+}
+
+// ===============
+// = Flat_button =
+// ===============
+$button_padding:.4em 1em;
+$button_radius:3px;
+.flat_button{color:white; padding:$button_padding; font-size:16px; border-radius:$button_radius; font-weight:bold; text-align:center; line-height:1.0; cursor:pointer;}
+.flat_button.blue{background:$blue_background; border:$blue_border}
+.flat_button.purple{background:$purple_background; border:$purple_border;}
+.flat_button.red{background:$red; border:$red_border;}
+.flat_button.grey{background:$grey_background; border:$grey_border;}
+.flat_button.small{font-size:12px;}
+.flat_button.medium{font-size:14px;}
+.flat_button.large{font-size:20px;}
+
+// ===================
+// = Selector_button =
+// ===================
+.selector_button{
+  height:1.8em; cursor:pointer; position:relative; font-size:14px; border-radius:$button_radius; border:1px solid #999; line-height:1.0;
+  .selection{position:absolute; top:0; bottom:0; font-weight:normal; padding:.4em 0 0; color:#888;  background:#eee; line-height:1.0;}
+  .selection.selected{font-weight:bold;}
+  .s_1{left:0; right:50%; border-top-left-radius:$button_radius; border-bottom-left-radius:$button_radius;}
+  .s_2{left:50%; right:0; border-top-right-radius:$button_radius; border-bottom-right-radius:$button_radius;}
+}
+.selector_button.grey .selection.selected{color:white; background:$grey_background; }
+.selector_button.blue .selection.selected{color:white; background:$blue_background; }
+.selector_button.purple .selection.selected{color:white; background:$purple_background; }
+
+// ===========
+// = Overlay =
+// ===========
+// Semitransparent box to place over photos.
+.overlay{
+  color:white;
+  background: rgba(17, 17, 17, 0.8);
+  border:1px solid #555;
+  width:66%;
+  margin:0px auto;
+  padding: 20px;
+
+  -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	
+	h1, h2, h3{font-weight:normal;}
+}
+
+
+// Themes. Our own replacing what jqm did for us.
+.mobile{
+  .page{
+    color:#333; background:#f3f3f3;
+    input::-webkit-input-placeholder{color: #888;}
+    input::-moz-placeholder {color: #888;}
+    input{
+      border: 1px solid #555; background:white; border-radius:3px; 
+      padding:6px; font-size:15px; width:100%;
+      box-sizing: border-box; /* css3 rec */
+    	-moz-box-sizing: border-box; /* ff2 */
+    	-webkit-box-sizing: border-box; /* safari3 */
+    }
+  }
+
+  .page.theme_dark, .page.theme_dark .content{background:$dark_background;}
+
+  .page.blue_gradient{
+  	border: none /*{g-body-border}*/;
+  	text-shadow: 0 /*{g-body-shadow-x}*/ 0px /*{g-body-shadow-y}*/ 0 /*{g-body-shadow-radius}*/ #2e3192 /*{g-body-shadow-color}*/;
+  	background: #2e3192 /*{g-body-background-color}*/;
+  	background-image: -webkit-gradient(linear, left top, left bottom, from( #232570 /*{g-body-background-start}*/), to( #383cb3 /*{g-body-background-end}*/)); /* Saf4+, Chrome */
+  	background-image: -webkit-linear-gradient( #232570 /*{g-body-background-start}*/, #383cb3 /*{g-body-background-end}*/); /* Chrome 10+, Saf5.1+ */
+  	background-image:    -moz-linear-gradient( #232570 /*{g-body-background-start}*/, #383cb3 /*{g-body-background-end}*/); /* FF3.6 */
+  	background-image:     -ms-linear-gradient( #232570 /*{g-body-background-start}*/, #383cb3 /*{g-body-background-end}*/); /* IE10 */
+  	background-image:      -o-linear-gradient( #232570 /*{g-body-background-start}*/, #383cb3 /*{g-body-background-end}*/); /* Opera 11.10+ */
+  	background-image:         linear-gradient( #232570 /*{g-body-background-start}*/, #383cb3 /*{g-body-background-end}*/);
+  }
+  .page.blue_gradient .content{background:none;}
+  
+  .pic_background, .theme_dark{
+    color:white;
+    input::-webkit-input-placeholder{color:#eee;}
+    input::-moz-placeholder{color:#eee;}
+    input{border:1px solid #f8f8f8; color:white; background:#777;}
+  }
+}

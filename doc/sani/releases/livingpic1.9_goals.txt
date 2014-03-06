@@ -1,0 +1,97 @@
+GETTING THE VIRAL LOOP WORKING
+------------------------------
+  - Onbaording percentage
+    - Increase percentage of invitees who download the app.
+      - Text message from user
+      - Email invite with more info and sample pics
+      - Landing page with more info if desired.
+  
+  - Engagement in app.
+    - Get people to add photos
+    - Get more people to like photos to encourage more addtions.
+    - Speed.
+    - Look and feel.  
+  
+  - Creating their own album percentage
+    - Some Reminder notification when it is likely they are at an event:
+    - When they have taken a series of pictures? Is this possible? Will this backfire?
+    
+PERFORMANCE
+-----------
+  - P: Starting the app from dormant state is slow. Blue screen makes it seem even worse.
+  - S: 
+    - Eliminate as much of the dom as possible including jquery mobile and see if it improves.
+    - Make the splash screen more interesting.
+  
+  
+  - P: I can pick only one photo from gallery at a time. The images are too small to see.
+  - S: 
+      - Show the photos from the gallery in the DOM and pick from there (may work on android but not on iphone.)
+      - Write our on gallery picker plugin.
+      
+  - P: Launching camera from app is slow
+  
+  - P: Accepting pic and returning to app from camera is slow. 
+  
+  - P: User actions that block waiting on the server:
+    - Add a comment
+    - Create a new album
+    - Add people
+  - S: cache these locally on create and upload in background similar to photos and occasions.
+  
+  - P: Gallery view scroll is jerky on iphone.
+  - S: http://stackoverflow.com/questions/9582076/how-to-prevent-scroll-lag-on-safari-mobile-ipad
+       http://remysharp.com/2012/05/24/issues-with-position-fixed-scrolling-on-ios/
+       http://stackoverflow.com/questions/2782078/iphone-dev-increase-scroll-speed-in-uiwebview
+       http://engineering.linkedin.com/linkedin-ipad-5-techniques-smooth-infinite-scrolling-html5
+http://stackoverflow.com/questions/14763255/why-does-scrolling-a-uiwebview-feel-so-much-different-than-scrolling-any-other
+       https://bugs.webkit.org/show_bug.cgi?id=22102
+  
+  - S: See if instagram style is better.
+  
+  - P: Gallery view takes a long time to load Jills android. Going from occasions list page to a detail page I was just on should really be instant. But we destroy the gallery page each time we leave it. 
+  
+  - P: Buttons are dead for certain periods:
+    - While loading the gallery page all buttons including back, refresh, clicking on a photo are dead for what feels like a few long seconds.
+    - After going to occasions all buttons including clicking on an occasion is dead for what feels like the period of time it takes for the refreshing album to go away.
+    - Delay after clicking on an album in the occasions list even after refreshing albums is done.
+  
+  - P: After you add a photo you cant comment immediately until it uploads. Bummer for poor coverage or long uploads. 
+  
+  - P: Android upload unreliable.
+      
+  - P: Detail view is lame:
+    - Photo is not full bleed so you are not getting the effect of a carousel viewer. It is largely redundant with gallery_view just larger and for 1 pic.
+    - If photo is not local it takes forever to load (spinner forever)
+    - Zoom is clumsy and yet another view
+    - Swipe doesnt work a large percentage of the time. Swipe is not true swipe which tracks your finger.
+    - Going back to the gallery from the detail page is slow It should be instant.
+  - S: 
+    - Revisit photoswipe?
+    - Go to fullwide instagram display on gallery eliminate detail view?
+      - Add comments and likes on gallery page
+      - Some kind of a doubletap / pinch zoom that takes you to a blow up of the photo but with no photoswipe just some ability to go back to gallery?
+      - Some kind of a double tap zoom on the photo that blows it up in-situ in the gallery view within its existing frame which will be full bleed anyway. 
+      - Infinite scroll?
+
+
+IMPROVE FEATURES AND FUNCTION
+-----------------------------
+  -P: Return from detail should take you back to the photo you were scrolled to in the gallery.
+  
+  -P: No indication of new photos or comments when you enter the gallery. 
+  
+  -P: When restart lp it goes to the gallery page that I have seen before with no indication that it is fetching new pics so my sense is nothing new was added or will be if I wait.
+  
+  - Add people banner to big
+  
+  - Add photos banner too big? 
+  - Heuristics are wrong needs to go away if user has ever added a photo. 
+  
+  - Why do we refresh the occasions page every time you go to it. You never get a new occasion.
+  
+IMPROVE LOOK AND FEEL
+---------------------
+  - P: Dark scheme feels heavy and depressing.
+  - P: Would be nice to have a pull_down refresh.
+  

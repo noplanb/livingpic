@@ -1,0 +1,68 @@
+ - Create a rake task 
+   x Add names and numbers of people who want the app.
+   x For each person try to find:
+     x By name
+     x By phone number
+     x clean up db
+   x Bring db local again
+   x Invite and Check notifications
+   x Create a Lac'd & Loaded 2013 On the server
+   x Add a first picture
+   x Invite Derek as a guinea pig
+   x Invite all users
+   
+     
+ 
+ x Cleaning db
+ 
+  x Remove notifications with no trigger on the server
+    x Svn up rake file
+    x lac:delete_stub_notifications 
+    
+  x Reset all powder fiesta participants.
+    x Put rake file on the server
+    x reset
+  
+  - Bogus users
+     x User[237].destroy #Sani
+     x User[238].destroy #Sani
+     x User[51].destroy # Jill
+     x User[52].destroy # Jill
+     x User[134].destroy # Patrick Taylor
+     x User[140].destroy # Patrick Taylor
+     x User[159].destroy # Mark Bucklen
+     x User[131].destroy # Peter Roberts
+     x User[128].destroy # Phil Caple
+     x User[132].destroy # Sean M
+     x User[146].destroy # Craig M
+     x User[148].destroy # Craig M
+     x User[149].destroy # Craig M
+     x User[155].destroy # Craig M
+     
+     x User[144].destroy  #Barry glynn repeat
+     x User[154].destroy  #Barry glynn repeat
+     x User[126].destroy #Brent Norton
+     
+     x Mark Mezzanotte -> Brent
+       x User[103].update_first_name "Brent"
+       x User[103].update_last_name "Norton"
+  
+  x Bogus occasions
+     x Occasion[66].destroy #Test
+     x Occasion[62].destroy #Powder fiesta 2013
+     x Occasion[57].destroy #Quackery mcgowan.
+     x Occasion[89].destroy #Snowcat ride
+     x Occasion[58].destroy #Stretching
+     x Occasion[53].destroy #Her we ho
+     x Occasion[83].destroy #Adam c
+     x Occasion[74].destroy #Weese
+     x Occasion[73].destroy #Powder fiesta dup
+     x Occasion[52].destroy #Nacho
+     x Occasion[67].destroy #Blam
+     x Occasion[63].destroy #X
+     x Occasion[61].destroy #Wheels up baby
+     x Occasion[59].destroy #Steves night ski
+     x Occasion[55].destroy #Powder fiesta view
+     x Occasion[54].destroy #Prep work
+     x Occasion[94].destroy #Shot ski
+   

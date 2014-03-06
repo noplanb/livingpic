@@ -1,0 +1,4 @@
+For mobile pages and app put in place a click tracker that sends all actions by the user back to the server to be logged and analyzed.
+ 
+This has lower priority than user, notification, occasion todos.
+

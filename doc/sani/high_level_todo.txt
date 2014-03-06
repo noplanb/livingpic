@@ -1,0 +1,65 @@
+ x Phone gap working for android
+ 
+ - Button up odds and ends in the UI.
+ 
+ - Notification and Invite FTUI.
+   x Contact list and user generation.
+   x Notification vectors and sms
+   - Linking to uploaded app with params.
+   - Putting apps in the app store and uploading.
+   
+  - Capturing photos on the device.
+   - Launch camera integrated. 
+   
+ - Image handling and processing
+   - Client side
+     - Capture
+     - Background scale and uplaod.
+   - Server side
+     - Meta data
+       - Location :Long lat
+       - occasion
+       - Tagging 
+         - UI - merged with photo capture.
+         - Pass and save meta data when photo is uploaded.
+     - Thumbnails
+     - Scaled versions. 
+ 
+ - Admin page
+   - Launch app using a selected dummy data user.  
+    
+ - Logging for splunk
+   - Log file format
+     - Pass User ID and event info.
+   - Ajax all user clicks on the app back to the server.
+   - Ajax performance issues from the app back to the server
+   - The best way to figure out what is necessary is to set up splunk on one of our log files and start creating the trend graphs we want to see.
+   
+ - Social graph
+   - Rules for strength of relationships. 
+   - Rules for showing pics.
+   
+ - Browse
+   - Prefetching and caching.
+   
+ - User model and contact lists
+   - Normalization of User data
+   - Can we extract phone numbers properly.
+   - How to deal with phone numbers that dont have area code.
+   - Phone numbers that are not properly formatted. 
+   
+ - Server Admin
+   - NPB Mail
+   - Logging in general.
+
+
+- Testing
+  - Onboarding
+    - Write a test plan for the onboarding and FTUI flows.
+    - Test with emulators.
+
+- Testing on Iphone
+ - Sani get iphones.
+  
+x Location stuff
+  - 

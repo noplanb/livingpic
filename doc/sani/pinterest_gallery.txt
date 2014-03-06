@@ -1,0 +1,61 @@
+I have baled on this for the time being in favor of adding a By field in our existing gallery.
+ x Bring in photos slightly wider than half the width of a galaxy screen. Dont adjust the height.
+ 
+ 
+ x Jquery Masonry
+   x Install jquery masonry
+   x Test it with a test page
+   
+ x Make gallery work with masonry
+   x Call thumbwidth to set up widths to begin with.
+   x make masonry not resizable
+   - Set up a resize event
+     - calls thumwidth
+     - calls masonry.
+     
+ - Gallery handler batch sequencing potential problem
+   - Currently gallery handler loads the next batch when a threshold of images in prior batches has loaded. This may happen quite rapidly if the images have previously been loaded in the dom. I worry about a race condition where masonry is called once then before it has completed it is called again when an image_load event fires causing a new batch to be loaded.
+   
+ x set_img_size
+   x Rename to adjust_thumb_width
+   x Call on resize of screen
+   x Call after enough has been loaded such that the scroll bar has appeared.
+ 
+ x Factor gallery.js
+   x Global controller methods - GalleryController.js
+   x GalleryCache -> gallery_cache.js
+   x PhotoSwipeHandler - photoswipe_handler.js
+   x ThumWidthCalculator - thum_width_calculator.js
+   x Gallery handler and all else - Gallery view
+   
+ 
+ 
+ x Calculate aspect ratios of photos so we can size the photo box prior to photo loading.
+   x Save aspect ratio when photo is created.
+   x Have the thumb just be 200 wide not square.
+   x Create a pic
+   x Get the gallery for the pic
+   x Check what is in the gallery for the last pic on the browser for aspect_ratio 
+   x Set the height of each pic in gallery using the aspect ratio. Both in the case of first draw and resize.
+ 
+
+ x Add comments to gallery view
+ x Add caption to gallery view
+ x Add caption to detail view
+ 
+ - Move cancel down 1 line in save to occasion.
+  
+ x Bring in a large gallery of photos.
+   x Drop the db
+   x Remove all system photos
+   x Add the db
+   x Add the dummy photos
+   x Check for spinners (add them and see how they feel.)
+   
+ - make html safe:
+   - Caption
+   - Comments
+   - User Names
+   - Occasion names
+   
+

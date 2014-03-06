@@ -1,0 +1,33 @@
+# Text Message Strings
+# format:
+#  context:
+#     version: String representing text, referencing the notification object via notification
+#
+# Example
+# invite:
+#   4: "From #{notification.sender.email} - please baby baby please - sign up"
+#   3: "From #{notification.sender.email} - sign up please"
+invite_non_active:
+  3: "<%== notification.sender.first_li %> invited you to the shared photo album for '<%== notification.occasion.name %>'. Get the mobile app! <%== click_link(notification) %>"
+  2: "Hey <%== notification.recipient.first_name %>, Participating in <%== notification.occasion.name %>? Want to see the photos? Get the mobile app! <%== click_link(notification) %>"
+  1: "Hey <%== notification.recipient.first_name %>, Participating in <%== notification.occasion.name %>? Wish you were? Get the mobile app! <%== click_link(notification) %>"
+invite:
+  4: "FROM <%== notification.sender.first_li %>: I invited you to the photo album for <%== notification.occasion.name %>! Click <%== click_link(notification) %>"
+  3: "FROM <%== notification.sender.first_li %>: Going to the Powder Fiesta? Wish you were? Get the Powder Fiesta app! <%== click_link(notification) %>"
+  2: "FROM <%== notification.sender.first_li %>: I invited you to the photo album for <%== notification.occasion.name %>! Click <%== click_link(notification) %>"
+  1: "FROM <%== notification.sender.first_li %>: See great photos of Susan's Wedding live! Click <%== click_link(notification) %>"
+photo_tagging:
+  1: "FROM <%== notification.sender.first_li %>: I saw a great photo of you on Susan's Wedding live! <%== click_link(notification) %>"
+occasion:
+  1: "An interesting thing happened in one of your occasion albums!  <%== click_link(notification)"   
+photo:
+  4: "<%== new_creator_names(notification) %> just added photos to the'<%== notification.occasion.name %>' album <%== click_link(notification) %>"
+  3: "<%== new_creator_names(notification) %> tagged you in a photo in the'<%== notification.occasion.name %>' album <%== click_link(notification) %>"
+  2: "<%== new_creator_names(notification) %> just added photos to the '<%== notification.occasion.name %>' album <%== click_link(notification) %>"
+  1: "New photos have been added to album for '<%== notification.occasion.name %>' <%== click_link(notification) %>"
+comment:
+  3: "<%== new_commenter_names(notification) %> just commented on your photo in the album for '<%== notification.occasion.name %>' <%== click_link(notification) %>"
+  2: "<%== new_commenter_names(notification) %> just commented on photos in the album for '<%== notification.occasion.name %>' <%== click_link(notification) %>"
+  1: "New comments were added to a photo in album for '<%== notification.occasion.name %>' <%== click_link(notification) %>"
+like:
+  1: "<%== new_liker_names(notification) %> liked your photo in the '<%== notification.occasion.name %>' album <%== click_link(notification) %>"

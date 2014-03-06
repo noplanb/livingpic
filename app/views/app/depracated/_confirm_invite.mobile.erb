@@ -1,0 +1,18 @@
+<div id="confirm_invite" data-role="page"  data-theme="c">
+  <%= render :partial => 'header', :locals => {:data_theme => "b"} %>
+  
+  <div data-role="content" >
+    
+    <%= render :partial => '/shared/box_begin' %>
+      <h1>Excellent!</h1>
+      <p>Is it ok for <strong><span class="invitees"></span></strong> to see all pics in <strong><span class="current_occasion"></span></strong> and add to them? <a href="#confirm_invite_details">Details&hellip;</a></p>
+      <div class="button_box">
+        <a href="#no_invite" data-role="button" data-inline="true">no</a>
+        <a href="#what_next" data-role="button" data-inline="true" data-theme="b" data-transition="slide">Sure!</a>
+      </div>
+    <%= render :partial => '/shared/box_end' %>
+    
+  </div>  
+   
+  <%= render :partial => 'footer', :locals => {:data_theme => "c"} %>
+</div>

@@ -1,0 +1,40 @@
+- Main admin navigation
+  - Server
+  - Users
+  - Shortcuts
+  - More - 
+  
+- Admin ui
+  x Server status
+    x If you are on a browser
+      x Go to the current server and get host
+      x Show current server as selected in the pulldown
+      
+    x determine the selected host
+      x selector change set it
+      x in storage get it.
+      x in browser test for it. 
+      
+
+  x Server
+    x www.livingpic.com
+    x Sani tunnel :9150
+    x Farhad tunnel :9160
+    x Sani Boat & Home 192.168.1.1
+    x Farhad Boat
+    x Farhad Home
+    
+  - User
+    - Show details of current user.
+    - Pick a user from a list of seeded users
+    - Become that user as registered or enter the ftui as if coming from check cookies for that user.
+ 
+- Work through all the cases of the registration ftui. 
+  - Not registered check cookies
+    - user
+    - unknown user
+  - Registered 
+    - Partially complete
+    - Fully complete
+  
+  x Contact list autocomplete.

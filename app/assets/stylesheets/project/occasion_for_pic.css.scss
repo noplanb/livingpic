@@ -1,0 +1,12 @@
+.mobile{
+  #occasion_for_pic2{
+    .pic_background{position:absolute; top:0; bottom:0; right:0; left:0; overflow:hidden;}
+    .fixed_header{padding-top:15px; padding-bottom:15px; z-index:10;}
+    .save_or_change{
+      padding:20px 0px;
+      .flat_button{float:left; padding-left:4px; padding-right:4px;}
+      .save_in_current_occasion_button{margin-right:10px;}
+    }
+    .save_in_current_occasion_button{max-width:198px; @include ellipsis;}
+  }
+}

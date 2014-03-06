@@ -1,0 +1,34 @@
+<a href="occasions">&laquo;Back</a>
+<h1><%= @occasion.name %> Creator: <%= @occasion.user.fullname %></h1>
+
+<table border="0" cellspacing="0" cellpadding="0" class="dataTable participant_stats">
+  <tr>
+    <th valign="top">Participant</th>
+    <th valign="top">Inviters</th>
+    <th valign="top">SMS<br/>Notifications</th>
+    <th valign="top">Push<br/>Notifications</th>
+    <th valign="top">Device</th>
+    <th valign="top">Gallery<br/>Views</th>
+    <th valign="top">Photo<br/>Views</th>
+    <th valign="top">Photos<br/> Added</th>
+    <th valign="top">Comments</th>
+    <th valign="top">Likes</th>
+    <th valign="top">Invited<br/>Others</th>
+  </tr>
+    <% @stats.each do |stat| %>
+      <% stat = stat.symbolize_keys %>
+      <tr class="<%= "posted_photos" if stat[:photos] > 0 %> <%= "viewed_gallery" if stat[:photos] == 0 && stat[:gallery_views] > 0 %>">
+        <td><%= User.find(stat[:id]).log_info %></td>
+        <td><%= stat[:inviters].join("<br/>").html_safe %></td>
+        <td><%= stat[:sms]%></td>
+        <td><%= stat[:push] %></td>
+        <td><%= stat[:device] %></td>
+        <td class="gallery_views"><%= stat[:gallery_views].dash_for_0 %></td>
+        <td><%= stat[:detail_views].dash_for_0 %></td>
+        <td class="photos"><%= stat[:photos].dash_for_0 %></td>
+        <td><%= stat[:comments].dash_for_0  %></td>
+        <td><%= stat[:likes].dash_for_0  %></td>
+        <td><%= stat[:invited_others]  %></td>
+      </tr>
+    <% end %>
+</table>

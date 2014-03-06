@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget id='com.noplanbees.livingpic' version='0.0.1' xmlns='http://www.w3.org/ns/widgets' xmlns:cdv='http://cordova.apache.org/ns/1.0'>
+  <name>
+    LivingPic
+  </name>
+  <description>
+     Photo sharing application
+  </description>
+  <access origin='*'/>
+  <preference name='loglevel' value='DEBUG'/>
+  <feature name='App'>
+    <param name='android-package' value='org.apache.cordova.App'/>
+  </feature>
+  <feature name='WebIntent'>
+    <param name='android-package' value='com.borismus.webintent.WebIntent'/>
+  </feature>
+  <feature name='PushNotification'>
+    <param name='android-package' onload='true' value='com.pushwoosh.plugin.pushnotifications.PushNotifications'/>
+  </feature>
+  <feature name='Camera'>
+    <param name='android-package' value='org.apache.cordova.camera.CameraLauncher'/>
+  </feature>
+  <feature name='Contacts'>
+    <param name='android-package' value='org.apache.cordova.contacts.ContactManager'/>
+  </feature>
+  <feature name='Device'>
+    <param name='android-package' value='org.apache.cordova.device.Device'/>
+  </feature>
+  <feature name='File'>
+    <param name='android-package' value='org.apache.cordova.file.FileUtils'/>
+  </feature>
+  <feature name='FileTransfer'>
+    <param name='android-package' value='org.apache.cordova.filetransfer.FileTransfer'/>
+  </feature>
+  <feature name='Geolocation'>
+    <param name='android-package' value='org.apache.cordova.geolocation.GeoBroker'/>
+  </feature>
+  <feature name='InAppBrowser'>
+    <param name='android-package' value='org.apache.cordova.inappbrowser.InAppBrowser'/>
+  </feature>
+  <feature name='NetworkStatus'>
+    <param name='android-package' value='org.apache.cordova.networkinformation.NetworkManager'/>
+  </feature>
+  <feature name='AlbumInterface'>
+    <param name='android-package' value='com.noplanbees.albuminterface.AlbumInterface'/>
+  </feature>
+  <feature name='Keyboard'>
+    <param name='android-package' value='com.noplanbees.keyboard.Keyboard'/>
+  </feature>
+  <author email='support@livingpic.com' href='http://cordova.io'>
+     LivingPic team
+  </author>
+  <content src='index.html'/>
+  <preference name='fullscreen' value='true'/>
+  <preference name='loadUrlTimeoutValue' value='1000000'/>
+  <preference name="KeepRunning" value="true"/>
+  <preference name="SplashScreenDelay" value="1"/>
+  <preference name="Fullscreen" value="true" />
+  <preference name="Orientation" value="portrait" />
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackgroundColor" value="0x4682B4"/>
+  <preference name="HideKeyboardFormAccessoryBar" value="true"/>
+</widget>

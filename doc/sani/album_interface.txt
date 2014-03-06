@@ -1,0 +1,98 @@
+Android
+
+QUESTION: How long does it take to get all data for all the photos on sanis android?
+  - Just the JAVA
+    - Batch of thumbs of 
+    - 20  - 43ms
+    - 100 - 85ms
+    - 500 - 565ms, 352ms, 286
+  
+    - Single photo from id 95ms, 15ms, 14ms, 14ms, 13ms
+  x Note the above is not relevant since it does not contain thumbs see below for a more accurate time.
+    
+    
+WEIRDNESS: 
+  - Before when I run a query of all fullsize photos using a standalone test app i got  1136. 
+  - Now using the same query on the same stand alone app i get 644.
+  TRY - Reboot the phone - same.
+  TRY - Catalog the bucket names I am seeing in the list of 644 vs the list of 1136 that I have saved from yesterday.
+      - With todays query I see:
+        photos=3, 
+        Lillian lake=65, 
+        WhatsApp Images=11, 
+        100MEDIA=555, 
+        Camera=3, 
+        Screenshots=6, 
+        sdcard0=1
+      - From the data i have saved from yesterday I see:
+        I see all the same except photos= 498.
+  EXPLANATION: When I deleted the livingpic app it also deleted all of our photos.  
+    
+    
+
+QUESTION: What is the correct way to save pictures to an album on the phone?
+  - http://stackoverflow.com/questions/4921992/android-create-photo-album
+  - How can I get the album names LivingPic Occasion_name to show up in my gallery?
+
+QUESTION: How do I get photos and thumbnails in groups ordered by date added in reverse.
+  - If I just search for thumbnails do I miss the photos that havent been converted yet?
+  TRY 
+    - snap a photo.
+    - run the download of all fullsized photos
+    - does it show up in the list? RESULT - It appears immediately.
+  TRY
+    - snap a photo
+    - run the download of all thumbnails
+    - does it show up on the list? RESULT - It appears immediately.
+
+QUESTION: There is no date for the thumb table. Can you rely on descending image_id to sort by most recent first? RESULT - yes.
+
+QUESTION: How long after I snap a photo is it available to a MediaStore query? RESULT - Immediately for both thumbs and photos see above.
+
+STRATEGY:
+  - Download a set of thumbs sorted by reverse IMAGE_ID
+  - Show them in the gallery picker.
+  - Zoom causes a call to get the large photo.
+  - Save causes a call to get the large photos.
+
+PROBLEM: 
+  - The vast majority of thumbs have no large photo associated with them.
+
+SOLUTION: 
+  - I was doing it wrong. I need to do Thumbnails.getThumbnail first which blocks until one is created. Then I need to query for the thumb that was created.
+  
+
+EXPERIMENT:
+  - Loop through all the images get the thumbs as well as the images. See how long it takes.
+  - Test time delay on the Cordova side.
+  
+  - Time delays for getting photos and thumbs - 
+    - Strategy: always call get thumb for each large photo:
+    - Java time 
+      - 1 - 34ms
+      - 10 - 417ms
+      - 20 - 1300ms
+      - 50 - 2700ms
+      - 100 - 4500ms
+  
+PROBLEM: 
+  - Getting photos with thumbs is rather slow. 
+  TRY - Make the gallery_picker continually pull small batches until all are loaded. Dont key off of whether user has scrolled to near end. 
+  PROBLEM - Cordova runs our plugin code on the Webview Activity Thread. This essentially blocks all UI while it is running. 
+  TRY - Put the plugin getPhotosWithThumbsCode on a background thread. 
+      - Todo
+        - Copy AlbumInterface.java
+        - Copy 
+  RESULT - Worked Great!!!
+  
+Todo: 
+  x Copy Album Interface and all the other source files over to svn.
+    x Album interface
+    x All files in utils
+    x Delete cursortojson and replace with cursor utils
+  x Make a backup of android.
+  x Run on phone with corova
+  x Test all the methods. 
+  x Do some perf testing. 
+  
+     

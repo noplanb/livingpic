@@ -1,0 +1,19 @@
+<% 
+  css_manifest = defined?(css_manifest) && css_manifest || "application"
+%>
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title><%= site_name %></title> 
+	  
+  <%= stylesheet_link_tag    css_manifest, :media => "all" %>
+  <%= javascript_include_tag js_manifest %>
+  <%= csrf_meta_tags %>
+  
+</head> 
+<body> 
+  <%= yield %>
+</body>
+
+
+</html>

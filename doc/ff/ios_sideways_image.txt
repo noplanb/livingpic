@@ -1,0 +1,21 @@
+2013-12-02
+Problem:
+  Loading an image from the ios gallery in the zoom box displays it sideways.  
+
+? Is it a function of the transforms ?
+  NO: Even if I comment out the 3d transform calculations and application in the Zoomer, and simply put the image 
+      in #zoom_block (or #zoom_photo), it appears sideways.
+
+? Does it only happen for gallery photos?
+  YES: I loaded an existing photo from our LivingPic photo cache, and it displayed and zoomed properly.
+
+? The zoom are is outside any Divs.  Does it matter where we place the photo ?
+  YES: I created the photo in the "native_album" div.  The image appears correctly when I create an img div in "#native_album pics".
+       BUT, if I zoom it out, it zooms out sideways, the rights itself
+
+? Can you manipulate the DOM css to change things ?
+  YES: If I set the position of the unzoomed image to anything but absolute, the image rights itself, but the zoom animation is still 
+       sideways.  
+       Also, If I remove the css property "-webkit-overflow-scrolling", it rights itself, but again, the zoom animation is sideways. NOTE, the animation has no rotation, it's just sideways.
+
+

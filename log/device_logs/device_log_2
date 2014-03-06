@@ -1,0 +1,204 @@
+----------------------------------------
+Fri May 10 2013 09:33:43 GMT-0700 (PDT): Log message 1
+Fri May 10 2013 09:33:47 GMT-0700 (PDT): Log message 2
+----------------------------------------
+Fri May 10 2013 09:33:43 GMT-0700 (PDT): Log message 1
+Fri May 10 2013 09:33:47 GMT-0700 (PDT): Log message 2
+----------------------------------------
+Fri May 10 2013 09:33:43 GMT-0700 (PDT): Log message 1
+Fri May 10 2013 09:33:47 GMT-0700 (PDT): Log message 2Fri May 10 2013 10:29:38 GMT-0700 (PDT): Booting done
+----------------------------------------
+Fri May 10 2013 09:33:43 GMT-0700 (PDT): Log message 1
+Fri May 10 2013 09:33:47 GMT-0700 (PDT): Log message 2Fri May 10 2013 10:29:38 GMT-0700 (PDT): Booting done
+Fri May 10 2013 10:34:23 GMT-0700 (PDT): System resumed
+----------------------------------------
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): handleOpenURL called with url livingpic://
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Setting launch directive: {"type":null,"id":null}
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): 
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): --------------------------
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Device is ready
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  1
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) running
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Initializing Pushwoosh
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Contacts: Prefetching contacts
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Loading contacts
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Initializing file system
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Getting entry for photo directory
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Checking server connectivity
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  2
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): NetworkHandler [1]: ajax (http://192.168.1.69:3000/ping) running
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Initialized persistent file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Initialized temporary file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/tmp
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Photos directory = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents/photos
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): WARN - Reset the log because it was too big
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Prefetching assets
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): MessageHandler handling directive {"type":null,"id":null}
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): startup with {"fresh":null}
+Mon May 13 2013 19:21:44 GMT-0700 (PDT): Checking in to set up cookie with id 2
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): Contacts: Successfully found 295 contacts
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): Contacts: Filtered down to 267 useful contacts
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = splash
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) (1002ms)
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): NetworkHandler success: [1]: ajax (http://192.168.1.69:3000/ping) (924ms)
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): connectivity OK
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): Checkin succeeded for user 2
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): WARN - registerDevice: 6a59eac8602ae85ee00be73aa7aa6b464356a644ac55d0192c6343ecf014e9fb
+Mon May 13 2013 19:21:45 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/push_device_token) running
+Mon May 13 2013 19:21:46 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/push_device_token) (594ms)
+Mon May 13 2013 19:21:46 GMT-0700 (PDT): Displaying the gallery for occasion 57
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): 
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): --------------------------
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): System resumed
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Contacts: Prefetching contacts
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Loading contacts
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Initializing file system
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): No need to init persistent FS
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): No need to init temporary FS
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): No need to init photo directory
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Checking server connectivity
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/ping) running
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Contacts: Successfully found 295 contacts
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Contacts: Filtered down to 267 useful contacts
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): Prefetching assets
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): ViewController refereshing the current page gallery
+Mon May 13 2013 19:22:05 GMT-0700 (PDT): NetworkHandler [1]: ajax (http://192.168.1.69:3000/occasions/get/57) running
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/ping) (718ms)
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): connectivity OK
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): NetworkHandler success: [1]: ajax (http://192.168.1.69:3000/occasions/get/57) (257ms)
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): Occasion 57 unchanged
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): Updated occasion test_ff from server
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): Rendering occasion 57 with refresh = true and current_page = gallery
+Mon May 13 2013 19:22:06 GMT-0700 (PDT): Displaying the gallery for occasion 57Mon May 13 2013 22:31:05 GMT-0700 (PDT): handleOpenURL called with url livingpic://
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): Setting launch directive: {"type":null,"id":null}
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): 
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): --------------------------
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): Device is ready
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  1
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) running
+Mon May 13 2013 22:31:05 GMT-0700 (PDT): Initializing Pushwoosh
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Contacts: Prefetching contacts
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Loading contacts
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Initializing file system
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Getting entry for photo directory
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Checking server connectivity
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  2
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): NetworkHandler [1]: ajax (http://192.168.1.69:3000/ping) running
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Initialized persistent file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Initialized temporary file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/tmp
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Photos directory = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents/photos
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): WARN - Reset the log because it was too big
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Prefetching assets
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): MessageHandler handling directive {"type":null,"id":null}
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): startup with {"fresh":null}
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = splash
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): registerDevice: 6a59eac8602ae85ee00be73aa7aa6b464356a644ac55d0192c6343ecf014e9fb
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  3
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): NetworkHandler [2]: ajax (http://192.168.1.69:3000/push_device_token) running
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Contacts: Successfully found 295 contacts
+Mon May 13 2013 22:31:06 GMT-0700 (PDT): Contacts: Filtered down to 267 useful contacts
+Mon May 13 2013 22:31:07 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) (1271ms)
+Mon May 13 2013 22:31:07 GMT-0700 (PDT): NetworkHandler success: [1]: ajax (http://192.168.1.69:3000/ping) (1113ms)
+Mon May 13 2013 22:31:07 GMT-0700 (PDT): connectivity OK
+Mon May 13 2013 22:31:07 GMT-0700 (PDT): NetworkHandler success: [2]: ajax (http://192.168.1.69:3000/push_device_token) (454ms)
+Mon May 13 2013 22:31:07 GMT-0700 (PDT): Displaying the gallery for occasion 57
+Mon May 13 2013 22:33:02 GMT-0700 (PDT): NetworkHandler [0]: file (http://192.168.1.69:3000/app/upload_log) running
+----------------------------------------
+Mon May 13 2013 22:34:27 GMT-0700 (PDT): startup with {}
+Mon May 13 2013 22:34:27 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 22:34:27 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = admin
+Mon May 13 2013 22:34:28 GMT-0700 (PDT): Displaying the gallery for occasion 57Mon May 13 2013 22:37:50 GMT-0700 (PDT): handleOpenURL called with url livingpic://
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Setting launch directive: {"type":null,"id":null}
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): 
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): --------------------------
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Device is ready
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  1
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) running
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initializing Pushwoosh
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Contacts: Prefetching contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Loading contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initializing file system
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Getting entry for photo directory
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Checking server connectivity
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  2
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): NetworkHandler [1]: ajax (http://192.168.1.69:3000/ping) running
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initialized persistent file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initialized temporary file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/tmp
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Photos directory = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents/photos
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Contacts: Successfully found 295 contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Contacts: Filtered down to 267 useful contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Prefetching assets
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): MessageHandler handling directive {"type":null,"id":null}
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): startup with {"fresh":null}
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = splash
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) (1121ms)
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): registerDevice: 6a59eac8602ae85ee00be73aa7aa6b464356a644ac55d0192c6343ecf014e9fb
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/push_device_token) running
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler success: [1]: ajax (http://192.168.1.69:3000/ping) (1035ms)
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): connectivity OK
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/push_device_token) (83ms)
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): Displaying the gallery for occasion 57
+Mon May 13 2013 22:38:28 GMT-0700 (PDT): NetworkHandler [0]: file (http://192.168.1.69:3000/app/upload_log) running
+----------------------------------------
+Mon May 13 2013 22:34:27 GMT-0700 (PDT): startup with {}
+Mon May 13 2013 22:34:27 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 22:34:27 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = admin
+Mon May 13 2013 22:34:28 GMT-0700 (PDT): Displaying the gallery for occasion 57Mon May 13 2013 22:37:50 GMT-0700 (PDT): handleOpenURL called with url livingpic://
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Setting launch directive: {"type":null,"id":null}
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): 
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): --------------------------
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Device is ready
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  1
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) running
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initializing Pushwoosh
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Contacts: Prefetching contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Loading contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initializing file system
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Getting entry for photo directory
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Checking server connectivity
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Creating new NetworkHandler instance.  Instances count =  2
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): NetworkHandler [1]: ajax (http://192.168.1.69:3000/ping) running
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initialized persistent file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Initialized temporary file system.  Root = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/tmp
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Photos directory = /var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents/photos
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Contacts: Successfully found 295 contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Contacts: Filtered down to 267 useful contacts
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Prefetching assets
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): MessageHandler handling directive {"type":null,"id":null}
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): startup with {"fresh":null}
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 22:37:50 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = splash
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/app/version_mgt_checkin) (1121ms)
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): registerDevice: 6a59eac8602ae85ee00be73aa7aa6b464356a644ac55d0192c6343ecf014e9fb
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/push_device_token) running
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler success: [1]: ajax (http://192.168.1.69:3000/ping) (1035ms)
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): connectivity OK
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/push_device_token) (83ms)
+Mon May 13 2013 22:37:51 GMT-0700 (PDT): Displaying the gallery for occasion 57
+Mon May 13 2013 22:38:28 GMT-0700 (PDT): NetworkHandler [0]: file (http://192.168.1.69:3000/app/upload_log) running
+Mon May 13 2013 22:38:28 GMT-0700 (PDT): NetworkHandler: Transferring file file://localhost/var/mobile/Applications/681A417A-E345-4E5C-944C-D3CB235D0B90/Documents/log.log
+Mon May 13 2013 22:38:28 GMT-0700 (PDT): NetworkHandler success: [0]: file (http://192.168.1.69:3000/app/upload_log) (128ms)
+Mon May 13 2013 22:39:39 GMT-0700 (PDT): 
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): --------------------------
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): System resumed
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Contacts: Prefetching contacts
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Loading contacts
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Initializing file system
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): No need to init persistent FS
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): No need to init temporary FS
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): No need to init photo directory
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Checking server connectivity
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): NetworkHandler [0]: ajax (http://192.168.1.69:3000/ping) running
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Contacts: Successfully found 295 contacts
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Contacts: Filtered down to 267 useful contacts
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): Prefetching assets
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): ViewController refereshing the current page log_file
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): NetworkHandler success: [0]: ajax (http://192.168.1.69:3000/ping) (547ms)
+Mon May 13 2013 22:39:40 GMT-0700 (PDT): connectivity OK
+Mon May 13 2013 22:39:43 GMT-0700 (PDT): startup with {}
+Mon May 13 2013 22:39:43 GMT-0700 (PDT): Known registered user 2
+Mon May 13 2013 22:39:43 GMT-0700 (PDT): Rendering occasion 57 with refresh = false and current_page = admin
+Mon May 13 2013 22:39:44 GMT-0700 (PDT): Displaying the gallery for occasion 57
+Mon May 13 2013 22:40:40 GMT-0700 (PDT): NetworkHandler [0]: file (http://192.168.1.69:3000/app/upload_log) running

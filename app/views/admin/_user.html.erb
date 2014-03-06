@@ -1,0 +1,35 @@
+<table class="dataTable">
+  <tr>
+    <td valign="top"><%= user.id %></td>
+    <td><%= [user.name, user.mobile_number,user.email].strip_blanks*', ' %>
+      <%- if user.participations.count > 0 -%>
+        <div class="participationInfo">
+          <div class="participationSummary"><%= user.oc_i(:full)  %> </div>
+          <%- if user.occasions.count > 0  %>
+            <div class="participationDetail">
+              <span class="label">Occasions created:</span> <%= user.occasions.map(&:hs) %>
+            </div>
+          <% end -%>
+
+          <%- if user.invites.count + user.invitings.count > 0  %>
+            <div class="participationDetail">
+              <span class="label">Invitations:</span> <%= if user.invites.count > 0 then "Sent: #{user.in_i}"; end %>, <%= if user.invitings.count > 0 then "Received: #{user.int_i}"; end %> 
+            </div>
+          <% end -%>
+
+          <%- if user.photo_taggings.count + user.photo_taggings_in.count > 0  %>
+            <div class="participationDetail">
+              <span class="label">Photo Taggings:</span> <%= if user.photo_taggings.count > 0 then "Tagged: #{user.pt_i}"; end %>, <%= if user.photo_taggings_in.count > 0 then "Tagged in: #{user.ptt_i}" ; end %>
+            </div>
+          <% end -%>
+
+          <%- if user.photos.count > 0 -%>
+            <div class="participationDetail">
+              <span class="label">Photos:</span> <%= user.p_i %> 
+            </div>
+          <%- end -%>
+      </div>
+      <%- end -%>
+    </td>
+  </tr>
+</table>

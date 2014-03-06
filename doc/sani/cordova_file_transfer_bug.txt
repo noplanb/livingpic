@@ -1,0 +1,156 @@
+ x Sniffer to see what if any data is coming across in the fail mode.
+ x Check if this problem occurs on other phone.
+ 
+ 
+ Q Restart server just before saving pic to occasion. 
+   A - Worked once and didnt work the other time.
+ 
+ Q Does it happen on old galaxy. 
+   A - No - I took 15 pictures in a row with no upload failure.
+ 
+ Q - When it fails does anything go over the network that is visible to a netowrk sniffer.
+   A - If I take a photo and create fails on nexus nothing is visible over the sniffer.
+ 
+ - Can I make it fail trying to send a single file over and over. 
+ 
+ - Fix with retries?
+   - Set retry_count in Photo.save_to_server to 1
+   - Local with webrick it tries once fails and tries again and succeeds.
+   - When I tried this on the store build against our server it fails 5 times in a row before we also noticed a bug in retries between network handler and photo. Network handler tries retry times the it says network ok. Then photo handler receives a notice that network ok and tries to flush photos again. 
+   - Farhad fixed the above bug
+   - Tested on android and farhads bug fix is ok now there is not interaction between retry in Photo.js and NetworkHandler.js.
+   
+
+
+ - Upload using multipart request entity from org.apache.commons.httpclient. Following the pattern here: http://stackoverflow.com/questions/3698059/concise-example-of-file-upload-via-java-lib-apache-commons
+   - Was able to get a hello world java app using the above example to transfer files from phone to /photos/test
+   - Never got the problem even if transfers were attempted after timeout
+   - Interesting observation. When using the cordova after calls to our server we would get EOFerror on webbrick after which if we try to send a file tranfer it fails. I noticed on the hello world app which just did file transfer we got timout rather than eof error at webbrick.
+   
+
+Create a cordova plugin for SaniFiletransfer using the above pattern:
+--------------------------------------------------------------------
+ x Build our app for the phone using eclipse
+   x Build android platform
+   x Copy to a different directory
+   x Import into eclipse
+   x Try to build for the phone
+ x Create the echo plugin.
+   x Create javascript side
+   x Build app
+   x Re-copy into eclipse folder
+   x Build java side
+   
+ - Create our plugin
+   x Get the cordova source code for 2.3 both java and javascript
+     x Make it a textmate project 
+   x Create the javascript side
+     x Copy the source for the cordova file transfer.
+     x Turn into coffee and test.
+   x Create an echo version on the Java side
+     x Test
+   - Fill with the real version on the java side
+   
+
+ 
+ 
+ 
+ 
+ Observations
+ ------------
+ Using Photo.test send a persistent file from both galaxy and nexus. Both succeed however upload times are wildly different:
+   Galaxy 3ms
+   Nexus 1500ms 
+   for similar filesize of 42K.
+   
+ In the failure captured below the Java logger seems to say that partial upload has occurred. But nothing appears at the socket layer in webrick.
+ 
+ 
+ Failure can happen with either a newly created file on the phone or a file that has been uploaded to the phone.
+ 
+ Failure seems to happen when the phone is idle for some time then an upload attempt is made. After the first upload attempt subsequent attempts close on its heels succeed.
+ 
+ !!! Failure always happens after webrick has timed out the connection. 
+ 
+ Read of Cordova 2.3 cordova-android / framework / src / org / apache / cordova / FileTransfer.java we found that after url.openconnection we appear to be getting an io error from the android api at when we try to write to that connection.
+ 
+ Read of Cordova newest head of the FileTransfer.java above we see changes to the file where it calls conn.connect() before trying to do a write. 
+ 
+ Test update to cordova 2.5 and see if it fixes the problem. 
+   o Could not run this test as Webintent does not compile with Cordova 2.5
+   
+ 
+  
+ 
+Failed FileTransfer
+-------------------
+D/FileTransfer(29230): upload content://media/external/images/media/12841 to http://192.168.1.64:3000/photos/create
+D/FileTransfer(29230): fileKey: file
+D/FileTransfer(29230): fileName: 12841
+D/FileTransfer(29230): mimeType: image/jpeg
+D/FileTransfer(29230): params: {"app_info":"{\"user_id\":96,\"network\":\"wifi\",\"current_occasion\":{\"id\":42,\"name\":\"b\"},\"app_version\":\"android_d.1.2\",\"is_running_in_browser\":false,\"version\":\"android_d.1.2\"}","caption":"","longitude":-122.3876183,"time":"Mon Mar 25 2013 10:31:11 GMT-0700 (PDT)","latitude":37.7807563,"occasion_id":42}
+D/FileTransfer(29230): trustEveryone: true
+D/FileTransfer(29230): chunkedMode: false
+D/FileTransfer(29230): headers: null
+D/FileTransfer(29230): objectId: 12
+D/FileTransfer(29230): String Length: 710
+D/FileTransfer(29230): Content Length: 342734
+D/FileTransfer(29230): Uploaded 114688 of 342734 bytes
+D/FileTransfer(29230): Uploaded 229376 of 342734 bytes
+W/FileTransfer(29230): Error getting HTTP status code from connection.
+W/FileTransfer(29230): java.io.EOFException
+W/FileTransfer(29230): 	at libcore.io.Streams.readAsciiLine(Streams.java:203)
+W/FileTransfer(29230): 	at libcore.net.http.HttpEngine.readResponseHeaders(HttpEngine.java:573)
+W/FileTransfer(29230): 	at libcore.net.http.HttpEngine.readResponse(HttpEngine.java:821)
+W/FileTransfer(29230): 	at libcore.net.http.HttpURLConnectionImpl.getResponse(HttpURLConnectionImpl.java:283)
+W/FileTransfer(29230): 	at libcore.net.http.HttpURLConnectionImpl.getResponseCode(HttpURLConnectionImpl.java:495)
+W/FileTransfer(29230): 	at org.apache.cordova.FileTransfer.createFileTransferError(FileTransfer.java:535)
+W/FileTransfer(29230): 	at org.apache.cordova.FileTransfer.access$500(FileTransfer.java:62)
+W/FileTransfer(29230): 	at org.apache.cordova.FileTransfer$1.run(FileTransfer.java:437)
+W/FileTransfer(29230): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+W/FileTransfer(29230): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+W/FileTransfer(29230): 	at java.lang.Thread.run(Thread.java:856)
+E/FileTransfer(29230): {"target":"http:\/\/192.168.1.64:3000\/photos\/create","source":"content:\/\/media\/external\/images\/media\/12841","code":3}
+E/FileTransfer(29230): java.net.SocketException: sendto failed: EPIPE (Broken pipe)
+E/FileTransfer(29230): 	at libcore.io.IoBridge.maybeThrowAfterSendto(IoBridge.java:506)
+E/FileTransfer(29230): 	at libcore.io.IoBridge.sendto(IoBridge.java:475)
+E/FileTransfer(29230): 	at java.net.PlainSocketImpl.write(PlainSocketImpl.java:507)
+E/FileTransfer(29230): 	at java.net.PlainSocketImpl.access$100(PlainSocketImpl.java:46)
+E/FileTransfer(29230): 	at java.net.PlainSocketImpl$PlainSocketOutputStream.write(PlainSocketImpl.java:269)
+E/FileTransfer(29230): 	at libcore.net.http.FixedLengthOutputStream.write(FixedLengthOutputStream.java:41)
+E/FileTransfer(29230): 	at java.io.DataOutputStream.write(DataOutputStream.java:98)
+E/FileTransfer(29230): 	at org.apache.cordova.FileTransfer$1.run(FileTransfer.java:372)
+E/FileTransfer(29230): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+E/FileTransfer(29230): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+E/FileTransfer(29230): 	at java.lang.Thread.run(Thread.java:856)
+E/FileTransfer(29230): Caused by: libcore.io.ErrnoException: sendto failed: EPIPE (Broken pipe)
+E/FileTransfer(29230): 	at libcore.io.Posix.sendtoBytes(Native Method)
+E/FileTransfer(29230): 	at libcore.io.Posix.sendto(Posix.java:151)
+E/FileTransfer(29230): 	at libcore.io.BlockGuardOs.sendto(BlockGuardOs.java:177)
+E/FileTransfer(29230): 	at libcore.io.IoBridge.sendto(IoBridge.java:473)
+E/FileTransfer(29230): 	... 9 more
+
+
+
+Success FileTransfer
+--------------------
+D/FileTransfer(29230): upload content://media/external/images/media/12841 to http://192.168.1.64:3000/photos/create
+D/FileTransfer(29230): fileKey: file
+D/FileTransfer(29230): fileName: 12841
+D/FileTransfer(29230): mimeType: image/jpeg
+D/FileTransfer(29230): params: {"app_info":"{\"user_id\":96,\"network\":\"wifi\",\"current_occasion\":{\"id\":42,\"name\":\"b\"},\"app_version\":\"android_d.1.2\",\"is_running_in_browser\":false,\"version\":\"android_d.1.2\"}","caption":"","longitude":-122.3876183,"time":"Mon Mar 25 2013 10:31:11 GMT-0700 (PDT)","latitude":37.7807563,"occasion_id":42}
+D/FileTransfer(29230): trustEveryone: true
+D/FileTransfer(29230): chunkedMode: false
+D/FileTransfer(29230): headers: null
+D/FileTransfer(29230): objectId: 13
+D/FileTransfer(29230): String Length: 710
+D/FileTransfer(29230): Content Length: 342734
+D/FileTransfer(29230): Uploaded 114688 of 342734 bytes
+D/FileTransfer(29230): Uploaded 229376 of 342734 bytes
+D/FileTransfer(29230): Uploaded 342024 of 342734 bytes
+D/FileTransfer(29230): got response from server
+D/FileTransfer(29230): {"id":173,"occasion_id":42,"time":"2013-03-25T17:31:11Z","caption":"","aspect_ratio":0.75,"url":"/system/photos/pics/000/000/173/phone/12841?1364232771","size":342024,"thumb_url":"/system/photos/pics/000/000/173/thumb/12841?1364232771","creator":{"id":96,"
+
+
+
+

@@ -1,0 +1,31 @@
+<!-- Deprecate when welcome2 is working w/o JQM  -->
+<div id="welcome" data-role="page"  data-theme="c">
+  
+  <%= render :partial => 'header', :locals => {:data_theme => "c"} %>
+  
+  <div data-role="content" >
+    <%= render :partial => '/shared/box_begin' %>
+      <h1>Hello<span class="first_name"></span>,</h1>
+      <p>Welcome to <span class="bold"><%= site_name %></span>!</p>
+      <p>We make it easy for you and your friends to form a shared photo album</p>
+      <p>Shall we get you set up?</p>
+      <div class="button_box">
+        <a id="welcome_next_page" href="#confirm_known_user" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="b" data-transition="slide">Set me up!</a>
+      </div>
+    <%= render :partial => '/shared/box_end' %>
+  </div>
+  
+  <%= render :partial => 'footer', :locals => {:data_theme => "c"} %>
+  
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $("#welcome").on("pagebeforeshow", function(event,data){
+      if ( current_user() ) {
+        if (current_user().first_name) 
+          $(".first_name").html(" " + current_user().first_name)
+      } else {
+        $("#welcome_next_page").attr("href","#unknown_user")        
+      }
+    })
+</script>

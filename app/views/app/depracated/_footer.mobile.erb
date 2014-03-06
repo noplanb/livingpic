@@ -1,0 +1,28 @@
+<% 
+  no_admin = defined?(no_admin) && no_admin
+%>
+<div data-role="footer" data-position="fixed" style="min-height:40px">
+  
+  <% if is_development_release? %>
+    <!-- Left button -->
+    <%= render :partial => "pick_pic_button", :locals => {:side => "left"}%>
+    
+    <!-- Right button -->
+    <% if no_admin %>
+      <%= render :partial => "camera_button_head" %>
+    <% else %>
+      <a href="#" class="ui-btn-right" onclick="AdminController.enter()">Admin</a>
+    <% end %>
+    
+  <% else %>  
+    <!-- Left button -->
+    <%= render :partial => "pick_pic_button", :locals => {:side => "left"}%>
+    
+    <!-- Right button -->
+    <%= render :partial => "camera_button_head" %>
+  <% end %>
+  
+  <!-- Center text -->
+  <h1 class="network_status_text" style="font-weight:normal; font-size:12px" onclick="modjewel && modjewel.require('weinre/target/Target').main()"></h1>
+        
+</div>

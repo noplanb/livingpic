@@ -1,0 +1,25 @@
+<!-- I eliminated npb_photo_file="true", npb_accomodate_height="1.2", and deprecated photo_file.js this may cause problems.-->
+<div id="splash" class="splash blue_gradient page no_header" >
+  
+  <div class="content" >
+    
+    <div class="title">
+      <h1 style="font-size:40px;"><%= site_name %></h1>
+      <div class="startup_status">Initializing the awesome&hellip;</div>
+    </div>
+    
+    <% if current_action.to_sym == :check_cookies && dev_mode? %>
+      <div class="dev_buttons">
+        <div class="center overlay button_box">
+          <div onclick="window.location='/admin/set_user'" class="flat_button blue">Select User</div>
+          <div onclick="window.location='/admin/set_notification'" class="flat_button blue">Select Notification</div>
+          <div onclick="window.location = '<%= "#{app_redirect_base_url(@using_app)}?c=#{@context_id}" %>'" 
+               class="flat_button blue">Enter with Current Context</div>
+        </div>
+      </div>
+    <% end %>
+  </div>  
+  
+  <%- if device_target? -%><div class="version">Version: <%= release_version %></div><%- end -%>
+  
+</div>

@@ -1,0 +1,102 @@
+Android Release 1.5   #11  In store 4/19/2013 - Had a bug which caused it to go to local server rather than livingpic.com
+Android Release 1.51  #12  Revision 7420 In store 4/20/2013 
+
+
+Open
+----
+Farhad
+  - Who liked and notification for likes.
+  - Android Something is blocking when there is poor connectivity causing no device ready and error on android.
+    - Sani and Jills phone android loading html page error cordova popup!
+  o Bug When you add a new album it temporarily puts it at the bottom of the list.
+    - can't replicate it
+  - Iphone slows down seemingly swapping memory.
+
+Sani
+  - FTUI for ad hoc user make more streamlined a la FTUI for invited user
+  - Remove unused pages in the ftui - invite, enter other occasion etc
+  
+Punt
+  o Up the resolution for the photo
+  o Allow entry of adhoc contacts for invite.
+  o General performance. Make non swipe buttons fast.
+  o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+  o Make the loading page interesting. 
+  o Make the check_cookies page and landing page not cacheable by the browser.
+  o Android pictures sometimes dont upload.
+  o If phone number is incorrect provide notice to inviter and a method of changing it.
+  o Remove unnecessary permissions.
+  
+  
+  o Register page submit to server is really slow.
+    - Investigation shows that it takes 5 seconds to do a occasions_json on the server due to lots of db calls. Just live with long spinner as this is a one time occurrence during registration. 
+    
+  o Apple photostream nice experience copy it.
+    - Sani and Farhad need to discuss what this means
+      - Immediate appearance after click of notification.
+      - Full bleed of photo
+      - Comment or like displayed immediate.
+  
+  - Ambiguity
+    - When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+      - In the gallery indicate somehow that photos are uploading. 
+    - When you have multiple new comments since you last visited you dont know which photos they are on.
+    
+  o Gallery page shows all pictures stacked to the left before mosiac spreads them out.
+    o Seems to have been fixed by some other change I made? Cant reproduce.
+    
+  o Pushwoosh plugin for cordova for android.
+  
+
+Done
+----
+ x Up the resolution for the photo
+
+ x Make ios splash page more similar to jqm splash page.
+
+ x Phone numbers with no area code. Deduce area code from the area code of the inviter.
+ 
+ x Album names in sms messages and push notifications print escape codes.
+ 
+  x Remove everything that is not used by our app to reduce dom size.
+    x app_manifest.js
+    x application.js
+    
+ x Remove weinre - completely for iphone, on release builds for android.
+    x Remove from application.js   
+    x Remove for iphone all cases
+    x Add for android_build, android_build_store
+    x Dont add for android_build_release
+    x HOW
+      x In package_app.rake manually move the weinre.js file over to the android platform js only for android non release
+      x In app_package.mobile only add the weinre.js file in the header for android non release
+    x TEST
+      x Build android - Check weinre
+      x Build android store - Check weinre
+      x Build android release - Check no weinre
+      x Build iphone - Check no weinre
+      x Build iphone_store - Check no weinre.
+    
+
+  x Comments only notify when you are on the thread or author of the photo.
+  
+  x Add a cancel button to autocompleter.
+   x Add participants
+   x Occasion for pic
+   - Invite on create album (need to probably remove this in the FTUI)
+
+  x Gallery flashes no pictures before showing the pictures.
+    x Display none for no_pics div solves it.
+
+  x After photo capture it shows gallery page for a moment need to show the spinner.
+    x Change to blank_page_spinner before going to camera or pic from gallery.
+    x Test
+      x Capture pic
+      x Pick from gallery
+
+  x Wording around add people. Make it more universally relevant.
+  
+  x Cancel on add photo renders badly on iphone.
+  
+  x IOS select a rotated photo shows sideways in our app.
+  

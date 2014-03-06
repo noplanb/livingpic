@@ -1,0 +1,156 @@
+Open
+----
+  o Add people cancel button
+  o Allow entry of adhoc contacts for invite.
+  o Make the check_cookies page and landing page not cacheable by the browser.
+  o Sani and Jills phone android loading html page error cordova popup!
+  o Gallery page shows all pictures stacked to the left before mosiac spreads them out.
+  o IOS select a rotated photo shows sideways in our app.
+  o Pushwoosh plugin for cordova for android.
+  o Android pictures sometimes dont upload.
+  o Who liked notification for likes.
+  o bug When you add a new album it temporarily puts it at the bottom of the list.
+  o FTUI for ad hoc user make more streamlined a la FTUI for invited user
+  o Register page submit to server is really slow.
+  o Remove unused pages in the ftui - invite, enter other occasion etc
+  o Clicking back after snapping a photo there is a long delay where the app sits on the gallery page before going to the occasionforpic page
+  o Phone numbers with no area code. Deduce area code from the area code of the inviter.
+  o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+  
+  
+  
+  o Apple photostream nice experience copy it.
+    o Sani and Farhad need to discuss what this means
+  
+  - Ambiguity
+    o When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+      o In the gallery indicate somehow that photos are uploading. 
+    o When you have multiple new comments since you last visited you dont know which photos they are on.
+    
+  
+Closed
+------
+  x Push notifications
+    Testing
+      - Check all paths from push notification.
+        - Invite no app
+        - Invite w app
+        - Comment
+        - Add photo
+      
+  x FTUI For invited user: Collapse are you participating and take a photo.
+     Soap Box Derby!
+     You were invited to participate in the photo album for Soap Box Derby.
+     View photos by others and make it great by contributing your own!
+    x Modify what next with the above messaging.
+    x Determine where people who have no occasion go and whether it needs to be handled by whatnext I believe the currently go to store_release_welcome
+      x Views:
+        - confirm_occasion - remove
+        - confirm_other_occasion - can probably remove but keep for now.
+        - confirm_at_new_occasion - keep for ad hoc user
+        - enter_other_occasion - keep for ad hoc user
+        - store_release_welcome - keep for adhoc user
+      
+  o FTUI for ad hoc user
+    o Dont change for this release.
+    
+     
+  x Make back button on android work for add people page.
+    x Test on android
+
+  x Ambiguity
+    x Clicking on a detail and it just shows a flat nothing in the image for a long time
+      x Use the loader spinner class on the background of the div containing the detail image
+      x Test 
+        x Make sure original fullpage loader_spinner still works
+        x Test with a bad image on the detail page.
+    x % indicator for uploading pictures in the gallery page
+      x Test iphone
+      x Test android
+        
+  x Spinner on signup pages especially name and phone number
+    x List of affected pages
+      x confirm_known_user.js  window.register() seems to be the only one that needs to get a spinner.
+    x Test 
+      x for signin for unknown user
+      x for sign in for known user
+  
+  x What next when there is a current occasion make the language for the button contribute a photo to the occasion name.
+    x Test
+      x No current occasion
+      x Current occasion.
+    
+  x Confirm known user doesnt show the users name when we ask if we have it right. 
+    x On problem
+    x Tested
+      
+  x Remove skip check invites button on confirm_check_cookies for iphone
+  
+  x Bug: Add a comment in airplane mode on Farhads iphone allows the add.
+    this was actually a bug with attr("value") for  a field vs val() for the new jquery.
+  
+  x Add dependent destroy for notifications in user
+  
+  x Bug - Different users invite the same person. We potentially generate multiple contact details for that person for the same phone number. Notification sends to each of those contact details. So the User will get duplicates. 
+    x Fix - send notifications to contact details that are uniq by value
+    x Test plan
+      x Destroy user mounir
+      x As sani add mounir to test invites alum for which adam dell is also a participant.
+      x Log in as adam dell
+      x Invite mounir again.
+      x Check that mounir has 4 contact details 2 replicates of 2
+      x Check that the invite by adam only caused 2 notifications.
+  
+  
+  x Invite multiple invite notifications and on-boarding flow
+    x Emphasize the occasion name in the invite.
+      # WES SOAP BOX DERBY!
+      #   Get the Mobile App!
+      # Hey John, Are you participating in WES SOAP BOX DERBY? You want this app! Get it now!
+      # Sani invited you.
+      # LivingPic ~ Android :: iPhone
+      
+  x Tone down notifications after activation.
+  
+  x Photo notifications
+    x Eliminate admin names in the notification
+    x Test plan
+      x Change holdoff on sending notifications to 2 minute
+      x Sani create album
+      x Add adam dell & mounir
+      x Add photo by Sani
+        x Look at the notification texts should say someone
+      x Add photos by adam dell          
+        x Look at the notification texts
+      x Add photos by Sani and adam dell and mounir        
+      x Look at the notification texts
+      
+  x Invite templates
+    x Emphasize the occasion name and get the app in the text message.
+    x Template for active and non active users.
+      x Test plan
+        x Create an occasion
+        x Make sure adam dell is active
+        x Invite adam dell
+        x Invite a new non active user
+        x Prepare template for each notification. 
+  
+  x Contact list issues:
+    x Jill has 10 Sani Elfishawys. 
+      x Only show contacts where we have phone numbers
+    x Upload fresh contact list on resume and 
+  
+  x ftui iphone  
+    x click check invites comes back to the check invites page after you have gone to the web.
+      x Get rid of skip button
+      x Change page to loading page before redirecting
+
+  x Get rid of invite in ftui.
+    
+  
+  
+    
+    
+  
+  
+  

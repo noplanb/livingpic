@@ -1,0 +1,20 @@
+// ===============
+// = Splash Page =
+// ===============
+
+#splash.page{position:absolute; top:0; bottom:0; right:0; left:0; display:block;}
+#splash{
+  text-shadow:none; text-align:center; color: white;
+  .content{position:absolute; top:0; bottom:0; right:0; left:0;}
+  .title{position:absolute; top:5%; width:100%;}
+  .dev_buttons{position:absolute; top:30%; width:100%;}
+  .version{position:absolute; bottom: 5%; width:100%;}
+  
+  
+  h1{font-size:32px; margin:0px;text-shadow:none; padding-bottom:0.5em;}
+  h2{font-size:18px; margin:0px; padding-bottom:10px;text-shadow:none; padding-bottom:0.5em;}
+  h3{font-size:17px; margin:0px; padding-bottom:10px;text-shadow:none; padding-bottom:0.5em;}
+  p{margin:5px 0px 0px; font-weight:normal; font-size:14px; color:#eee;text-shadow:none;}
+  
+}
+

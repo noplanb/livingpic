@@ -1,0 +1,15 @@
+How to handle connectivity issues and offline-ability?
+
+First Store Release
+-------------------
+ - Possible User Experience:
+   - The app must be connected in order to function properly. 
+   - If the app is not connected then when the app needs to go to the server it puts up not-connected error page:
+     - "Cannot reach www.livingpic.com. Please verify your Internet connection is working properly."
+     - A try again button? For after you fix the problem takes you where? Boot.initialize? The home page for the first release app?
+   - What if it failed on uploading a pic you captured? Too bad its lost.
+   
+ - Implementation: (If we are ok with the above experience how should we implement?)
+   o Cordova provides a connection status? Check this before sending anything? Problem is that will not catch the error if our server is down.
+   - For all $.ajax call a universal error handler on error that detects the not found error and puts up the error page?
+     - Would need to find all of these and adjust them. 

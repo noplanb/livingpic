@@ -1,0 +1,34 @@
+<!-- deprecate when what_next2 handles this. -->
+<div id="what_next" data-role="page"  data-theme="c">
+  <%= render :partial => 'header', :locals => {:data_theme => "b"} %>
+  
+  <div data-role="content" >
+    
+    <%= render :partial => '/shared/box_begin' %>
+      <h1><span  class="current_occasion"></span>!</h1>
+      <p class="call_to_action">
+        You are all set up!
+        <br/><br/>You were invited to the shared photo album for <span class="current_occasion bold"></span>. 
+        <br/><br/>Enjoy!
+      </p>
+     
+      <div class="button_box">
+        <span data-role="button" data-inline="false" data-theme="b" 
+              data-transition="slide" data-mini="false"
+              data-icon="arrow-r" data-iconpos="right"
+              class="goto_gallery"
+              onclick="GalleryController.show(current_occasion())"
+        >Go to the Album</span>
+        
+        <span class="j_camera_trigger take_a_photo" 
+              data-theme="b" data-role="button" 
+              data-inline="false" data-mini="true" onclick="capture_pic()">
+            <span class="take_a_photo_text"></span>!
+        </span>
+      </div>
+    <%= render :partial => '/shared/box_end' %>
+    
+  </div>  
+   
+  <%= render :partial => 'footer', :locals => {:data_theme => "c"} %>
+</div>

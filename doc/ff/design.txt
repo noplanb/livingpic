@@ -1,0 +1,58 @@
+Overall framework:
+ - use a standard MVC
+ - the model has knowledge of whether we have many any changes or not.   It will sport an update method which updates from the server
+   Key objects are: Occasion, Photo, Comment, User
+   However, the models are hierarchic, that is the occasion itself is not that meaningful because it's just a bundle of photos, so updating the occasion is really just updating the photos, unless we return instead the last_photo_added, last_photo_id, photo_count, comment_count, etc. so that we can see if we need to invoke the photo class to update itself.  But even then I don't need to update the entire photo list, although it might not hurt, but rather the photos for the occasion of interest.
+
+ - the controller has the following key methods:
+   - list: show all the objects 
+   - show: a unique ID
+   the idea is that the controller gets invoked by a message or the user clicking on an occasion or an image or "all".  
+   When a show is done on a particular object, it can also check to see if there have been any updates on the server.  If there have been, it then renders the page again.
+   We have a general DisplayController that supercedes the messageHandler and displays the appropriate object based upon the received message.  Also,  
+ - The views I'll deal with later
+
+Just like on the server, we'll have a Photo object and have all the photos associated with it.  Then, the occasion will point to the photos.  For now I won't have the comments or Users as separate objects, but keep them in with the photos
+
+Plan of action:
+ - Set up the sync'ing object Syncable
+
+Local storage and syncing framework
+
+One option is to inherit from a "syncable" class that has a number of core methods:
+  - we have to specify the method for syncing an individual file, or else use a pattern
+  class methods
+    - remote_last_update_time
+    - reload
+    - has_unsynced changes?
+    - 
+  Instance methods
+    - sync_to_server
+    - load_from_server
+    - has_local_changes?
+    - 
+
+
+- I want to be able to create something locally and then sync it with the server.  Obviously this only applies to models.
+  - mark something for sync'ing and provide a method for doing the sync, and a method to call when the sync is done
+  - a sync manager maintains a queue of these and does the sync'ing when it can.  Upon success it calls the appropriate method.
+  - the sync'ing is one-way
+  - it's up to the local items to track that something hasn't been sync'ed and update it accordingly
+
+
+NetworkHandler Benefits:
+- We can consistently deal with errors and checking for network availability before
+  making calls, then logging issues and reporting back on them to the server later.  Even though the
+  message may be different
+- Some cases will want to stop if there is an error and just show a message to the user. E.g 
+  - create occasion
+  - retrieve assets from server (occasions, pictures)
+- Some cases will want to retry in the background
+  - post photo
+  - report on things
+Eventually, we'll want to cache the state locally and sync up with the server whenever we have connectivity again, like w/ Evernote
+
+How do we check again if there is network connectivity and flush the queue?  I wanted to do this on resume but Sani says it introduces delays when we come back from the camera. Other options are:
+  - have a timeout in the backround that checks
+  - have the user manually have a retry
+  

@@ -1,0 +1,13 @@
+<table class="dataTable small" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <% @photos.first.keys.each do |h| %><th><%= h %></th><% end %>
+  </tr>
+  <% @photos.sort{|a,b| b["image_id"].to_i<=>a["image_id"].to_i}.each do |row| %>
+    <tr>
+      <% row.keys.each do |rk| %><td><%= row[rk] == "null" ? "-" : row[rk] %></td><% end %>
+    </tr>
+  <% end %>
+</table>
+<pre>
+  <%= @pretty %>
+</pre>

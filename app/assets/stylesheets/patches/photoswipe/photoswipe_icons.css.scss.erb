@@ -1,0 +1,32 @@
+// ==============================
+// = Patches for photoswipe.css =
+// ==============================
+// Make their css work with the asset pipeline for images.
+
+div.ps-toolbar div div.ps-toolbar-content
+{
+	background-image: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'photoswipe/icons.png' %>");
+}
+
+/* Hi-res display */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi)
+{
+	div.ps-toolbar div div.ps-toolbar-content
+	{
+		background-image: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'photoswipe/icons@2x.png' %>");
+	}
+}
+
+/* Carousel */
+div.ps-carousel-item-loading 
+{ 
+	background: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'photoswipe/loader.gif' %>") no-repeat center center; 
+}
+
+div.ps-carousel-item-error 
+{ 
+	background: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'photoswipe/error.gif' %>") no-repeat center center; 
+}
+

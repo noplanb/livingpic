@@ -1,0 +1,19 @@
+Phone            Number        Init conditions
+-----            ------        ---------------
+i Moto G           5223334441    Non user no app
+i Jill Samsung     5223334442    Non user no app
+i Eva Samsung      5223334443    Non user no app
+i Old Samsung      5223334444    Non user no app
+x Ipod Touch       5223334445    User Old app
+x Iphone 3         5223334446    User Old app
+i Farhad Farzaneh  4156020256    User new app
+c Sani Elfishawy   6502453537    User new app
+
+
+x Update the server app_config.yml so that version mgt works.
+- Set up initial conditions on the phones. 
+- Sani create a test album
+- Sani invite all phones to test album
+- Review notifications
+- Manually send browser to notification link on invited phones. 
+

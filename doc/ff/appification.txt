@@ -1,0 +1,17 @@
+2012-09-04: conversion of the site to app
+x run:
+    bundle exec rake assets:precompile RAILS_ENV=development 
+  to create the application.js and application.css files in the public/assets folder
+x copy these files to the snapshot app directory with
+    cp public/assets/application.js ../../app/www/js/
+    cp public/assets/application.css ../../app/www/css/
+x Need to to to /app and merge the code with index.html
+    
+x make sure the URLs referenced in the application are fully formed (e.g. if get_contacts references the site path not with the fully formed URL)
+x the get_contacts method references fullname when data coming from server and name when it's from iOS.  
+  x I changed it to reference base.url for now since I'm not yet sure how to configure an env in which the information comes from
+    different places (e.g. mock, from device, etc.). I could relate that to the deviceready event listener, and set it to point to the fact that it's running on the device.  I could even put that within a timer event so that if it's not set, we will go ahead and initialize the system anyway.
+  x I massage the local contacts data so it has an ID and a fullname 
+  
+x We need to configure setup so that it goes after the device is ready and not when the document is read so that we can use it on the app.  The document is ready is finished way before the device is ready.
+x Also need to change getContact() so that it does the right thing depending on whether we're on the device or not

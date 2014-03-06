@@ -1,0 +1,1049 @@
+SCROLL of GALLERY ON IPHONE.
+
+- Create a page that is just full width photos to test scrolling
+  - 20 photos - Scroll has very fast deceleration. Very sluggish. Takes 10 flicks to get from top to bottom.
+  
+  - Test decelerationRate in ios:
+    TRY
+    - In - (void)webViewDidFinishLoad:(UIWebView*)theWebView:
+      Add line: -> self.webView.scrollView.decelerationRate = 1.0;
+      I added this line to vendor/cordova/ios/mainviewcontroller.m
+    RESULTS:
+    - 20 photos - Scroll feels a lot better. Takes 2 flicks from top to bottom.
+    - 200 photos Keep decelerationRate at 1.0
+      - Feels like it takes a long time for the page to settle in and be scrollable at all.
+      - When it finally is scrollable it isnt as smooth as the 20 photos list.
+      - Scrolling fast causes the page to blank out and then re appear.
+    - 200 photos but all but 10 are set to display:none
+      - Device doesnt settle until all 200 photos load from server
+      - Then after device has completely settled scrolling is as about as smooth as for just 20 photos. 
+    - Same test as above using visibility hidden rather than display:none gives about the same response.
+    - NOTE: MUST use visibility not display though becuase:  
+      - setting display from none to block and vice versa for elements that are in the viewport causes the viewport to flash.
+    - Add a text block below each photo.
+      - Setting visibility hidden to both the photo and the text is not much better than setting visibility hidden to just the photos.
+    - CONCLUSION: 
+      - Try the following strategy:
+        - When displaying the gallery page for the first time load as an infinite scroll. Add blocks to the dom only as needed to accommodate scrolling down.
+        - When scrolling up or down through a fully loaded page set the visibility of the images that are outside the viewport to hidden and those that are in the viewport or about to be in the viewport to be visible. 
+
+
+- Prototype
+  - Write some code to test second part of the scheme above. 
+    - Load a page with 200 images and blocks of text.
+    - When scrolling through the page hide images outside the viewport and make ones inside or about to be inside visible.
+  - Can you get the position of the top and or bottom of the viewport? YES $(window).scrollTop()
+  
+  x For all the images in the gallery get their position
+  - When new images are loaded get their position
+  - When a scroll happens
+    - Check the location of the center of viewport
+      - If at top or bottom do nothing 
+      - If center of viewport is more than threshold greater than on pics then turn on 5 at the bottom and turn off 5 at the top.  
+      - Move the new top pointer to top and bottom pointer to bottom. 
+      
+  - PROBLEM: Iphone gives only touch_start touch_end scroll. You only get touch_end and scroll after the screen has stopped moving. 
+  - Add a interval timer to fire while screen is moving.
+    - Kill and start the timer on touch_start
+    - Kill the timer on scroll
+    - Kill the timer if last position is the same as current position
+  - CONCLUSION:
+    - It doesnt work. While the page is moving When the page is moving javascript is essentially dead. No events are received or processed. Even touch events where you scroll several times while the screen is still moving are not received but are stacked up and all fired at once when the screen finally stops moving.
+    
+- Try iscroll
+  - Put iscroll directory in public and test their examples on iphone safari.
+    - Looks pretty good. 
+    - Zoom looks promising too.
+  - Try it with our example of 200 photos in our app.
+    x copy iscroll.js to javascripts
+    x include in the manifest
+    x Build a page that looks just like their simple example
+    x Add their js code to testpages
+    x Try it out.
+    x Now load our photos instead
+      - RESULT: 20 photos works beautifully
+      - RESULT: 100 photos all visible - Ok but juttery.
+      - RESULT: 100 photos 20 visible - works about the same as only 20 photos.
+      
+- Iscroll hacked to toggle visibility of photos in the view port. 
+  - How do we know our position in the scroll window? 
+    - If we use iscroll snap then we can get our position in pages which is great. 
+  - What events does iscroll give us?
+    - # "onScrollStart",
+    # "onBeforeScrollMove",
+    # "onScrollMove",
+    # "onBeforeScrollEnd",
+    "onScrollEnd",
+    # "onZoomStart",
+    # "onZoom",
+    # "onZoomEnd",
+    # "onTouchEnd",
+    # "onAnimationEnd",
+    # "onDestroy",
+    # "onRefresh" 
+    - Of these scrollend is perfect as we get it even if the person starts scrolling again immediately after or will the page is still moving. 
+    
+x Build a visibility controller using iscroll
+  x Start from scratch. Call it scroll_handler. Make it work for a page that is preloaded with 200 photos.
+  x Get rid of ids in the dom and use classes instead.
+  x Label all the photos blocks with the page number
+  x Make the first 7 visible.
+  x Keep track of which are visible and which arent in an array. 
+  x On scrollstop adjust visibility such that only 7 below and 7 above are visible.
+  
+  x Architecture
+    x TempGalleryController
+      x Sets up our dummy gallery page for testing.
+    x GallerySrollHandler
+      x Instantiated with
+        x Element that will be scrollable
+        x Number of pages
+      x Sets up iscroll with the appropriate callbacks
+      x Switches on and off photos on scroll end events. 
+      - Unloads photos farther away on scroll events. 
+      
+  - Test on android. 
+    -PROBLEM - For some reason it works poorly on android.
+    
+INVESTIGATE BUILDING OUR OWN ISCROLL?
+-------------------------------------
+  http://albertogasparin.it/articles/2011/06/ios-css-animations-performances/
+  http://css3.bradshawenterprises.com/transitions/
+  
+  - User experience.
+    - If I do a swift scroll it rapidly moves ahead exactly 5 pictures.
+    - Less swift moves ahead 4,3,2,1 pictures depending on the speed of my scroll.
+    - Touching down again stop exactly where we are.
+    - Tapping registers a click.
+    - Pictures out of frame are thumbnails blown up to full width.
+  
+  Questions:
+  - How fast and how smoothly can we translate a group of pictures using the transform capabilities on the browser.
+    - TestTransform
+      - Perfect! Much better than transition. Very smooth.
+      - Had a problem with images disappearing when scrolling but this seems to have taken care of it:
+        --webkit-backface-visibility: hidden;
+        
+    - TestTransition with Position top
+      - On iphone with 75 pics
+        - No matter how slow you run the transition it feels revvy like it goes and slows and goes and slows.
+        - At very slow speeds it is juttery
+        - The max acceptable speed is roughly 5000px/5sec = 1000px/s
+        
+    - CONCLUSION: Use transform translate!
+    
+        
+  x How many touch move events do we get? And what info do we get?
+    x Created TouchTest under testpages.
+    CONCLUSION:
+    x It looks like we should be able to get a pretty fine indication of how fast the user swiped.
+
+  x What does it look like if a thumb that is blown up to 100% is switched with a phone-res photo while in users view?
+    - TestSwitchResolution
+    CONCLUSION:
+     - It works great.
+     - Make all the photos out of screen very small thumbs probably 100px wide and blow them up to 100%
+     - As they scroll by dont bother with them.
+     - When you start scrolling and determine where you will end up make the photos around the target landing area fullsize.
+
+BUILD OUR OWN ISCROLL
+---------------------
+  - ScrollTouchHandler (This solution had problems see below for implementation.)
+    - Receives touch events on the gallery element.
+    - Determines what kind of an event they were.
+      - Fast scroll 4, 3, 2, or 1 depending on the speed of the scroll.
+      - Precise scroll.
+      - Stop scroll tap.
+      - Single tap.
+      - Double tap. 
+      - Pinch.
+      
+    - Determining type of scroll
+      - Check only 1 finger
+      - Save last move
+      - Check the Y distance and timestamps Print pixels per second.
+      - If a fast scroll is sent ignore remaining moves until a touch start. 
+      - Clear last move on touch_start
+      - Clear fast_scroll_fired on touch_start
+      
+   - PROBLEM
+     - For what feels like a smooth swipe when I look at the instantaneous speeds as calculated from one touch move to the next 
+       I see a max speed that can be as much as 10 times the min speed.
+     - I need look at an average of speed but I dont want to wait for the time it takes to collect a set of points 
+       for the average before I start the screen scrolling or the lag will be too great.
+   - SOLUTION
+     - Instead of figuring out one Fast scroll to fire for the entire gesture, fire several. 
+     - As soon as we start getting moves fire the appropriate scroll given the instantaneous speed of the first couple moves.
+     - Then continue to calculate average speed. 
+     - Fire additional scrolls such that the sum of all the fast scrolls sent is appropriate for the average speed calculated. 
+     PROBLEM WITH ABOVE SOLUTION
+       - Does not handle the case of slide fast but keep finger on screen and stop scenario. In this case you dont want to send the 
+       user several pages down.
+   - ALTERNATE SOLUTION
+     - While touch moves are coming in before touch end, fire precise scrolls to get the view to scroll right under the finger. 
+     - When the touch end happens take a look at the overall all average speed and final speed to determine whether to 
+       send a fast scroll and which one.
+       
+  !! ScrollTouchHandler Protocol for alternate solution:
+    - Receives touch events on the scroller element (gallery)
+    - Can query the scroller using is_scrolling to see if a scroll is still in progress. 
+    - Determines what kind of a gesture they were by looking at average speed and ending speed for the gesture.
+    - Sends a sequence of move_px with num_px and move_page with num_pages commands to the scroller.
+      - While the touch_moves are coming 
+        - If not is_scrolling. 
+          - It instantly fires move_px commands for each touch_move to the scroller which instantly moves the page appropriately.
+        - If scroller is_scrolling
+          - User is swiping while the page is moving to go even faster.
+          - It does not fire move_px
+          - It waits for the touch_end and fires an appropriate move page move_page 
+      - After touch_end
+        - Depending on the average speed and whether the gesture ended with speed
+          - If the average speed is slow or gesture ended with a slow or standstill
+            - Send move_page 0 pages Scoller can then snap to top or bottom of page as appropriate
+          - If the average speed was fast and gesture ended with speed.
+            - Send a move_page with num_pages proportional to the speed
+    
+  TEST: Implement the move_px under finger with no move_page momentum first. See how it feels.
+    - For each move send a move_px with the num_px to move
+    - Implement the scroller which scrolls the view appropriately using transforms. 
+    - Test on a view with 200 low res pics.
+  
+  RESULTS: First implementation feels a bit laggy and juddery.
+    - Check how long it takes to change the css for the transform - roughly 1ms
+    - Check the difference in times between touch_moves when we call move_px and when we dont.
+      - If I do nothing with the touch_move events 
+        R - I get touch_move events: min_time: 12 max_time: 20 av_time: 16
+      - For a page with 200 thumbs all visible
+        - For: 
+          - css setup of transition 
+          - css transform 
+          - both webkit and none 
+          - transition time - 10ms
+          R - I get touch_move events: min_time: 5 max_time: 280 av_time: 54
+            - The very high max_time is causing the judderiness.
+        - For:
+          - NO TRANSITION!
+          - css transform  
+          - both webkit and none 
+          R - I get touch_move events: min_time: 9 max_time: 89 av_time: 19
+            - MUCH better a bit jittery but ok precision scrolling. DUH of course you dont want a transition since we want instant response.
+        - For:
+          - NO TRANSITION!
+          - css transform  
+          - only none (no webkit)
+          R - I get touch_move events: min_time: 7 max_time: 24 av_time: 16
+            - VERY ACCEPTABLE PRECISE SCROLLING.
+
+  TEST: Implement snap to photo for momentum after precise scroll.
+    - Specify a page boundary element.
+    - Get the positions of the page boundaries.
+    - Move page should transition to the next boundary.
+  RESULT: Works very smoothly need to refine a few things.
+  
+  
+  REFINE: 
+    x Handle all the cases:
+      x Start scrolling fast but stop at the end. - Stop under finger dont snap to page
+      x Start scrolling fast then change direction - all the possible endings.
+      x Start scrolling slow then end fast.
+    x Strategy:
+      x Scrutinize the end of the scroll gesture.
+      x Check the last few touch moves to determine if the user has come to a stop with finger on
+      x Check a larger sample size at the end to determine the speed and direction of the end of the gesture.
+      x Send the appropriate move_page(+/-n) on the touch_end
+      x Empirically determine some thresholds:
+        x Typical scroll to a stop: absolute value of average of last(2) speeds < 0.15 px/ms
+        x Look at the last 5 speeds to determine exit speed for non stopped. 
+          x Played with the values to get a feel.
+              
+    x Set the appropriate the move_pages speed based on the exit speed move_px
+      x Look at the speed the user ended with.
+      x Send a px/ms speed along with the move_pages to the scroller.
+      x Scroller should calculate the appropriate duration for the transition to achieve the px/ms or some minimum pix/ms based on the px that need to be moved.
+          
+    x Make scroll up work
+    
+    x If scroll is in progress and user continues to scroll it means he wants to go faster and farther. Make the gestures additive.
+      x ScrollTouchHandler can query the scroller to see if animation is in progress.
+      x If so it should not send move_px but only additive move_pages based on the final portion of the gesture.
+      
+    x Scroll is in progress and user puts finger down.
+      x Should detect and handle and stop under finger.
+      x To stop detect the position of the finger based on the top offset of the target element using: TouchMove.target.offsetTop 
+      x Send a jump_to(offsetTop) to the scroller.
+    PROBLEM: 
+     x If the user puts his finger down and doesnt move we dont any touch move events that show his finger in the same position
+     x We actually have to detect the absence of touch move events in order to differentiate between a
+       speed up second swipe while scrolling and a static touch attempting to stop the scroll.
+     x The problem is how long to wait before we assume that the touch the user started while the screen is still scrolling 
+       will have no moves. 
+    SOLUTION:
+     x Run some tests to see what is the latest time after a touch start while scrolling that a speed up swipe causes  touch_move.
+     x Looks like 100ms should cover most cases.
+     x On touch_start while scroller is in transition set a 100ms timer which is cancelled by touch_move. If it fires it causes a stop_scrolling. 
+           
+    x Rubberband back in case of move_px above or below the first or last pages.
+
+    RESULT: I like :)
+    
+    
+BUILD A NEW VERSION OF OUR GALLERY AND MAKE IT WORK WITH SCROLLER
+-----------------------------------------------------------------
+  
+  - Files:
+    - gallery_view2.js.coffee
+    - gallery2.mobile.erb
+    - gallery2.css.scss
+
+  DESIGN
+  ------
+  - Images resolutions
+    - To handle the problem of out of memory issues and slow scrolling:
+    - All images are low res until the user scrolls to one when it is swapped with a high res. 
+    - An image resolution handler tracks and toggles the images.
+    
+  - Image location
+    - To keep everything snappy and eliminate long spinners
+    - Images are only displayed after we have a local version on file.
+    - We never let a user know an image for an album exists until we have both its low res and high res version local. 
+      
+  - Loading
+    - When gallery is shown for the very first time load only a few pics to make initial render snappy.
+    - Rubberbanding past bottom of the page triggers a load of additional pics or indicates end of album.
+  
+  - Persistence
+    - The gallery view is never destroyed unless we try to display a different album. 
+  
+  - Refreshing
+    - Rubberbanding at the top indicates that the system is looking for newly added pics.
+    
+    
+  GalleryHandler2
+  ---------------
+  - GalleryHandler INSTANCE  - If you try to create a new gallery for an occasion that is already being displayed the occasion handler returns the instance of that occasion. That way we dont do unnecessary loads of the gallery view. 
+  
+  - Keeps track of: 
+    - what occasion is showing
+    - which items are loaded and visible in the view.
+    
+  - Handles
+    - Add items as necessary when rubberbanding at bottom happens.
+    - Refresh at top when rubberbanding at top happens.
+    - Adding new photo to top when one is snapped. 
+  
+  - Todo
+    - Point client at the server to see the photos in lacd & loaded
+    - Add n photos
+    - Design the layout for 
+      - Likes
+      - Captions
+      - Comments
+      - Author
+    - Create gallery2.mobile.erb page
+    x Move any necessary css for the scroller into the scroller.js
+    - Create a gallery2.css
+    
+  - Comment Bugs
+    x Comment flashes after it slides in. 
+      x Set backface visibility to hidden. 
+      x PROBLEM. setting it universally for all comments makes button response slow for some reason on the comment form.
+      x Solution: Set it for the comment being added and un set it.
+    x Nearby photo flashes after comment animation is done.
+      x Set backface visibility to hidden for all photos in gallery. Seems to work.
+    x Post and Cancel buttons are slow.
+      x Set to touch start and stopPropagation and preventDefault on them.
+    x Launch comment click is slow. 
+      x Change to touchstart and stop propagation.
+    x After comment is added we need to recalculate page positions in the scroller.
+  
+  
+  PhotoResolutionHandler
+  ----------------------
+  - Tracks the photos in the gallery in parallel with the scroller
+  - Scroller lets PRH know when it is on a page.
+  - PRH switches src for photos as appropriate.
+  
+  - PERFORMANCE: loading of HTML for gallery. 
+    -----------------------------------------
+    - Strategy 1:
+      - Create a jquery element for each part of a photo block like: title_block, caption, photo etc.
+      - Create a photo block as a jquery element and insert an array of these elements
+      - Create an array of 200 of these photo_blocks and insert them into the photos element in the dom. 
+    RESULTS:
+      - For 200 photo_blocks:
+        - Sani's Android:
+          - Time to create final jquery photos element: 700ms
+          - Time to insert into DOM: 600ms
+        - Sani's iPHone:
+          - Time to create final jquery photos element: 2000ms
+          - Time to insert into DOM: 2200ms
+    
+    ! Strategy 2: 
+      - Dont create jquery elements for each sub_block along the way. Just create 1 very long string for the entire set 
+        of photos blocks. 
+      - Use native javascript innerHTML rather than $().html to insert this big block of text.
+    RESULTS:
+      - For 200 photo_blocks: 
+        - Sani's Android:
+          - Time to create photos html string: 30ms
+          - Time to insert into DOM: 330ms
+        - Sani's iPhone:
+          - Time to create photos html string: 135ms
+          - Time to insert into DOM: 860ms
+          
+    - Strategy 3: 
+      - Same as strategy 2 but eliminate all whitespace and newlines in the html string. 
+    RESULTS:
+      - For 200 photo_blocks: 
+        - Sani's Android:
+          - Time to create photos html string: 16ms
+          - Time to insert into DOM: 330ms
+        - Sani's iPhone:
+          - Time to create photos html string: 130ms
+          - Time to insert into DOM: 860ms
+ 
+          
+    CONCLUSION: Use Strategy 2. i.e. insert html text rather than elements. Dont worry about the whitespace..
+    
+
+  - PERFORMANCE: adding click handlers to photo elements in the gallery. 
+    -------------------------------------------------------------------
+    
+    ! Strategy 1: Use Strategy 3 above and add them as on_click text in the photo_block strings.
+      - For 1 click handler on each of 200 photo_blocks
+        - Sani's Android: Phone wifi broke didn't test
+        - Sani's iPhone:
+          - Time to create text html: 135ms
+          - Time to add string in DOM: 860ms (No change from strategy2 above.)
+    
+    - Strategy 2: add them after the photo_blocks html string has been inserted in the dom using jquery on method.
+      - For 1 click handler on each of 200 photo_blocks
+        - Sani's iPhone:
+          - Time to create text html: 135ms
+          - Time to add string in DOM: 860ms
+          - Time to add click handlers using on() 230ms
+    
+    CONCLUSION: Use strategy 1 above i.e. add event handlers as text in the html if we need to add them for each of the elements.
+    
+
+  CONCLUSION: to keep the loading time to under 50ms load only 10 pix at a time everytime user rubber bands down. 
+  
+  
+Layout for Gallery
+------------------
+  x Photo
+    x Is surrounded by a div that has the height and width set based on the aspect ratio so that the scroller can calculate the page positions before all the images have loaded.
+    x Note cant set the height and width of the img because before the img has loaded they dont have an effect. Must use a surrounding div.
+    
+  - Create like button
+    x Color and text depends on whether you liked or not
+    x Wire it so likes work
+      x Adds the like
+      x Updates the page
+      x Animation when pressed
+      x Change state of button.
+      - Get the like button in the exact right size from Aditya when done.
+      
+  x Comments
+    x Create CommentHandler2
+    x Add a comment textarea to the page in a fixed position.
+    x Make it so that when add comment div is clicked the comment textarea appears and the content area disappears.
+    x Make it so the keyboard comes up automatically without another click.
+      x Try inducing a click on the text area element. Doesnt work.
+      x To get the keyboard to come up on iphone you need to $textarea.focus() from the context of a user initiated event.
+    o Resize the text area to fit - too difficult.
+    x Add a post and cancel button
+      x Cancel closes with nothing
+      x Post
+        x Check to see if there is any text in the comment after escaping the html and trimming.
+        x Add post locally
+        x Send to server after a delay
+        x Add the post to the gallery dom
+        x Animate: Fly the post in sideways 
+      x Escaping html
+        x When a new comment is posted save it locally and on the server with HTML escaped.
+        x Add a convenience method to do this.
+      x Test
+        x Post html
+        x Post blank
+        x Post with leading and trailing blank
+
+
+        
+Photo zoom
+----------
+ x Detect 2 finger actions
+ 
+ x Cause the picture to zoom around
+   x Zoom and rotate the picture in place - works great!
+   
+Zoomer
+ x Takes an image or element
+ 
+ x Snap to cover the screen rotating if necessary
+   x Determine the screen height and width
+   x Determine the current img height and width
+   x Rotate so that longer image side matches up with longer screen side.
+   x Scale to cover
+   x Pan to center
+
+ x Pinch to zoom
+   x Increase sensitivity. 
+ x Pan to pan
+ o Click to overlay with return
+ x Click to return
+ x Double click to 
+   x zoom and center
+   x zoom out
+ 
+ x White border bug
+ 
+ x Test
+   x Ignoring 3 finger gestures
+   
+
+Integrating Zoom and Scroll
+---------------------------
+ x Add scroll to the page
+   x Bug bounces back to top when I stop a scolling in transition.
+   
+ x Generate click events. => See   DETECTING AND ACTING ON CLICKS IN THE SCROLLER for the GALLERY below.
+   x Figure out what click managers are working now.
+   x Remove them
+   
+ - Generate swipe left and right events.
+ x Handle the clicks
+ 
+ - Pause scroller when zooming (dont capture events.)
+ - Resume scroller after zooming.
+ 
+ PROBLEM
+ Must wait for all images to load on the page before calculating the page positions.
+ 
+ SOLUTION 1
+  - Detect loaded events for all images.
+  
+ PROBLEMS wit Solution 1
+   - You have to wait before you can startup the scroller.
+   - The event handlers for on loaded and the tracking will cause some performance degradation.
+
+ SOLUTION 2
+   - Know the aspect ratio of the images.
+   - Preserve vertical space for the images in the dom based on the width of the screen and the aspect ratio. 
+   - Calculate pages for the scroller as soon as we are done loading the dom for the gallery.
+   
+
+REMOVE CLICK HANDLING AND CLICK MODIFYING PLUGINS
+-------------------------------------------------
+  - Use the profiler to figure out what is running when do a touch start and stop
+    - Fastclick - move it into a not used directory.
+    - JQuery mobile 
+      - Has a plugin to generate vclicks and normalize mouse events accross touch and non touch devices
+    - JQuery 
+      - Has an event plugin to allow the use of on and managing event handlers etc. 
+    
+    - Dont the JQuery or JQuery mobile code for now now. Just use preventDefault and stopPropagation on the scroller touchstart, touchstop, and touchmove eventhandlers to prevent the jquery_mobile and jquery code from running when in the scroller.
+        
+DETECTING AND ACTING ON CLICKS IN THE SCROLLER for the GALLERY
+--------------------------------------------------------------
+
+  STRATEGY 1
+  - Dont use the native event handler and bubbling infrastructure to propagate and handle clicks on the scroller.
+  - Detect clicks then call the appropriate method to handle them.
+  
+  PROBLEM with strategy 1
+  - The target of the event is deepest element under the event. In the case of a click on a like button for example it might be a subdiv of the button. It is a pain to determine the target and act on it. The browser infrastructure already does all the bubbling up necessary to deal with this. No point in us trying to recreate it.
+  
+  STRATEGY 2
+  - Detect a click from touch events.
+  - Create our own npb-click event and let the system bubble it up.
+  - Set up the handlers in the dom to handle our click events.
+  
+  Test Strategy 2
+  - Create a test page with a div. And a button.
+  - Clicking the button should cause a new event on the div.
+  - Detect that new event using onevent="" in the html (preferred approach for us)
+  
+  PROBLEM with strategy 2
+  - You cant register a handler for a custom event in the dom as onmyevent="". This is desirable for us as adding event handlers when we load the gallery page takes more time than coding them in the html. See the experiments further up in this doc.
+  
+  STRATEGY 3
+  - Just trigger a native event like a click and use onclick in the dom elements in the gallery to register the handlers.
+  - Just use the jquery trigger("click") method. It is plenty fast.
+
+SCROLLER BUGS
+-------------
+  - If you are on the last page and do a fast swipe down you should scroll to the bottom of that page rather than to the top since some of the page may be off  the bottom.
+  - If user starts scrolling before the scroller is initialized the page position calculations are wrong.
+
+
+
+LOAD GALLERY PROGRESSIVELY AS YOU SCOLL DOWN
+--------------------------------------------
+    
+  - To speed up the initial loading of a gallery page for an occasion load a small batch in to start then load more batches in as the user scrolls down.
+  
+  x QUESTION: How long does it take to load a batch?
+  x ANSWERS:
+    x Creating the HTML
+      x Creating the html string for 200 photos takes 5s. Dont worry about optimizing this for now.
+    x Inserting the HTML
+      x Using native javascript el.innerHTML = "html for 200 photos" takes 2.8s, 2.9s, 2.9s on sanis iphone.
+      x Using jquery $el.HTML("html for 200 photos") takes: 8.5s, 8.2s, 8.5s
+      CONCLUSION: Use the native innerHTML rather than jquery for insert.
+    x Creating and inserting html using native javascript where possible. 
+      x 200 photos = 5.7s
+      x 100 photos = 2.6s
+      x 50 photos = 1.3s
+      x 20 photos = 0.5s
+      x 10 photos = 0.22s
+      CONCLUSION: Set the batch size to 10 photos.
+  
+  x GalleryHandler2 gets a list of all the photos from the occasion at the time of construction. It batch loads them tacking more onto the end of the gallery as the user scrolls down. 
+ 
+  - Scroller senses being near the last page and asks GalleryHandler to load more.
+  - GalleryHandler knows which photos are loaded and what the next batch to load is. 
+  - 
+
+SCROLL PERFORMANCE ROUND II
+---------------------------
+ - After loading 200 pages I found that scrolling got very slow.
+ - QUESTION: what caused the slow down?
+   - TRY (Load all 200 in one batch)
+     - Thumbnails and img_box no resolution handler - RESULT: Very sluggish not acceptable at all.
+     - Thumbnails humbnails no img_box no resolution_handler - RESULT: Very sluggish not acceptable at all
+     - No Thumbnails only the fixed hight img_box divs - RESULT: Scroll feels a bit sluggish almost acceptable though.
+     - No Thumbnails no fix height image_box divs - RESULT: Livable. But somehow not quite as good as earlier experiments.
+ - QUESTION: is the sluggishness due to the transform or due to the touch handling?
+   - TRY move_pages(various_amounts, various_speeds) from the console without the touch handling.
+   - RESULT - the transforms for these move pages are very smooth even with Thumbnails and img_box. They also have low latency.
+   - CONCLUSION - The sluggishness above appears not to be due to the transforms but perhaps to the touch sensing?
+ 
+ - QUESTION: is the sluggishness due to the touch handling 
+   - TRY - Show the gesture profile for ScrollerTouchHandler after a slow swipe.
+     - RESULT - extremely poor. Times between touch_moves vary between 9ms and 400ms!
+ 
+ - QUESTION: are the move_px Transform actions for each touch_move slowing down the reception of future touch_moves?
+   - TRY - remove move_px action from the touch_move
+   - RESULT - PERFECT we get a touch_move event consistently every 16ms or so.  
+ 
+ - QUESTION: what in the move_px action is killing the next touch_move? 
+   - TRY - alternately remove set_transition and translate_y from the move_px method.
+   - RESULT - Having either a set_transition, or translate_y in the move_px method makes the touch moves come in very inconsistently.
+
+  - EXPERIMENTS:
+    On gallery with 200 pages
+    - Run 1px movements back to back in a loop 1000x. Save time delays between them in an array. How rapidly do they happen on average?
+      - translate_y - which runs jquery css for -webkit-transform and transform for translate3d. RESULT- 150ms per iteration.
+      - @scroll_el.css(translate, transform3d) RESULT - 150ms per iteration
+      - @scroll_el.get(0).style.webkitTransform = "translate3D(0px, -#{target_position}px, 0px)" RESULT - 150ms per iteration.
+      - @scroll_el.get(0).style.webkitTransform = "translateY(-#{target_position}px)" RESULT - 150ms per iteration.
+      - Remove all images RESULT - IMPROVED 50ms per iteration.
+    DISCOVERY:
+      - css transforms do not block at all it is the call to new WebKitCSSMatrix(window.getComputedStyle(@scroll_el.get(0)).webkitTransform) by current_position that blocks only if a transform. The call caches the position so that future calls do not block until a new transform runs.
+      
+  - QUESTION: So the current_position blocks for 50ms - 150ms above based on whether the page has images or not. But how long does the transform take to run?
+    - TRY - set transition to 1ms and use transitionend events to iterate. 
+      - translateY with 200 pages no photos RESULT - 650ms per iteration.
+      - translateY with 2 page no photos RESULT - 20ms per iteration.
+      - translateY with 200 pages no photos all pages visibilty=hidden except first - RESULT - 650ms per iteration.
+  
+  - QUESTION: Does running translateY block touch_move events?
+    - TRY - Run the loop of continuous Translates above on gallery with 200 pages and no photos. While they are running swipe and show gesture data for the touch. RESULT - Yes running translateY in the bacground blocks touchmove events. For a slow smooth swipe I get only 5 or so spaced as: 11ms,414,8,388,3.
+    - TRY - Set the touch on the document.body rather than on the element being scrolled. - RESULT. Same as above.
+  
+  - QUESTION: With transition set to none. How long do I have to wait between translates so each one takes effect. It seems like the 650ms iteration pace above may be due to 2 translates because of the transition?
+    - TRY - Set up the iterating loop as above but with transition:none and use a variable timeout rather than the transitionend event to try to figure out how long we need to wait.
+      - RESULT - As I lowered the timeout from 100ms the translates could be seen to happen on the screen. When I got timeout below 65ms down to 0 timeout I noticed that the translates still took effect but they seem to be held off and queued since the iteration time between them seemed to not go below 65ms.
+      - DISCOVERY - wrapping a translate in a zero time out may insure it happens and doesnt stomp the one before even if the one before is still running.
+
+  - QUESTION: What happens if I run translates open loop in a for loop with the translate wrapped in a zero timeout. I cant seem to reproduce the above DISCOVERY by just wrapping the translate in a timeout.
+  
+  - QUESTION: - Current_position when run after a translate blocks control but it is cached for the next call. Can I speed the processing of move_px by always calling current_position immediately after running every translate. That way it is run at the same time the translate is blocking.
+    - RESULT 
+      - YES this does speed things up. In a gallery with 200 pages with photos. Scrolling move_px only. 
+        - Call current_position() immediately after translate command - I get touchmoves with max spacing of: 200ms (consistent)
+        - Dont call current_position() immediately after translate command - I get touchmoves with max spacing of: occasionally as much as 400ms.
+
+  - Question: - Current position instantiates a WebKitCSSMatrix object. Is this what is taking the time. Should I just instantiate it once in the constructor and use the same one for current_position after that?
+    TRY: a loop with a move of 1px followed by current_position() on gallery with 200 pages including photos.
+      - Instantiate WebKitCSSMatrix for each current position. - RESULT - delays in ms = [176, 162, 159, 183, 251, 164, 149, 148, 153, 168]
+      - Instantiate it once in the constructor and use over again. RESULT - It does not work. You must instantiate a new one each time or it wont give you the most recent matrix.
+    CONCLUSION: - instantiate WebKitCSSMatrix each time.
+          
+  
+  - BOTTOM LINE
+    - I cant find a way to prevent translates that are running from preventing touch_moves from registering.
+    - I cant tell when a translate stops but I really dont need to as touch_moves seem to not register while a translate is running so there is little chance that I will stomp on a running one due to a touch_move coming in.
+    - I did get a performance improvement from running current_position() directly after a translate so that these two actions that block touch_moves happen in parrallel.
+    - For now stick with this optimization and move on to do momentum scrolling below.
+    
+      
+MOMENTUM SCROLLING
+------------------
+  - Test exit speeds
+  
+  PROBLEM: When the page is large and touch_moves are blocked by translates I get speeds which are too low. I really need to limit the page size such that touch_moves are not inhibited.
+  
+  QUESTION: At what page size do I start seeing an effect on touch_moves - RESULT at around 30 - 40 pages with photos starts showing some minor inhibition of touch moves.
+  
+  CONCLUSION: I probably need to go to a strategy of unloading as well as loading pages as the user scrolls up and down to limit the number of pages showing in the gallery. Lets wait to do this though until I get momentum scrolling working properly with a small number of pages.
+  
+  x Strategy
+    x Send exit scroll speed from sth to scroller for move that end with speed. 
+    x Scroller decides on final destination of scroll based on the exit speed and a decay factor and how close the destination is to a page boundary.
+  
+  x Todo
+    x First implement a simple momentum scroll forget about page boundaries.
+    x Next implement with snap to pages.
+    
+  
+SCROLL PERFORMANCE ROUND III
+----------------------------  
+ -TRY
+   - Limit the number of photos in the scroller. 
+   - Add a spinner at the bottom and top of the gallery if there are more available to view.
+   - When page goes to top add more at the top and unload from bottom and vice versa at the bottom.
+   
+  - Todo
+    o Find the spinners and add them to the dom. 
+    x Add loaded pointers to gallery2.handler.
+    x Add a mechanism to cache the text for the pages for when they are unloaded then need to be reloaded.
+    x Create GalleryLoader that will load and unload pages as necessary when you scroll far enough away. 
+
+  - PROBLEM: If you have scrolled down the page and then unload photos from the top then it causes the page to shift up at your current location.
+  - TRY: Set position of photoblocks as absolute. RESULT - Makes all the photoblocks sit on top of each other. Need to set a top for each one based in its height and its predecessors heights like masonry.
+  
+  - POSSIBLE STRATEGY:What if I have fixed height frames in absolute positions for each of the pics. When i unload pics I leave the frame in place so nothing moves.
+  
+  - QUESTION: If I have a ton of fixed height empty frames will scroll performance be affected?
+  - TEST: Try 250 empty frames followed by 40 frames with photo_blocks followed by 250 empty frames. 
+  - RESULT: It works I get touch_move events roughly the same rate as without the 500 empty frames.
+  
+  - QUESTION how long does it take to load 10 new photo_blocks to the bottom with images.
+  - TEST with a timer around load_bottom
+  - RESULT 
+    - on first load_bottom before we cache the text for the photo_block - 470ms
+    - on a load_bottom if the html text is in cache - 77ms
+  
+  - QUESTION when inserting into fixed divs I will have to do one at a time how long does it take to insert a single photo_block.
+  - RESULT good 6.5ms each.
+  
+  
+  - TODO - Fixed height absolute positioned frames with content that can be loaded and unloaded.
+    x Change the ul and li to divs with classnames. 
+      x ul - scroll_el
+      x li - frame_content  id=photo_block_<photo_id>
+      x adjust scroller and test
+      
+    x PhotoBlockView has the concept of with frame or without frame 
+      x Add a div around photo_block with id=frame_<photo_id>
+      x Frame is initially positioned absolute above the top. 
+      
+    x GalleryLoader
+      x Keeps track of which pages have frames loaded has_frame_i 
+      x Load_bottom
+        x When load_bottom happens it loads with frames if necessary.
+        x It calls GalleryFramePosition with the ids of the new frames that are loaded to get them positioned. 
+      x Load_top
+        x Inserts into existing frames.
+      x Unload_top Unload_bottom
+        x Removes content from existing frames
+    
+    x GalleryFramePositioner
+      x Keeps track of heights and absolute positions of each frame.
+      x Gets a list of ids to position. 
+      x Positions them 
+    
+    x scroller
+      x Get the positions for the pages by looking at top for the frames 
+    
+    x GalleryHandler / GalleryLoader / Scroller 
+      x GalleryHandler.scroller_at_bottom/top
+        x Freeze scroller
+        x Load as needed
+        x Reset and unfreeze scroller
+        
+    o GallerySpinnerHandler - PUNTED ON THIS TOO MUCH CLUTTER FOR TOO LITTLE VALUE.
+      o Check out the spinners
+      o Add divs for top and bottom spinner with ids top_spinner and bottom_spinner
+      o Position them at -2000 to start
+      o FramePositioner gets options for showing the top and bottom spinner
+        - Positions them if necessary
+      o Scroller adds them to the scroll_els their position is >= 0
+       
+   x Fixed introduced bugs.
+     x Zoomer not working.
+     x Add resolution handler back in and fix
+     x Fix comments
+
+ANOTHER FUCKING PROBLEM
+-----------------------
+ - With a just a couple high res photos if you are scrolling you put your finger down to stop it scrolls past then jumps back.
+ 
+ - TEST 
+   - Disable photo_resolution_handler - RESULT scroll_stop works acceptably
+   - Set photo_resolution_handler to show a 1 high res photo - RESULT - jumps enough on stop to not be acceptable.
+   - PRH with 2 high res photos. - RESULT - not acceptable scroll stop.
+  
+ - QUESTION - What causes this?
+   - TEST 
+     - What are the delays between touch_start for the scroll_stop, scroll_stop firing, current_position(), jump_to_current_position?
+   - RESULTS
+     - 2 High res pics: [set_stop_scrolling_timer, timout_fires(set at 50), current_position, jump_to] = [16, 73, 1, 117]
+     - Only low res pics: [16, 70, 0, 14]
+   - CONCLUSION
+     - The high res pics make the jump_to take a long time. 
+
+  - TRY
+    - Make all pics low res before each scroll_to? 
+    - QUESTION: How long does it take to make 2 pics low res? RESULT - it takes between 7 and 40 ms.
+    - TEST call to make_all_low_res before each scroll_to
+      - RESULT - I can ask for all the  pics to be low res before scroll_to and they become low res. But it does not affect the performance of the scroll_stop.
+      - CONJECTURE - perhaps they are switching in time. Perhaps the fact that the switched to low res is not being loaded into the GPU?
+  
+  - QUESTION - Are the high res pics bigger than I think they are? - RESULT no they are 960px wide.
+  
+  - QUESTION - what specifically causing the slowness in the jump_to when there are high res pictures?
+    - TEST - use the profiler to try and find out. 
+      - Start a slow long scroll with 2 high res photos. 
+      - Start the profiler.
+      - Call jump_to 
+    - RESULT not clear
+    - TEST - put timers in the code
+    - RESULT - It appears that all the css changes we are calling for transition and translate3D for the Jump_to are happening quickly. 
+      it just seems that the there is a delay when the translation actually takes effect on the screen which causes the
+      screen to scroll by then jump back.
+  
+  - QUESTION - does translateY improve it? RESULT - NO
+  
+  - SOLUTION - I hate to do this but the only solution I can think of to eliminate the unacceptable bounce on stop_scrolling is to not high_res the photos when we stop scrolling but only do it when we enter the zoomer and make sure we return them to low res when we leave the zoomer.
+  
+  x Todo - make zoomer view high res then revert all to low res.
+
+ANDROID CLICK TARGET PROBLEM
+----------------------------
+  PROBLEM: On android the click target is only correctly determined when you click on the photo in the gallery. Not for like button or comments box. 
+  CAUSE: It seems to be related to photo having -webkit-transform: translate3d(0,0,0)} but not the other elements.
+  INVESTIGATE: 
+    - Photo no longer needs that tag since we are zooming zoom_photo instead.
+    - Try giving NO elements but the scroll div the translate3d css. 
+      - Android: RESULT: That works well and it seems to eliminate the problem of the photo flashing when scroll stops.
+      - Iphone: Seems to work as well.
+
+ANDROID SCROLL STOP PROBLEM
+---------------------------
+  PROBLEM: When I try to use -webkit-transition -10s and jump to the current_location on android the current transition is not stopped but continues. 
+  DISCOVERY: 
+    - On android setting transition to none or to a negative number e.g.-10s and giving transform animation will not stop the currently running animation as it does on chrome, safari, firefox, and iphone. You need to give small transition delay such as .001ms.
+  PROBLEM 2:
+    - Cant use small transition delay for all instantaneous motions because it ends up being juttery such as jump_to when used for panning. So need to use -10s in those cases and only use .001s for the case of sroll_stop on android.
+
+MORE ENHANCEMENTS
+-----------------
+ x Pinch on photo should start zoomer
+ x Bug: Double tap on photo should not jump in and out of zoomer
+
+
+RUBBER BAND REFRESH
+-------------------
+ x GallerHandler instantiates Refresher and Scroller and passes Refresher to Scroller.
+ x Scroller.move_px: lets refresher know current_position if above top.
+ x Scroller.move_end: asks refresher where it should snap back to if above_top.
+ x Refresher lets GalleryHandler know if it is refreshing.
+ x GalleryHandler 
+   x Pauses and resumes scroller as appropriate.
+   x Reloads page. 
+
+
+CHANGING THE OCCASION FOR THE GALLERY
+-------------------------------------
+
+ DESIGN GOALS
+   - Instant on for coming back to the the gallery page for the occasion you were viewing before.
+   - Quick load of a new occasion.
+   
+ STRATEGY
+   x GalleryController:
+     x Knows what occasion is currently being rendered in the gallery if any.
+     x Calls GalleryView to render anything in the gallery not created by the GalleryHandler (like the header)
+     x Only instantiates GalleryHandler2 if there isn't an existing instance.
+     x Tells GalleryHandler what photos to render. 
+     x Only calls GalleryHandler with a new batch of photos if the occasion is changed or there is a refresh.
+   x GalleryHandler:
+     x Only instantiates the following once:
+       x Scroller
+       x Refresher
+     x Reinstantiates the following asked to handle a different batch of photos.
+       x PhotoResolutionHandler
+     x Calls GalleryLoader to load the new batch of photos
+
+  TODO
+    x Create GalleryController2
+    x Copy and fix what is in GalleryController
+    x GalleryHandler
+      x Move call to GalleryView up to the controller
+      x Change GH so it doesnt know about occasions only a set of photos
+      x Add the capability to change to a new batch of photos
+     
+  PROBLEM
+    - When I change from an occasion to the occasions page then to another occasion the scroller seems to need to translate to a negative position to get to the top of the page even though calc postions puts the top position at 0. 
+    SPECULATION
+      - Does this have something to do with display none then block on the gallery page while the scroller is scrolled part way down the page?
+      TRY
+        - Go to a gallery
+        - Scroll part way down the page
+        - Toggle display on the gallery page
+      RESULT - Does NOT seem to cause the problem with the scroller.
+        
+      TRY
+        - Go to a gallery
+        - Scroll part way down the page
+        - Click to OccasionsController.show() and back to gallery.
+      RESULT - Does NOT seem to cause the problem with the scroller.
+        
+      TRY
+        - Go to a gallery
+        - Scroll part way down the page
+        - Click to OccasionsController.show() and scroll down occasions
+        - Pager.change_page back to gallery
+      RESULT - CAUSES THE PROBLEM
+      
+      
+      QUESTION - Is the scroller doing anything when we are scrolling the occasions page and the gallery display none?
+      TRY - Trap sth moves, Go to gallery verify trap, Pager.change page to occasions, scroll and see if we trap.
+      RESULT - No the gallery scroller is not firing when we are scrolling the occasions page.
+      
+      QUESTION - What does scrolling down the occasions page do to the gallery scroller when gallery display is none.
+      TRY - 
+        - Start with good gallery
+        - Scroll down Ask scroller what it thinks current_position() - R - 5485
+        - Click to OccasionsController.show(). ask again - R - 0
+        - Scroll in occasions and ask again - R - 0
+        - Pager.change_page to gallery and ask again - R - 5485
+        - PROBLEM But when I am back in the gallery I am not on the same point in the page that was 5485 when I left.
+      
+      TRY - 
+        - Start with good gallery
+        - Scroll down Ask scroller what it thinks current_position() - R - 5485
+        - Set transform on scroll el to none - R - Jumps to top of page
+        - Ask scroller what it thinks current_position() - R - 0
+        - Click to OccasionsController.show()
+        - Scroll in occasions 
+        - Pager.change_page to gallery and ask again - RESULT - I AM NO LONGER AT THE TOP OF THE PAGE. 
+        CONCLUSION: Something about scrolling down in the occasions page affects the gallery independent of the scroller?
+      
+      TRY - 
+        - Go to a good gallery but disable scroller from ever starting. 
+        - Scroll down the page and back up to the top
+        - Click to OccasionsController.show()
+        - Scroll down the page
+        - Pager.change_page to gallery
+        - RESULT - we are not longer at the top in the gallery page! 
+        - Check scrollTop on body RESULT it is not 0!
+        - Back to occasions RESULT scrollTop on body is not 0 but scrollTop on #occasions page is 0
+        CONCLUSION - Scrolling the occasions page actually scrolls the body
+        
+     QUESTION is there a way to scroll the occasions content in a body that doesnt move?
+     TRY - 
+       - Create a test page 
+       - Fixed height element with overflow:scroll RESULT - not smooth scrolling on the phone.
+       - Fixed height element with -webkit-overflow-scrolling: touch RESULT doesnt work scrolls the body instead.
+       - Fixed height element with both RESULT works on web and phone
+     
+     CONCLUSION AND FIX:
+       - For our custom pages with custom header
+         - page - position absolute, top=0, bottom=0, left=0; right=0; overflow:hidden
+         - Header - position absolute, top=0, height=x, left=0; right=0; overflow:hidden
+         - Content - position absolute, top=x, bottom=0, left=0, right=0; overflow:scroll, -webkit-overflow-scrolling: touch
+         
+ 
+ADD NEW PHOTOS TO THE TOP OF THE GALLERY
+----------------------------------------  
+  - New photos added to the occasion at the top. 
+    - When user scrolls to the top and pulls down the GalleryHandler2 finds out if new photos have been added to the occasion. 
+    - When a user snaps or adds a photo the gallery handler adds it to the top.
+  
+  
+    
+HOW CAN YOU TELL IF OUR TRANSFORMS ARE GPU ACCELERATED
+------------------------------------------------------
+http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome
+http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css
+
+
+Corrupt missing local images
+-----------------------------
+
+PROBLEM:
+  On Android and maybe also on IOS the photo may think it has a local image for thumb or high res when in fact that file for some
+  reason does not exist. On Android this maybe because the user deleted it under livingpic in his native gallery. It also may 
+  occur in IOS or Android if somehow the file failed to load completely or was corrupted in a low coverage environment but we still somehow got
+  a success for the load. Consequently we get a broken link in the gallery where the image should be that does not go away.
+  
+SOLUTION:
+  Use onerror for the image to detect a failure to load the image and if the image had a local copy then clear the local copy and reset the url for the image. 
+  
+
+SCENARIOS:
+  x Scenario
+    - bad coverage 
+    - Broken remote high res
+  x Do 
+    - If local high res then set to that
+    - Else set to thumb_display_url()
+  x Test
+    - clear all locals
+    - view a gallery
+    - all should be set to remote for high res and thumb
+    - locals should download as we scroll through the gallery
+    - Kill app
+    - Kill the internet
+    - Come back in broken links should switch to locals
+    - Turns out it is really hard to test. Looks like it is working though.
+  
+  x Scenario
+    - bad coverage 
+    - Broken remote thumb
+  x Do 
+    - If local thumb then set to that
+    - Else do nothing to prevent infinite loop
+    
+  x Scenario
+    - Broken local thumb
+  x Do 
+    - Clear local thumb
+    - Set src to thumb_display_url() which should be tmp_file_uri or remote for the thumb
+  
+  x Scenario
+    - Broken local high res
+  x Do 
+    - Clear local high res
+    - Set src to display_url() which should be tmp_file_uri or remote for the high_res
+  
+  x Scenario
+    - tmp_file_uri broken
+    - src was set to tmp_file_uri 
+  x Do
+    - Clear tmp_file_uri
+    - Set src to thumb_display_url() which should be remote or local
+
+PROBLEM: 
+  Zoomer photo fails to load for some reason. Zoomer hangs and scroller freezes. 
+  
+SOLUTION:
+  x Need an onerror for when loading zoom photo. Gracefully abort zoom if there is an error loading the zoom photo.
+
+  
+     
+  
+      
+          
+   
+    
+      
+
+
+    
+  
+  

@@ -1,0 +1,15 @@
+<%=  render :partial => "user", :collection => @users %>
+
+<script type="text/javascript">
+  $( function() {
+    $(".participationDetail").hide();
+    $(".participationSummary").toggle( 
+      function(e){
+        $(e.target).nextAll(".participationDetail").show()
+      }, 
+      function(e) {
+        $(e.target).nextAll(".participationDetail").hide()
+      })
+    }
+  )
+</script>

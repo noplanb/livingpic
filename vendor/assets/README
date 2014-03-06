@@ -1,0 +1,3 @@
+Put assets in there that are used by both the browser env and the phone
+package.  Stuff that's just used by the phone package is put in the
+cordova-plugins directory

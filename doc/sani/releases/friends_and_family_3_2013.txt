@@ -1,0 +1,57 @@
+ANDROID_RELEASE_VERSION_CODE = "7"
+ANDROID_RELEASE_VERSION_NAME = "1.3"
+
+
+ANDROID_RELEASE_VERSION_CODE = "8" - Added a retry to photo upload to fix the android bug on filetransfer but this had a bug.
+ANDROID_RELEASE_VERSION_CODE = "9" - Added a retry to photo upload to fix the android bug on filetransfer. Fixed the above bug so that network handler tries 50 times.
+
+Bugs
+---------
+  x Jills phone got stuck while I clicked done in ftui when it asked who else I know at the occasion. Same on Sani Galaxy.
+    x Need to also incorporate a skip here.
+  x When you come in from a link to a photo newly added by someone else it shows you the photo but when you click back to the album it is not there.
+  x Photos taken on iphone and jills phone come in sideways then are fixed by the server.
+  x Create a fresh user no invite. Dont create album in Ftui. Snap picture. Try to save in a new album. Javascript error current_occasion(...).is_new_record is not a function 
+  - !! Take photo on nexus, doesnt save until you exit app and resume. causing - Photos disappear from gallery.
+  
+  
+ 
+User Feedback
+-------------
+ x New Album button top right of albums.
+ - Trim android and iphone permissions to only what we need.
+ x Add caption then change album removes the entry you made in the caption.
+ o Wording
+   o Are you at album doesnt make sense in some cases during sign up ftui.
+   o People at album doesnt make sense in add people
+ x When you come in to see a picture from a link it should make that album is now your current occasion.
+ - Wording on adding new participants in ftui for brand new invitee.
+ - Link to comment should go to comment rather than to photo.
+ 
+Process
+-------
+ - Get iphone on cordova2.3
+
+
+Tests
+-----
+ - Clear state on browser.
+ - Create a new user on the browser
+ - Create an album and invite sani
+ - Add a photo
+ 
+ 
+Iphone bullshit:
+---------------
+ x Change to startup_confirmation to check cookies confirmation.
+
+ x Flow:
+- Message handler called with no context id
+-> UserHandler.startup called with no opts
+-> UserHandler.startup does not find current user
+-> UserHandler.startup calls check_cookies_confirmation for iphone and just does check cookies for android.
+-> Check cookies confirmation button checks_cookies for iphone.
+-> Check cookies redirects back to app with c="" I believe since there is no notification id in the session for this unrecongized user
+-> Message handler starts all in the same state as in first step of this.
+
+

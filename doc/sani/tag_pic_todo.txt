@@ -1,0 +1,24 @@
+ x Add pic to the background.
+ x Make the the foreground opaque
+ x Who is in this pic search box
+ 
+ 
+Factor the autocomplete_view
+ - remove tag_pic js
+ x copy invite_page.js into the bottom of autocomplete
+ x create a class 
+ x change all the methods to class instance methods. 
+ - instantiate the class in the parent passing in the div id 
+ x Use a convention for the
+   x Search input field
+   x search results box
+   x picked items box
+ x Pass in the theme and make sure you can change it.
+   x Move the templates to the top class
+   x Delete them from the bottom class.
+   x Error in the bottom classes if not passed.
+   x Use them in the bottom classes.
+   
+ x Instatiate for tag_pic
+ 
+ 

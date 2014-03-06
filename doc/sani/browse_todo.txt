@@ -1,0 +1,60 @@
+ACTUAL UI
+---------
+ x Create my occasions list.
+   x Header bar
+     x My Occasions
+     x Take a photo
+ x Click down to see thumbnails gallery
+   x Occasion title .
+   x Thumb sizing .
+     x Save the estimated width in @thumb_width
+     x Insert the width explicitly using @thumb_width
+     x After probable load of more than cause scrollbar resize and resize on final image loaded.
+     x On window resize change the @thumb_width and do a css update for existing.
+     
+ - Click down to see photoswipe
+   - Back up button on photoswipe. 
+   - Disable close nav on photo swipe.
+   - Occasion title photoswipe
+   - Photographer name in photoswipe
+  
+  - clowing@terrawest.com
+
+
+EXPERIMENTING
+-------------
+Photoswipe
+  x Play with photoswipe features.
+
+Server side processing
+  x Rake photos:import. Import test photos into db from public/system/photos/raw_test_pics
+  
+Simple album browse 200 pics
+  - Thumbnail preview with continuous scroll and square thumbnails.
+  - Click and start browse at any point. 
+
+Make the album photoswipable.
+
+
+More app navigation:
+  - All my occasions.
+  - Single occasion thumbnails
+  - Single occasion slide show.
+  
+  
+  
+
+Tumbnail view
+  x 500 images to work with
+    x Bring in from picasa
+    x Convert them to thumb nails
+    
+  x Make an ajax request for the photos. 
+    x Get the urls for the full album
+    x Load them up in blocks
+    x Test how the load feels from the server on 3g phone
+    
+  
+  x Background black
+  
+  

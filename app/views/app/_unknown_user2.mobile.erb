@@ -1,0 +1,20 @@
+<div id="unknown_user2" class="ftui page" >
+  <%= render :partial => 'ftui_header' %>
+  
+  <div class="content" >    
+    <!-- <h3>Please sign up</h3> -->
+    <form>
+      <!-- <label for="first_name">First name:</label> -->
+      <input type="text" name="first_name" id="edit_first_name" value=""  placeholder="First name"/>
+      <!-- <label for="last_name">Last name:</label> -->
+      <input type="text" name="last_name" id="edit_last_name" value=""  placeholder="Last name"/>
+      <!-- <label for="mobile_number">Mobile number:</label> -->
+      <%= render :partial => "/app/phone_w_country/phone_w_country_entry_field", :locals => {:id => "unknown_user_phone", :placeholder => "Mobile number" } %>
+      <div class="button_box">
+        <div class="flat_button blue"
+            onclick="FtuiController.submit_new_user_name_and_phone($(this).closest('form').serializeArray())">Submit</div>
+      </div>
+    </form>
+  </div>
+  
+</div>

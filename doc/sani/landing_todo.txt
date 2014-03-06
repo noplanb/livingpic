@@ -1,0 +1,56 @@
+Spec and todo list for all the viral vector landing pages, on-boarding sequences, and registration flows:
+
+
+- General landing page flows. 
+  - To handle an old sms that is clicked on after the user has downloaded the app. Can you tell from the mobile browser whether the user has the app installed? If so redirect to the app with the invite params if the user has the app. 
+  - Fire a non interrupting ajax request for all clicks so we know what is happening on the landing page even if it go to server
+
+- Note for onboarding flow. We have loop verified the email and or sms by virtue of the invite. Need to take advantage of that.
+
+o Non-mobile based landing page for email notifications. (Future release. No emails will be sent in first release.)
+
+x At occasion SMS Notifications To Non Registered
+  o SMS: 
+    o Social Action (SA): Invite :: "FROM Mark S: See great photos of Susan's Wedding live! Click www.LivingPic.com/i/asdfasdf"
+    o SA : Tag : "FROM Mark S: I just saw a nice photo of you at Susan's Wedding. Click www.LivingPic.com/i/asdfasdf"
+    o SA : Comment : "FROM Mark S: I just commented on a nice photo of you at Susan's Wedding. Click www.LivingPic.com/i/asdfasdf"
+    o SA : Like : "FROM Mark S: I just liked a photo of you at Susan's Wedding. Click www.LivingPic.com/i/asdfasdf"
+    o SA : Album threshold : "The Living Album for Susan's Wedding just crossed 50 photos! Click www.LivingPic.com/i/asdfasdf"
+    o SA : Participation : "Brian L has started snapping Living Photos of Susan's Wedding! Click www.LivingPic.com/i/asdfasdf"
+  
+  x Landing page contents: 
+    x Title - "Susan's Wedding Living Album!"
+    x Pics
+      x Medium sized thumbnails of most relevant to you up to 2 + 1 + Many more photos of Susan's Wedding...
+      x Click -> Modal text: See all photos of Susan's Wedding full size! \n With LivingPic! \n BTN: Get the App Now! \n "I love LivingPic -- Mark S"
+  
+    x "Get the app" modal customized for each:
+      x Name of person who started using in the case of others are using it.
+      x In full size in the case of pics that are clicked on.
+      x See all the pics of occasion...
+      
+    x Personal message
+      x Custom
+        x Invite - Hey Charlie, 
+        x Tag - Hey Charlie, Just saw a nice photo of you at Susan's wedding. 
+        x Comment - Hey Charlie, I just commented on a photo of you at Susan's wedding. 
+        x Comment - Hey Charlie, I just liked a photo of you at Susan's wedding. 
+        x Album threshold - Hey Charlie, The 1000th photo has just been snapped at Susan's Wedding. 
+        x Participation - Hey Charlie, Brian L has just started snapping Living Photos of Susan's Wedding. 
+      
+      x Common
+       x We are all using Living Pic so that we can all see the photos everyone's snapping at Susan's Wedding. Will you participate? Please take a second to download the app now. - Mark S.
+       
+       
+    x Call to action
+      x See all pics of Susan's Wedding LIVE! \n with LivingPic \n BTN: Get the App Now!
+    
+    x Others are using it - Breaking: Mark S, Sandy W, Kevin G and 3 others are snapping Living Pics of Susan's wedding. 
+    
+    x Testimonials
+      x Content
+        x "LivingPic is Awesome!!! -- Mark S"
+        x "I love LivingPic!!! -- Sandy W"
+      x Click expands.
+      
+      

@@ -1,0 +1,14 @@
+<div data-role="page">
+  <div data-role="content">
+    <h1>Livingpic index</h1>
+    <p><strong>Http_x_forwarded_host:</strong> <%= request.env["HTTP_X_FORWARDED_HOST"] || "None" %></p>
+    <p><strong>Host:</strong> <%= request.env["HTTP_HOST"] %></p>
+    <span data-role="button" onclick="window.location = 'app/app'">FTUI (register, etc.)</span>
+    <a data-role="button" href="#occasions">In APP UI</a>
+  </div>
+</div>
+
+
+
+<%# render :partial => 'occasions' %>
+<%# render :partial => 'gallery' %>

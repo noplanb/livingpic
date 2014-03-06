@@ -1,0 +1,25 @@
+<script type="text/javascript" charset="utf-8">
+  $("#confirm_invite_details").on("pagebeforeshow", function(event, datat){
+    $(".current_occasion").html(current_occasion_name())
+  })
+</script>
+
+<div id="confirm_invite_details" data-role="dialog"  data-theme="c">
+  
+  <div data-role="header" data-theme="b">
+    <h1>Details</h1>
+  </div>  
+  
+  <div data-role="content" >
+    <h2>What does this mean?</h2>
+    <p>Your <%= site_name %> app lets you contribute to the collaborative album of <strong><span class="current_occasion"></span>
+</strong> so people you know can see photos you have snapped and vice versa.</p> 
+    <p>Saying yes will invite those you know at the occasion to participate with you in contributing to this album.</p> 
+    <p>Saying yes means that you want to join in the fun of contributing to and enjoying a collaborative photo album of Muriel's wedding.</p>
+    <div class="button_box">
+      <a href="#confirm_invite" data-role="button" data-inline="true" data-theme="b">OK</a>
+    </div>
+  </div>
+  
+  
+</div>

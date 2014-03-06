@@ -1,0 +1,19 @@
+<div id="confirm_known_user" data-role="page"  data-theme="c">
+  <%= render :partial => 'header', :locals => {:data_theme => "b"} %>
+  
+  <div data-role="content" >
+    
+    <%= render :partial => '/shared/box_begin' %>
+      <h1>Great!</h1>
+      <p>So, do we have your name right?</p>
+      <h3 class="center"><span class="current_user_fullname"></span></h3>
+      <div class="center button_box">
+        <a href="#edit_name" data-role="button" data-inline="true">no</a>
+        <a href="#" data-role="button" data-inline="true" data-theme="b" data-transition="slide" onclick="confirmed_name()" class="needsclick_disabled">Yes</a>
+      </div>
+    <%= render :partial => '/shared/box_end' %>
+    
+  </div>  
+   
+  <%= render :partial => 'footer', :locals => {:data_theme => "c"} %>
+</div>

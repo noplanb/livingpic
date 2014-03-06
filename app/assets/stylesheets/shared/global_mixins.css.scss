@@ -1,0 +1,76 @@
+// ============
+// = Headings =
+// ============
+@mixin h_margin{margin:.6em 0em .3em;}
+@mixin h1_css{font-size:32px; @include h_margin;}
+@mixin h2_css{font-size:24px; @include h_margin;}
+@mixin h3_css{font-size:18px; @include h_margin;}
+
+@mixin de-emphasize1 {color:#ddd;}
+@mixin de-emphasize2 {color:#999;}
+
+@mixin de-emphasize_w1 {color:#404040;}
+@mixin de-emphasize_w2 {color:#666;}
+@mixin de-emphasize_w3 {color:#999;}
+
+@mixin serif {font-family: lucida, serif;}
+
+@mixin tiny {font-size:12px;}
+@mixin small {font-size:13px;}
+@mixin medium {font-size:14px;}
+@mixin medium_large {font-size:15px;}
+
+// ==========
+// = Colors =
+// ==========
+$purple: #7E29AA;
+$red: #E90024;
+$blue: #4A8BF5;
+$dark_background: #444;
+// colors for buttons
+$purple_background: $purple;
+$purple_border: 1px solid #5F1F80;
+$blue_background: $blue;
+$blue_border:1px solid #3E84F5;
+$grey_background:#888;
+$grey_border:1px solid #666;
+$red_border: 1px solid #A5001A;
+
+// =========
+// = Boxes =
+// =========
+// This is the shadow used as default by jqm. We can also use it for pics etc.
+@mixin box_shadow{
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+@mixin text_shadow{
+  text-shadow: 0 1px 0 #FFFFFF;
+}
+
+@mixin hidden{@include word-break; white-space:nowrap; overflow:hidden;}
+@mixin ellipsis{@include hidden; text-overflow:ellipsis; }
+@mixin word-break {
+  /* The following styles prevent unbroken strings from breaking the layout */
+  overflow: auto;
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -hp-pre-wrap; /* HP printers */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word; /* IE */
+}
+
+// ==============
+// = Animations =
+// ==============
+$spin_rate: 2s linear infinite;
+@mixin spin_animate{
+  animation:spin $spin_rate;
+  -webkit-animation:spin $spin_rate;
+  -moz-animation:spin $spin_rate;
+}
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }

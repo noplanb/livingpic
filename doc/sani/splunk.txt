@@ -1,0 +1,58 @@
+ x What we would like to know. 
+   x For a particular occasion.
+     x Who was invited. x Rails call to invitees. 
+     
+     x For each person who was invited
+       x Who invited them
+       
+     x How many sms notifications did they get?
+     
+     x How many push notifications did they get?
+     
+     x Device type
+     
+     x How many photos did they add?
+     
+     x How many times did they view the gallery?
+     
+     x How many detail pages did they see? 
+     
+
+x Getting data from app_events.log
+  x In splunk get the search strings and try them in grep.
+    x All events around an occasion.
+    
+x Display of results
+  x Album details
+    x Sort by photos added then by gallery views
+    x Highlight users who added photos blue
+    x Highlight users who viewed gallery green
+    x Highlight redundant users red
+  x Album stats
+    x Limit to albums with more than 3 participants
+    x Show:
+      x Total participants
+      x Percent of participants who added photos
+      x Percent of participants who viewed gallery
+      x Average gallery views
+      x Average photos per participant.
+      
+x Background and cache getting stats
+  x Create a lib file to generate the stats
+  x Delete the methods in the controller
+  x Create a rake file to generate the cache
+  x Get the info from the cache in the controller.
+  x Load on the server
+     
+- Additional fields
+  - Summary
+    x Fix spelling of participant
+    x Creator
+    x Num photos total
+    x Likes / user
+    x Comments / user
+  x Detail
+    x Call detail views photo views
+    x Comments
+    x Likes
+    - clicked on sms    

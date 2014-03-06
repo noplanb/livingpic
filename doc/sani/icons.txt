@@ -1,0 +1,34 @@
+x Gallerypage
+  x Camera
+  x Pick from gallery
+  x Add participants
+  x Back to occasions page
+  x Heart in correct size.
+  
+x GalleryPicker
+  x Check mark green and transparent.
+  x Edit caption
+
+x Occasions
+  x New occasion
+ 
+
+x Todo
+  x Find approximate icons for each.
+  x Determine size
+
+
+Notes for additya.
+  - The lines and bullets on the list icon are just a hair too thick and heavy. Make them thinner. Try 4 instead of 3?
+  - The plus sign doesnt feel right. 
+    - Lets try a couple options.
+      - Increase the thickness of the plus and reduce the thickness of the border.
+      - Increase the thickness of the plus and eliminate the border.
+  - I also need an X close in purple.
+  - Edit pencil
+    - I also need one that is white with a transparent background.
+    - The icon is a just slightly thick. Can we make the border and the pencil drawing a bit thinner.
+  - Check marks
+    - The border circle is ok but the stroke for the check mark is a bit wide can we make it thinner. 
+  
+      

@@ -1,0 +1,65 @@
+ x Add a sign up or sign in page.
+ x Add user and add registered user.
+ x Get rid of admin
+ x Splash page with take your first photo. 
+
+ 
+ - Host handler. If no connectivity then dont go to host page. Rather show no connection error page. 
+   - Is public or dev release 
+
+ 
+ o Fix splash page to say what the app does
+ 
+ ? Farhad Bugs cant reproduce.
+  ? With the v1 app, I still see the admin link in "My occasions".
+  ? Also, in the browser I was unable to get the same view.  I get our standard app.
+  - FYI, I create a default occasion called "My photos" once the user registers.  Change the name in app_config.yml, else remove this completely in user.rb in the "after_save" method. - Not checked in?
+  
+ x Sanis bugs
+   x Current user logged in on server.
+   x If have occasions then go to occasions page.
+   
+Testing
+  x Register and login
+    x No current user on the phone.
+      x Signup with new email
+      x Signup with existing email and wrong password
+      x Signup with existing email and right password
+      x Login with existing email and wrong password.
+      x Login with wrong email
+      x Login with right email and right password. 
+      x no name
+      x bad email
+      x no password
+    x Registered user on the phone
+      x Has occasions
+      x Has no occasions.
+      
+Android
+-------
+  - Add the png for the launch icons make sure they appear properly.
+  
+  
+Testing
+-------
+- Suite
+  - Registration
+  - Login
+  - Capture pic
+  - Occasion
+  - Gallery 
+  - Photswipe
+
+- Test against development
+- Test against production server
+
+- Loss of connectivity at each step.
+  - Registration
+  - Login
+  - Capture pic
+  - Occasion
+  - Gallery 
+  - Photswipe
+  
+
+  

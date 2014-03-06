@@ -1,0 +1,6 @@
+<% 
+ side = (defined?(side) && side) || "right"
+ %>
+<a class="npb-img-button ui-btn-<%= side %>" href="#" data-mini="true" data-theme="b" onclick="window.pick_pic()">
+ 	<%= render :partial => 'pick_pic_img' %>
+</a>

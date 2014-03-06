@@ -1,0 +1,187 @@
+// =========================
+// = CSS for our own pager =
+// =========================
+// 
+//  CSS taken from jquery_mobile for our own pages and paging system. GARF: We should be able to eliminate 
+//  jquery mobile css entirely as well jquery_mobile overrides etc when we move to our pager.
+//
+.mobile{
+  $header_height: 50px;
+  $ios7_header_height: 20px;
+  $page_background:#f3f3f3;
+  -webkit-user-select: none; -webkit-text-size-adjust:none;
+  .page.inset{padding-left:10px; padding-right:10px;}
+  .flush{margin-left:-10px; margin-right:-10px;}
+  .page.no_header .content{top:0;}
+  .page{
+//    overflow:hidden; 
+    overflow:visible;
+    position:absolute; top:0; left:0; right:0; bottom:0; top:0; 
+    -webkit-overflow-scrolling:touch;
+    display:none; margin:0px; padding:0px; 
+            
+    // Header
+    $button_width: 30px;
+    $button_spacing: 10px;
+    $p_1: $button_spacing;
+    $p_2: $button_width + (2 * $button_spacing);
+    $p_3: (2 * $button_width) + (3 * $button_spacing);
+    $p_4: (3 * $button_width) + (4 * $button_spacing);
+    .header{
+//      position:absolute; 
+      position:fixed;
+      top:0px; height:$header_height; left:0; right:0; z-index:4; overflow:hidden;
+      border-bottom: 2px solid $purple; background: #dedede; 
+      .title{font-size:18px; @include ellipsis; text-align:center; font-weight:bold;}
+      .has_sub_title.title{font-size:13px;}
+      .sub_title{font-size:11px; @include ellipsis; font-weight:normal; text-align:center;}
+      
+      .button{width: $button_width; cursor:pointer; top:0; height:$header_height;}
+      .text{line-height:1.3; top:9px;}
+      .button, .text{position:absolute; }
+      .button.left_1{left:$p_1;}
+      .button.left_2{left:$p_2;}
+      .button.left_3{left:$p_3;}
+      .button.right_1{right:$p_1;}
+      .button.right_2{right:$p_2;}
+      .button.right_3{right:$p_3;}
+      
+      .flat_button, .flat_button_box{position:absolute;}
+      .flat_button, .selector_button{font-size:16px;}
+      .flat_button{top:7px; padding:.5em .3em;}
+      .selector_button{height:1.7em;}
+      .selector_button .selection{padding-top:.35em;}
+      .flat_button.right{right:$button_spacing;}
+      .flat_button.left{left:$button_spacing;}
+      .flat_button_box .flat_button{position:static;}
+      .flat_button_box.center{left:25%; right:25%; text-align:center; top:9px;}
+    }
+    .left_buttons_0 .text{left:0}
+    .left_buttons_1 .text{left: $p_2}
+    .right_buttons_0 .text{right:0}
+    .right_buttons_1 .text{right: $p_2;}
+    .right_buttons_2 .text{right: $p_3;}
+    .right_buttons_3 .text{right: $p_4;}
+    
+    .content{
+      position:absolute; 
+      top:$header_height + 4px; 
+      left:0; right:0; 
+//      bottom:0; 
+//      overflow-x:hidden; overflow-y:scroll;
+      -webkit-overflow-scrolling:touch;
+      background:$page_background;
+    }
+    .reveal{
+      position:absolute; top:0; bottom:0; left:0; right:0; 
+    }
+    .reveal.rev_cover{z-index:1; overflow:hidden;  background:$page_background;}
+    .reveal.rev_left, .reveal.rev_right{
+      z-index:0; overflow:scroll; color:white; background:#444; -webkit-overflow-scrolling:touch;
+      .title{@include ellipsis; font-size:20px; font-weight:bold; padding-bottom:10px;}
+      .subtitle{font-size:18px; padding-bottom:10px;}
+    }
+    .reveal.rev_right{padding:15px 10px 10px 60px;}
+    .reveal.rev_left{padding:15px 60px 10px 10px;}
+    
+  } /*page*/
+
+} /*mobile*/
+
+
+// ===========================
+// = Jquery Mobile Overrides =
+// ===========================
+.npb-wrap .ui-li-desc, .npb-wrap .ui-li-heading {overflow:visible; white-space:normal;}
+.npb-medium .ui-li-desc{font-size:15px;}
+.npb-headings h1{@include h1_css;}
+.npb-headings h2{@include h2_css;}
+.npb-headings h3{@include h3_css;}
+.ui-body-c label{color:#666; margin-top:1.25em; display:block;}
+
+.ui-body-a .de-emphasize1{@include de-emphasize1}
+.ui-body-a .de-emphasize2{@include de-emphasize2}
+
+// List views
+.npb-list .ui-li-heading{margin:0; padding:0px 0px 10px;}
+.ui-mobile .npb-list .ui-li-thumb{border: 1px solid white; margin:3px 3px 5px;}
+.npb-list .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .npb-list .ui-li-static.ui-li-has-thumb {min-height: 62px;}
+
+// Buttons
+.ui-header, .content, .ui-footer{
+  .npb-img-button .ui-btn-inner{padding:3px 15px 0px;}
+}
+.npb-country-code-button{
+  width:80px;border-radius:3px;
+  .ui-btn-inner, .ui-btn-text{border-radius: 0px;}
+  .ui-btn-text{height:30px; width:32px;}
+  .ui-btn-inner{padding:0px 0px 3px 14px;}
+  option{padding:10px 0px 0px 40px; height:24px; font-size:16px;}
+}
+.npb-country-code-list{
+  overflow:scroll;
+  
+  $flag_height:32px;
+  $flag_width:50px;
+  $padding: 5px;
+  $list_item_height: $flag_height + 2 * $padding;
+  $flag_top: $padding;
+  $text_top:$padding + 4px;
+  $list_item_border: 1px solid #777;
+  
+  .list_item{height:$list_item_height; position:relative;border-bottom:$list_item_border; cursor:pointer;}
+  .flag{width:$flag_width; height:$flag_height; position:absolute; top:$flag_top;}
+  .text{position:absolute; left:$flag_width; top:$text_top;}
+  .ui-btn-inner{font-size:14px; line-height:1; padding-left:25px;}
+}
+
+// Eliminate unecessary text-shadow, gradients etc...
+.mobile .ui-overlay-a,
+.npb-eliminate-fancy-jqm-css.ui-body-a,
+.npb-eliminate-fancy-jqm-css.ui-body-b,
+.npb-eliminate-fancy-jqm-css.ui-body-c,
+.npb-eliminate-fancy-jqm-css.ui-body-d,
+.npb-eliminate-fancy-jqm-css.ui-body-e{text-shadow: none;}
+
+.mobile .ui-overlay-a{background:#f3f3f3;}
+
+
+// ============
+// = App FTUI =
+// ============
+.button_box.center{margin: 0px auto;}
+.button_box{
+  padding-top:15px;
+  div.flat_button{margin:10px 0px;}
+}
+
+// ==========
+// = Zoomer =
+// ==========
+#zoom_photo {position:absolute; z-index:5; display:none; top:-100px; left:-100px;}
+.zoom_photo{position:absolute; z-index:5; display:block; top:-100px; left:-100px;width:154px}
+
+// ==============
+// = App In app =
+// ==============
+.photo_overlay {background:#444; opacity:0.95;}
+.my_bg_pos {background-position: -144px 50%;}
+
+// ============
+// Admin Screens
+// ============
+
+// Logger display
+#log_file {
+  .odd_row {background: #000;color:#EEB;}
+  .even_row {background: #000;color:#DDD;}
+  .new_session {background: #E80;font-weight: bold;}
+  .resumed_session {background: #01F;font-weight: bold;}
+  .error {background: #F66;}
+  .warn {color: #FF6;}
+  .debug {color: #66F;}
+  .inset {padding: 0px 5px}
+  .contents {background-color: #000;}
+  .button_box{ padding-bottom: 15px;}
+}
+

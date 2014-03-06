@@ -1,0 +1,19 @@
+<style type="text/css">
+  .listedNotification {
+    cursor:pointer;
+  }
+</style>
+
+<div id="notifications" data-role="page" data-theme="c">
+<%=  render :partial => "/admin/notification", :collection => @notifications %>
+</div>
+<script type="text/javascript" charset="utf-8">
+  function setNotification(e) {
+    var id = $(e.target).closest(".listedNotification")[0].id
+    window.location = "<%= app_redirect_base_url(@using_app) %>" + "?c=" + id
+  }
+  $(function() { 
+    $(".listedNotification .backToApp").bind("click",setNotification)
+  })
+</script>
+

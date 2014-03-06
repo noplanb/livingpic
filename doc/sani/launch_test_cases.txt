@@ -1,0 +1,6 @@
+- [android, iphone].each
+  - [cleared_appstate, current_user, existing_user_somehow_lost_state_retrieve_by_phone_num?].each
+    - Launch by icon from not running
+    - Resume by icon from paused
+    - Launch from notification link from not running
+    - Resume from notification link from paused.

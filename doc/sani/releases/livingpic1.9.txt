@@ -1,0 +1,357 @@
+FARHAD LIST
+-----------  
+  - Make creation activities retry sync with server automatically?
+    - Add new album
+    - Add participants 
+    - Add photos
+    - Add comments
+    - Add likes
+  - Figure out what whats going on with the .js files that are created for each photo - firebug
+    
+  - Make sure on_resume code is working well. I got the android to freeze on the splash page but havent been able to reproduce. 
+  
+
+
+PRE LAUNCH CHECKLIST
+====================
+ - Server
+   x Reprocess all photos on the server to get the aspect ratios
+   - Delete all the caches on the server
+   - Migrate the server
+   - Bundle update
+ - Remove debug.logs
+ - Make sure Logger.log is not doing console.logs
+ - Splash pages and icons
+   - ios and android.
+ - Eva android ftui windows dont scroll with keyboard showing. Esp register screen.
+ 
+   
+ALL
+===
+
+INCOMPLETE
+----------
+ x TEST AND CHECK
+   x Version control.
+     x Test changing the version setting to suggest a new version.
+   
+ - BUGS
+   - mobile.changePage still in the code
+     x NewOccasionController2.new_occasion_error
+     - window.pick_pic
+     - window.goto_tag_pic_page
+   x Javascript error cant read property top of undefined. : PhotoResolutionHandler.prototype.closest_to_screen_center = function(ids) {
+     center_of_img = img.offset().top + (img.height() / 2); 
+   x Early photos on the server dont have an aspect ratio. eg id=385
+     x Verify that there are non-square thumbs on the server for all photos.
+     x Make sure all photos on the server have aspect ratios.
+   x Evas phone crashes when clicking download from gallery. - Some bad photos in the gallery were causing null pointer errors in Java. Fixed these corner cases. 
+   x Resume getting stuck on splash page in many cases.
+     x Fixed the case where no server or bad connection during register.
+     x Fixed the case where no occasions on resume.
+     x Start fresh checkcookies fails stop app. Restart stuck on splash screen.
+     x Start fresh new user dont take a photo exit app. Restart stuck on splash screen.
+   x Snap photo comment after upload no comment lost pic
+   x New album with no photos click on add people depends on gallery_handler instance to work. Gallery_handler instance may not exist. For now alert please add a photo before adding a person.
+   x New album add a person close the app come back not there.
+   x Zooming on a photo that hasnt downloaded yet in poor connectivity freezes the scroller. 
+   x Clear local data when updating app to this new version
+   x Living pic should say not supported on ios < 6.
+   o Eva ipod upload from gallery not working cant reproduce. 
+   o Ios zoom rotated photo directly after snapping using camera in app.
+   o Scroll immediately after new photos come in from the web breaks the scroller cant reproduce.
+   o Evas phone. Download from store. "LivingPic" could not be downloaded due to an error. (502) Cant reproduce
+   o Showing broken links for thumbs on sanis phone.
+   o When thumbs are downloaded we should clear the cache in the galleryhandler so it starts using the downloaded urls.
+   o Clicking date causes photo data to open twice.
+   o Ios 7 gap at the top of the page expands when you ad a comment.
+   o PhotoResolution handler seems to highres the wrong photo. Cant reproduce
+   o Evas phone should not zoom but it does. Actually it is v4.0.3 and should zoom not sure why she was getting a bug with zooming. Cant reproduce.
+   o Iphone 4 doesnt zoome Dereks phone. Actually running ios 5.0 not supported.
+   o Evas phone shows thumb images sideways in gallerypicker. Move to post release.
+   o Android Eva and jills phones - snap a photo in the app landscape. it gets a portrait aspect while it is loading. Move to post release.
+   
+ 
+ - Error handling.
+   - To prevent freezing on a page with no ui when we get a javascript error. Do go_home if we catch an error on the release version.
+  
+  - TWEAKS
+    - Turn off autocorrect when entering names.
+    - Says new photos when it is really new comments.
+    - Alerts say index.html rather than livingpic.
+    
+  - PERFORMANCE (all post release)
+    - Clicking from occasions page is slow. 
+    - Profile startup to minimize time
+    - Lag between confirming the occasion and showing it in the gallery handler is too long.
+      - Too much seems to be happening syncing gallery etc...
+    x Capture button needs to have an instantaneous response of some sort.
+    - Remove all unused javascript and html css
+    - Streamline startup to minimize latency to current gallery from boot
+    - Reduce possibility of background activity while in scroller.
+    - Remove all unused javascript and html css
+    - Streamline startup to minimize latency to current gallery from boot
+    - Reduce possibility of background activity while in scroller.
+    - Background threads for file etc. using cordova.interface.threadpool
+ 
+
+  - POST RELEASE
+    - It can take a long time for the app to take you to a new occasion based upon context if you're not in that occasion
+      - we should have some kind of visual cues that indicate that the phone is tryihng to do something
+    - GalleryPicker
+      - Dont show thumbnails or photos below a certain size.
+    - Banners to remind users to add people and photos in gallery
+      - Add photos
+      - Add people
+    - Check cookies page on old android layout is fubar
+    - People - Stats on people. Whether they have joined or not.
+    - Notification - Highlighting new items? 
+    - No refresh on occasions page.
+    - Show upload status in gallery.
+    - Streamlined version of jquery.
+    - FF Aesthetics
+      - Still don't care for the "save in ..." when a photo has been taken.  The buttons aren't aligned.  
+      - Don't care for comment window - by erasing the photo it puts you out of context - the experience is jarring for me.  Would be better to open it right there underneath the photo...
+    - Refactor
+      - rename all the xx2 stuff back to xx
+    - Aditya
+       - Grey border around pencil
+    - Eliminate gallery picker icon from header. Camera goes to gallery picker and there is an option to snap a pic from there in the footer.
+    - Android photo to be uploaded is too large.
+    - Remove testpages from store release build
+    - Add pulldown refresh to the occasions page.
+    - Panoramic photos in picker, occasion for pic, gallery2
+    - Zoom with a certain orientation causes photo to do a 270deg spin.
+    - Weird light blue line at top of header in iphone and android.
+    - Flash Notice no longer works because not using mobile.changePage
+    - Clean up deprecated in package_app.rake
+    - Change Error Getting Content to Cant Reach LivingPic Server
+    - Eva android cant zoom locally taken pic. It is too big.
+    - Android display gallery shows the people page first.
+    - Debounce Done button on gallery picker.
+    - Android very large photos take a long time to upload on new phones
+    - If you add a coption in gallerypicker it should add it to the list.
+    - Ios 7 gap at top and bottom of page sometimes grows for each photo you add.
+    - Touch points in header are too small still on ios
+    - When you are out of connectivity and it tries to load a picture from the web it shows a broken link. We should probably change to the model of only showing photos in that have already been downloaded.
+    - Gallery picker zoom sometimes removes the edit and check buttons.
+    - Order albums by date of the last post
+
+COMPLETE
+--------
+ x Android issues
+   x Android flicker when scrolling I think it is caused by our changing the src from thumb on the photo you land on. Was fixed when I removed the transform 3d from the photos.
+   x Android Back Handler
+     x Cancel on all forms
+       x New occasion
+       o Add people
+       o Add photo
+     x In pages
+       x People window
+       x Gallery page
+   x Zoom not working
+   x Zoom doesnt cover the header in gallery - see zoomer.txt for fix
+   x Clicks not working when scroller is on.
+   x Stop scrolling on touch after scroll not working.
+     x Fix in scroller (dont use negative time transitions to bump the current transition on android)
+     x Make sure it works on iphone
+     x Post my fix to stackoverflow
+     x Log it in gallery2_with_iphone_scroll.txt
+ 
+ x Bugs
+    x When refreshing a gallery or showing a new gallery scroll to the top.
+    x Scrolling occasions then going to gallery causes scroller to think it is wrong place.
+    x Occasions goes to top of the page when you go into an album and come back.
+    x Broke zoomer fixing the above. 
+    x Broke like button fixing the above.
+    x Gallery and occasions headers need to be fixed not to overflow and to line up properly. Use fixed positioning.
+    x Aspect ratios
+    x Gallery with 1 or 2 pics doesnt scroll properly.
+    x Occasions thumbnails not displaying properly.
+    x Click from occasions should be debounced so it doesnt double click into zoom photo.
+    x 2 finger zoom broken on iphone
+    x Resolution handler not working on iphone or android.
+    x Keyboard not appearing and disappearing properly for android on enter comment. Fixed in manifest.
+    x Autocomplete for add participants not working.
+      x add cancel add again autocomplete doesnt work.
+    x Zooming in gallerypicker is a buggy.
+    x No photos camera button in no photos page in gallery2 is not clickable behind scroller for some reason.
+    x I get an error message that image "css/img/livingpic/up_arrow.png" is missing.  Perhaps not checked in?
+    x Browser simulated take a photo. Aspect ratio not properly calculated.
+    x Browser simulated gallery picker. When you pick from the gallery and an upload happens to the server it generates another dummy photo. Should upload.
+    x Latitude and longitude for photos picked from gallery are coming to server as ints rather than floats. - Not a bug that is just the ones that came from the simulated location on the browser.
+    x UserHandler doesnt go home 
+    x Android index.html alert error.
+    x Sani doesnt get notifications on android.
+    x Comments read from bottom up on start up. They read from top down if you switch from album to the next.
+    x network error.
+    x Zooming in gallerypicker is a buggy: 
+      x on IOS: the images come up sideways even if I set the aspect_ratio to 1.0
+    x Show log doesnt work.
+    x Network error not showing when server is down.
+    x Says new photos when it is just the one that you just added.
+    x Can like something multiple times: 
+      o get the graphics always even if you just liked.
+    x If I try to zoom onto the image that is picked from gallery and is uploading, it breaks the UI
+    x I get an error message that image "css/img/livingpic/up_arrow.png" is missing.  Perhaps not checked in?
+    x No photos camera button in no photos page in gallery2 is not clickable behind scroller for some reason.
+    x Load a photo from gallery. Stalls uploading. Shut down app. Start up the app. Photo is gone from app as well as from native gallery.
+    x Adding a couple photos from gallery stuck in upload pending on android - causes ui to freeze. Also I loose the native photo after this happens I.E. it no longer comes up in gallery picker.
+    x Latitude and longitude for photos picked from gallery are coming to server as ints rather than floats.
+    x Dont download photos taken on the phone.
+      x We do download them but while we do have a temporary file UI we show what we have.  The reason for this approach is that
+        if the user deletes the photo in the gallery, our system doesn't know how to deal with it.  It will take a bit of work
+        to test against the gallery and then download the photo if we don't have it.
+    x Photobackground cover after capture image not working
+    x Pick an album name autocomplete not working on ios
+    x Make sure iphone and android dont rotate screen.
+    x Complete all items in android quirks including clearing gallery_picker data when exiting gallery picker.
+    x Race condition
+      1) Capture a photo.
+      2) Create is called which updates the local photo with the new urls at amazon.
+      3) The large pic version hasnt been created yet.
+      4) So when you stop on the photo in the gallery it is a broken there because it tries to show the high res version for the photo you stop on.
+    x Add the refreshing logic back in that used to use the view controller.
+
+    x Make sure the notificaiton is sent not on the photo first created but when the thumbnail and phone photo are created, so the upload finishes sooner...
+    x SPlash page is now white on some devices
+    x Header text and buttons need to move down a bit.
+    x Browser simulated gallery picker. When you pick from the gallery and an upload happens to the server it generates another dummy photo. Should upload.
+    x Browser simulated take a photo. Aspect ratio not properly calculated.
+    x Check cookies page broken
+    x Notifications on android.
+    x Dont show photos from our album.
+    x Gallery_picker global icons disappear on zoom.
+    x Landing page fix layout
+    x Color coordinate titles and authors etc in gallery with the colors for the header.
+    x In the browser. Create a new account. Snap a photo. After it is uploaded to the server the photo object is not updated with the correct new url on S3. Sani fixed in thumb_display_url()
+    x Country code stuff broken
+    x Rework loader spinner to use pos abs top and bottom and get rid of resize event handler.  
+    x In the browser. Create a new album. Snap a photo. The occasion pic is undefined on the occasion page. 
+    x on IOS, if I scroll a gallery fast, then stop it with touch, then zooming no longer works.  If I scroll a bit, then zooming works again
+    ? Checking take a photo but not uploaded yet. Check for new photos and get one that is below the one just taken. Messes up the scroller and freezes the phone.
+    x Fixed bug where refresh on android causes page to freeze. Looks like it was due to the animation on the circle arrow being just too much for androids puny brain.
+    x Zoom:
+      x Click on photo for zoom sometimes not registered on android.
+    x Cant like a new photo if the occasion hasnt refreshed.
+    x Cant like or comment on a photo before it is uploaded.
+      x if you go out to camera, then back, then the like count updates also
+    x Make photo not upload the image same image twice if it's going to the same occasion.  I think we need to compare the URL's
+    
+ 
+  x Tweaks
+    x Make buttons in header of GalleryPicker go with our purple color scheme.
+    x Zoom 2 finger and remove one should not pan to remaining finger.
+    x Zoom and unzoom pic should stay on high res 
+    x On gallerycontroller.show make sure the first photo is high res.
+    x Header when adding a new album. 
+      x Title should be add album
+
+  x TEST AND CHECK
+    x Invite
+      x Landing page when user clicks on a link but doesnt have the app.
+      x Check_cookies splash for an invite?
+    x Ftui 
+      x run through it all again to test.
+    x App preferences in config.xml
+      x Set for android and copy from our source tree for build.
+      x Set for ios and copy from our source tree for build.
+        x Build for ios
+        x Copy config.xml that is created
+        x Modify
+        x Change package_app.rake to copy it over.
+    x Verification
+      x make sure all buttons are instaclick
+      x Make sure all $.mobile.changePage and all onbeforeshow etc are gone from js we use.
+      x Make sure all unecessary javascript isnt loaded.
+      x Make sure no extra images are loaded (e.g. photoswipe...)
+
+  x Capture photo - see capture_pic2.txt
+    x Theme to match gallery
+    x Occasion_for_pic
+    x Photo added to gallery
+ 
+ x Thumb size bug
+   x What size are the thumbs on s3?
+   x Why do they seem to be different sizes?
+   
+ x New Gallery
+   x Add header with album name and buttons
+     x Get a simple header working with scroller, zoomer, comments, and likes 
+     x Add title and placeholders for the buttons
+   x Refresh (rubber band)
+     x Build ui for refresher
+     x Wire up refresh
+   x Hook in instead of old gallery
+  
+ x Have aditya make the icons
+   x Create a spec
+   x Send
+   x Review and ask for edits
+   - Add Adityas edits
+   x Add to app
+     x Refresh
+       x up_arrow
+       x circle_arrow
+     x Gallery
+       x Camera
+       x Gallery
+       x List
+       x People
+       x Heart red and grey x22
+     x Gallery picker
+       x Check_green
+       x Check_grey
+       x Edit
+       x Global checks and edit.
+       x Camera?
+     x Occasions
+       x Add
+       x Camera
+   x Plus sign too big.
+   x Grey checkmark and grey edit should dark semi transparent in background but opaque white to show up when photo is white.
+   x Need a larger version of the camera. (100x100)
+
+   
+ x GalleryController load new gallery
+   x Paging to and from gallery for instant load without changing anything. 
+   x Loading a new gallery
+ 
+ o Replace fastclick with our own simpler version
+   x See insta_click.txt
+ 
+ x Occasions page
+   x Theme to match gallery.
+   x Switch between albums.
+   x Connect back button on gallery to go to occasions
+   x Change the header on occasions 
+   x Add occasion
+     x Locally make sure name is not the same as an existing occasion for the user
+     x Trim etc.
+
+ 
+ x FTUI
+   x Convert to new paging scheme.
+   x Merge all js into one file.
+ 
+ x Pick from phone gallery
+   x Picker (any scrolling zooming that is needed)
+   x Picker - theming if necessary.
+   
+ x Corner cases
+   x No albums
+   x No photos in album
+
+ x People - See people.txt
+   x Theme to match gallery
+   
+ x Convert dangling pages to use Pager rather than JQM
+   x Network error
+   x Admin
+   x Test_pages   
+
+   
+
+     
+
+ 

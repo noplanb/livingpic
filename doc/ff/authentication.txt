@@ -1,0 +1,14 @@
+2012-08-30
+Authlogic is a full featured gem that lets you choose how you authenticate.  Now, it seems that we can authenticate using any login/password combination we want, but it seems that it assumes that one of these is present.  If we were using these, it automatically handles the cookies, and has the mechanisms for 
+- encrypting the password in one or more ways
+- authenticating based upon email/username/phone - very configurable
+- generating a one-time token for password reset
+- auto-logging off the suer
+- handlling cookies of any duration (or even multiple cookies) with all the bells and whistles
+
+May not be appropriate for our purposes because we want a very simple mechanism where we simply pass the user a cookie that identifies them (our auth_token, what authlogic calls user_credentials), and then perform a loopback for performing the authentication of the phone number.  So instead, we'll roll our own because we don't need much:
+
+- set_cookie: sets a long-running cookie for identifying the user
+- cookied_user: this will be explicitly based upon the cookie
+
+

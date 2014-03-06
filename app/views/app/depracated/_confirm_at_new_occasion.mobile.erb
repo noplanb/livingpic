@@ -1,0 +1,18 @@
+<div id="confirm_at_new_occasion" data-role="page"  data-theme="c">
+  <%= render :partial => 'header', :locals => {:data_theme => "b"} %>
+  
+  <div data-role="content" >
+    
+    <%= render :partial => '/shared/box_begin' %>
+      <h1>Great!</h1>
+      <p>Do you want to create a shared photo album?</p>
+      <div class="button_box">
+        <a href="#store_release_welcome" data-role="button" data-inline="true" data-transition="slide">no</a>
+        <a href="#enter_other_occasion" data-role="button" data-inline="true" data-theme="b">Yes</a>
+      </div>
+    <%= render :partial => '/shared/box_end' %>
+    
+  </div>  
+   
+  <%= render :partial => 'footer', :locals => {:data_theme => "c"} %>
+</div>

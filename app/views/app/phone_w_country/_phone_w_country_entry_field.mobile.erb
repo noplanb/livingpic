@@ -1,0 +1,19 @@
+<% 
+  raise "Each instance of phone_w_country_field must be given an id that is unique across the DOM" unless defined?(id) && id
+  placeholder = defined?(placeholder) && placeholder
+%>
+<table id="<%= id %>" class="npb-phone_w_country_entry_field" border="0" cellspacing="0" cellpadding="0" style="width:100%">
+  <col style="width:88px">
+  <col style="width:auto">
+  <tr>
+    <td>
+      <div class="npb-country-code-button ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-up-c">
+        <div class="ui-btn-inner f32">
+          <div class="ui-btn-text flag us" > &nbsp; </div>
+          <span class="ui-icon ui-icon-arrow-d ui-icon-shadow"> </span>
+        </div>
+      </div>
+    </td>
+    <td><input class="npb-phone-w-country-text-input" type="tel" name="mobile_number" placeholder="<%= placeholder %>" style="margin:0px"/></td>
+  </tr>
+</table>

@@ -1,0 +1,14 @@
+ - Single page for pic with comments at the bottom
+   - Create single page for pic
+     - Header all button.
+     - Occasion
+     - By
+     - Pic
+     - Num likes
+     - Like
+     - Comments
+     - Comment
+  
+  - Gallery 
+    - Number of comments
+    - Number of likes

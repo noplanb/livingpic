@@ -1,0 +1,14 @@
+The following instructions on git are great. https://github.com/defunkt/resque
+
+Here is what I did:
+
+Install redis I used:
+
+PREFIX='/usr/local' rake redis:install dtach:install
+I found I had to use PREFIX=/usr/local since the rake task tries to put redis in usr/bin by default and I could not run the rake task under sudo to get permission for it to put it there.
+
+To start redis is use
+rake redis:start
+
+To check the status of workers and queues go to: oursite/resque i.e. 127.0.0.1:3000/resque
+

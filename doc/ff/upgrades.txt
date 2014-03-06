@@ -1,0 +1,5 @@
+2013-02-11
+
+Upgrading from the powderfiesta version to the version with the Photo objects.  Things I broke:
+- Possibly, old occasions will no longer work because it has the thumbnail as opposed to my new urls for thumbnail and picture.  It may work thought - just not sure
+- Creating a new photo no longer returns the occasions

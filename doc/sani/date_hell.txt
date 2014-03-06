@@ -1,0 +1,63 @@
+I am having problems with creating storing and retrieving dates in our system so I need to come up with a convention that works everywhere:
+
+Javascript <-> Javascript
+-------------------------
+- JSON
+    JSON.stringify new Date  => ""2012-11-12T18:07:00.944Z""
+    Date.parse "2012-11-12T18:07:00.944Z" => null
+    Date.parse doesnt like the ISO .944Z on the end
+    Date.parse "2012-11-12T18:07:00" => a valid date
+    
+    
+- Date toString
+    (new Date).toString() => "Mon Nov 12 2012 10:16:00 GMT-0800 (PST)"
+    Date.parse "Mon Nov 12 2012 10:16:00 GMT-0800 (PST)" => null
+    Date.parse doesnt like the (PST) on the end.
+    Date.parse "Mon Nov 12 2012 10:16:00 GMT-0800" => a valid date
+    
+- Date toUTCString()
+    (new Date).toUTCString() => "Mon, 12 Nov 2012 19:32:19 GMT" which parses fine using Date.parse
+
+Rails -> Javascript (get)
+-------------------
+  (see test_date.js.coffee)
+  - render :json => Time.now => received by client as "2012-11-12T10:39:22-08:00" => which parses fine using Date.parse 
+  - render :json => User.first.created_on received by client as "2012-11-05T18:20:10Z" => which also parses using Date.parse 
+
+
+Javascript -> Rails (post)
+-------------------
+  (see test_date.js.coffee)
+  - post{date: new Date} => goes to server as a string that parses fine using Date.parse in rails.
+  
+  
+Conclusion:
+-----------
+
+SERVER <-> Client
+  Going back and forth to the server works fine. 
+
+  POST: Just put a Javascript Date object in the data when posting and use Date.parse on the server side.
+  GET: User render :JSON and pass in a Date object either Time.new or one that was retrieved from DB. Use Date.parse in JS on the device end.
+
+Client <-> Local storage
+  Saving:
+   - Convert date to string using Date.toUTCString() before saving as a JSON in local storage.
+  Retrieving:
+   - Parse with Date.parse()
+
+
+
+Weirdness
+---------
+  Iphone when safari debugger is set to trap uncaught exceptions I am getting an exception when trying to do 
+    Using the parse from date.js
+    Date.parse(date).toString("MMM yyyy") 
+    when date is "2013-10-28T21:02:36Z"
+  
+  REASON:
+    The reason for this is that date.js throws and catches exceptions as it does its work.   
+  
+  SOLUTION: 
+    If you are trapping exceptions using a debugger. Make sure you only trap uncaught exceptions.
+    

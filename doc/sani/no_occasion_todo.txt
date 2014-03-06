@@ -1,0 +1,23 @@
+I am not exactly sure how the no occasion option should work.
+
+Should we punt on the no occasion option for the first few releases? Until we see how the app feels. 
+
+Some questions vis implementation when we do implement:
+  
+  - None of the social actions apply to this album?
+    - You cant invite people to add photos to it?
+    - You cant share it?
+    - It is just your private stream?
+    
+  - Device special case code?
+    - Perhaps when we get offline-ability implemented these photos never need to go to the server. They just stay on the phone?
+    - Need some way for the device to  distinguish this album besides the name in case the user creates one with the same name?
+    - Dont allow an album to be created with the same name?
+    - The album is not shown on the client if it is empty.
+  
+  - Early implementation just puts the photo in the users phone gallery and tells him it is there?
+      
+I hate to create so much special case code for a non-core feature so early on. Shall we punt for now?
+
+One thought is never implement. If the user really feels stuck he can just create his own occasion with whatever name he wants to give it and use that. He can share or not share or invite or not invite as he chooses. Kind of reminds me of the way @replies #hashtags were developed by users on Twitter rather than provided by the app.
+

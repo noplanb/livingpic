@@ -1,0 +1,28 @@
+<% 
+  back = defined?(back) && back
+  fullscreen = defined?(fullscreen) && fullscreen
+  context = defined?(context) && context
+%>
+<div class="gallery_head" data-role="header" data-position="fixed" <%= "data-fullscreen='true'" if fullscreen %>>
+  <% if back %>
+    <a href="#" data-mini="true" data-role="button" data-icon="back" onclick="<%= back %>">All</a>
+  <% else %>
+    <a href="#occasions" data-mini="true" data-role="button" data-icon="back">All</a>
+  <% end %>
+	<h1 style="margin-left:80px; margin-right:80px; text-overflow: ellipsis;" class="npb-has-subheading npb-admin">
+	 <span class="occasion_name <%= "click_to_refresh" unless context == :gallery %>"></span>
+	 <p class="npb-sub-heading">
+     <span class='occasion_city de-emphasize1'></span> &nbsp; 
+     <span class='occasion_date de-emphasize2'></span>
+   </p>
+ 	</h1>
+ 	<%= 
+ 	  if context == :gallery 
+ 	    render :partial => "arrow_circle_button_head"
+ 	  else
+ 	    render :partial => "camera_button_head" 
+ 	  end
+ 	%>
+       	 
+ 	
+</div>

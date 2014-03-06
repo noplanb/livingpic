@@ -1,0 +1,22 @@
+<div id="add_participants2" class="page auto_complete_page2 theme_dark" >
+    <div class="autocomplete_head">
+      <div class="help" style="padding-bottom:20px">
+        <h2>Who else?</h2>Who else is interested in <span class="current_occasion"></span>?
+      </div>
+    
+      <div class="picked_items_block">
+        <h3>Add to <span class="current_occasion"></span></h3>
+        <div class="auto_complete_picked_items_box"></div>
+      </div>
+  
+      <div class="search_block flush">
+        <%= render :partial => 'auto_complete_text_input2', :locals => {
+                   :done_onclick => "AddParticipants2.INSTANCE.done()",
+                   :cancel_onclick => "AddParticipants2.INSTANCE.cancel()",} %>
+      </div> 
+    </div>
+    
+    <div class="content auto_complete_search_results_box"></div>
+      
+    
+</div>

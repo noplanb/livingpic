@@ -1,0 +1,115 @@
+Android Release 1.6  #13  Revision 7423 In store 4/23/2013 
+Iphone Release 1.51 Revision 7428 In review on 4/24
+
+
+Open
+----
+Farhad
+  - Android Something is blocking when there is poor connectivity causing no device ready and error on android.
+    - Sani and Jills phone android loading html page error cordova popup!
+  x Bug When you add a new album it temporarily puts it at the bottom of the list.
+    - can't replicate it
+  - Iphone slows down seemingly swapping memory.
+  - Figure out why fastclick breaks networkhandler
+  - Specify text in permission to use contacts, push etc.
+  
+Sani
+  - FTUI for ad hoc user make more streamlined a la FTUI for invited user
+  - Remove unused pages in the ftui - invite, enter other occasion etc
+  
+  
+Bugs
+  o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+  - Livingpic version = undefined version on compile assets.
+
+Enhancements
+  - Allow entry of adhoc contacts for invite.
+  - Make the loading page interesting. 
+  - Make the check_cookies page and landing page not cacheable by the browser.
+  - If phone number is incorrect provide notice to inviter and a method of changing it.
+  - Remove unnecessary permissions.
+  - Ambiguity
+    - When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+      - In the gallery indicate somehow that photos are uploading. 
+    - When you have multiple new comments since you last visited you dont know which photos they are on.
+  - Gallery page shows all pictures stacked to the left before mosiac spreads them out.
+    - Seems to have been fixed by some other change I made? Cant reproduce.
+  - Pushwoosh plugin for cordova for android.
+  - Ftui dont ask for current location right away.
+  - Ftui dont ask for contacts right away.
+  - Enter comment button should be enter
+  
+  - Save the svn revision number automatically in version.
+  
+Punt  
+  o Register page submit to server is really slow.
+    - Investigation shows that it takes 5 seconds to do a occasions_json on the server due to lots of db calls. Just live with long spinner as this is a one time occurrence during registration. 
+  o Android pictures sometimes dont upload.
+    
+  o Apple photostream nice experience copy it.
+    - Sani and Farhad need to discuss what this means
+      - Immediate appearance after click of notification.
+      - Full bleed of photo
+      - Comment or like displayed immediate.
+  
+
+
+Complete in release
+-------------------
+ x Who liked
+
+ x Notification for likes.
+   x Test
+     x New user - Test Like_notification
+     x Create an album
+     x Add a photo
+     x Add sani as participant
+   x Sani log in from invite from bowser as iphone
+     x Sani likes photo
+     x Check notification sent to Test Like_notification
+     x Send notification manually
+       
+ x Make notifications go out in development mode if they are not sms notifications.
+
+ x Refactor of pic-detail
+ 
+ x Sms notification to android does not go to the fta page.
+   x It turns out that the system thought my device was iphone due to a bug in device.rb where it was using the last device as the users device but was not making the current device on checkin the last device. Fixed in app_controller and device.rb.
+ 
+ FASTCLICK
+ ---------
+ x General performance. Make non swipe buttons fast.
+   x Create a test page fastbuttons.mobile.erb
+     x Create a button
+     x Show delays from
+       x Touchstart
+       x Tap
+       x Vclick
+       x Click
+     x RESULTS: Buttons without fastclick take 360ms - 550ms before a click is received. Buttons with fastclick.js take 50-100ms before a click is received from touch_start.
+     
+   x fastclick.js works well 
+     x EXCEPT: that it somehow interferes with the network handler when html onclick is declared that eventually calls the network handler.
+       x SOLUTION for all buttons where fastclick interferes add classname needsclick.
+     x EXCEPT: needsclick only works for the div it is on. But for jquerymobile buttons the target is an inner div that gets created on the fly by jqm and fastclick ignores the needsclick classname on the outer span.
+       x SOLUTION: patch the fastclick.js to check needs click on all parents of clicked elements as well.
+       
+   x Testing  
+     - Big test required since fastclick can interfere with buttons requiring network handler calls for some reason need to test all clicks:
+     x FTUI
+       ia Change name
+       ia Enter name and phone (unknown_user)
+       ia Enter occasion name
+       ia Welcome options
+     x In app
+       ia Add album
+       ia Save pic to existing album
+       ia Save pic to new album name
+       ia Like pic
+       ia Comment on pic
+       ia Add participant(s)
+     x Admin
+       ia Start fresh
+       
+ BUGS
+  x Done and cancel in autocomplete show up on 2 lines

@@ -1,0 +1,92 @@
+<manifest 
+  xmlns:android="http://schemas.android.com/apk/res/android" 
+  android:windowSoftInputMode="adjustPan"
+  package="com.noplanbees.livingpic"
+  android:versionName='1.8'
+  android:versionCode='19'
+  android:hardwareAccelerated="true">
+
+  <supports-screens
+      android:largeScreens="true"
+      android:normalScreens="true"
+      android:smallScreens="true"
+      android:xlargeScreens="true"
+      android:resizeable="false"
+      android:anyDensity="true"
+      />
+
+  <application 
+      android:icon="@drawable/icon" 
+      android:label="@string/app_name"
+      android:hardwareAccelerated="true"
+      android:debuggable="true">
+      <activity 
+        android:name="LivingPic" 
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar"
+        android:launchMode="singleTop"
+        android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+        android:screenOrientation="portrait">
+          <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+          <!-- Below for pushwoosh -->
+          <intent-filter>
+             <action android:name="com.noplanbees.livingpic.MESSAGE"/>
+             <category android:name="android.intent.category.DEFAULT"/>
+          </intent-filter>
+          <!-- For webintent -->
+          <intent-filter>
+            <data android:scheme='livingpic'/>
+            <action android:name='android.intent.action.VIEW'/>
+            <category android:name='android.intent.category.BROWSABLE'/>
+            <category android:name='android.intent.category.DEFAULT'/>
+          </intent-filter>
+      </activity>
+
+      <!-- Pushwoosh activities -->
+      <activity android:name="com.arellomobile.android.push.PushWebview" />
+      <activity android:name="com.arellomobile.android.push.MessageActivity"/>
+      <activity android:name="com.arellomobile.android.push.PushHandlerActivity"/>
+
+      <!--
+        BroadcastReceiver that will receive intents from GCM
+        services and handle them to the custom IntentService.
+
+        The com.google.android.c2dm.permission.SEND permission is necessary
+        so only GCM services can send data messages for the app.
+      -->
+      <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+          <intent-filter>
+              <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+              <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+              <category android:name="com.noplanbees.livingpic" />
+          </intent-filter>
+      </receiver>
+      <service android:name="com.arellomobile.android.push.PushGCMIntentService" />
+      <service android:name="com.arellomobile.android.push.GeoLocationService" />
+      <receiver android:name="com.arellomobile.android.push.AlarmReceiver" />
+  </application>
+    
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_CONTACTS" />
+  <uses-permission android:name="android.permission.CAMERA" />
+
+  <!-- Required for Pushwoosh BEGIN -->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <permission
+    android:name="com.noplanbees.livingpic.permission.C2D_MESSAGE"
+    android:protectionLevel="signature"/>
+  <uses-permission android:name="com.noplanbees.livingpic.permission.C2D_MESSAGE"/>
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+  <!-- Requird for Pushwoosh END -->
+  
+  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
+</manifest> 

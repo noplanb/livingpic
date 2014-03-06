@@ -1,0 +1,9 @@
+<% type = defined?(type) ? type : :default %>
+<div id="get_the_app<%= "_#{type}" unless type == :default %>" data-role="dialog" data-theme="c">
+  <div data-role="header" data-theme="b">
+  	<h1></h1>
+  </div>
+  <div data-role="content">
+    <%= render :partial => 'call_to_action', :locals => {:data_inset => false, :num_reviews => 2, :type => type} %>
+  </div>
+</div>

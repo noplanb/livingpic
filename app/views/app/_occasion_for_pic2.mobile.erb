@@ -1,0 +1,36 @@
+<div id="occasion_for_pic2"  class="page auto_complete_page2 theme_dark">
+  <div class="pic_background last_pic_background ">
+    <div class="fixed_header photo_overlay">
+      <h3 class="instructions no_current_occasion inset" style="margin-bottom:0px">Caption:</h3>
+      <div class="inset"><input class="caption" placeholder="Caption (optional)"></div>
+      <div class="no_current_occasion">
+        <h3 class="inset instructions" style="margin:0; padding-top:25px; padding-bottom:0px">Album:</h3>
+        <div class="search_block" style="margin-top:10px">
+          <%= # done_click set as an event handler in occasion_for_pic
+              render :partial => 'auto_complete_text_input2', :locals => {
+              :placeholder => "Type an album name",
+              :margin => "0px",
+              :done_text => "Enter", 
+              :done_onclick => "$.debounce(2000, true, OccasionForPicController.new_occasion)()",
+              :cancel_onclick => "OccasionForPicController.dont_change()"} %>                    
+        </div> 
+      </div>
+    
+      <div class="yes_current_occasion inset">
+        <div class="save_or_change">
+          <div data-instaclick="$.debounce(2000, true, OccasionForPicController.existing_occasion)()" 
+               class="flat_button blue save_in_current_occasion_button">
+            Save in <span class="current_occasion"></span>
+          </div>        
+          <div class="flat_button grey change_button" data-instaclick="OccasionForPicController.change()">Change</div>
+        </div>
+        <div class="center" style="padding: 25px 0px; clear:both">
+          <span class="flat_button grey cancel_button" data-instaclick="OccasionForPicController.cancel()">Cancel</span>
+        </div>
+      </div>
+    </div>  
+  </div>  
+  
+  <div class="no_current_occasion auto_complete_search_results_box photo_overlay" style=""></div>  
+  
+</div>

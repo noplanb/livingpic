@@ -1,0 +1,18 @@
+<div id="country_code_list" class="page no_header"> 
+  <div class="content">
+    <div class="f32 npb-country-code-list">
+      <% PhoneHandling::ISO_CODE_COUNTRY.each do |icc| %>
+        <div  class="list_item" 
+              data-iso="<%= icc[:iso].downcase %>"
+              data-code="<%= icc[:code] %>"
+              data-country="<%= icc[:country] %>" 
+              onclick="PhoneEntryFieldController.country_selected(this)">
+          <div class="<%= icc[:iso].downcase %> flag"></div>
+          <div class="text"> 
+            <%= icc[:country] %> &nbsp; <span style="font-weight:normal">(+<%= icc[:code] %>)</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

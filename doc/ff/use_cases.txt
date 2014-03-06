@@ -1,0 +1,4 @@
+Some use cases we should support:
+- use gets two invites and registers in between responding to the two.  the landing controller should recognize that the user is already
+  registered and show appropriate message
+- 

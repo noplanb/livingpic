@@ -1,0 +1,59 @@
+// ============
+// = Gallery2 =
+// ============
+#gallery2{
+   // .header and .content special cased to accomodate browser, android < 3 since this page uses scroller and reveal  
+  .content{overflow:scroll; bottom:0;} 
+  .header{position:absolute;}
+  
+  .refresh{
+    position:relative; height: 400px; top:-430px; color:white; background:$purple;
+    .icon{position:absolute; left:30px; bottom:10px;}
+    .text{position:absolute; left:70px; bottom:10px; height:25px;}
+  }
+  .no_photos{position:absolute; top:0; left:0; right:0; display:none;}
+  .animated_heart{
+    opacity:0; -webkit-backface-visibility:visible; transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0);
+    position:absolute; left:50%; margin:-5px; height:10px; width:10px; }
+  .scroller{position:relative; transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -webkit-backface-visibility: hidden;}
+  .frame{position: absolute; top: -2000px; left:15px; right:15px;}
+  .photo_block{padding:0px 0px 30px}
+  .img_box{width:100%;}
+  .photo{position:relative; width:100%;}
+  .caption{font-weight:bold; @include medium_large; line-height:1.0;}
+  .creator{padding:3px 0px 4px; @include medium;}
+  .by{@include de-emphasize_w1; font-weight:normal;}
+  .creator_name{color:$purple; font-weight:bold; }
+  .status_date{
+    @include de-emphasize_w3; @include tiny; position:relative; padding-bottom:4px;
+    .date{position:absolute; top:0px; right:0px;}
+  }
+  .like_button{
+    -webkit-backface-visibility: hidden;
+     position:relative; height:30px; width:80px; background:#4A8BF5; border: 1px solid #3E84F5; border-radius: 3px; z-index: 1;
+    .text{position:absolute; left:32px; top: 7px; @include medium; color:white; font-weight:bold;}
+    .heart{position:absolute; left: 6px; top:5px; bottom:3px; width:22px; background-size:22px 22px; z-index:2;}
+  }
+  .not_liked .heart{@include grey_heart_small;}
+  .liked .heart{@include red_heart_small;}
+  .likes{@include medium; @include de-emphasize_w2; font-weight:bold; color: #8B1A0F; padding-top:10px;}
+  .likers{@include de-emphasize_w2; @include small;}
+  .comment{
+    padding:11px 0px 0px; @include medium; 
+    .user{color:#188229;}
+    .body{@include de-emphasize_w2; @include medium; font-style:normal;}
+  }
+  .new_comment{
+    padding-bottom:15px;
+    .box{border: 1px solid #bbb; padding:5px 0px 5px 5px; margin-top:3px; @include de-emphasize_w2; @include small; background:white; }
+  }
+  .participants{
+    .subtitle{
+      position:relative;
+      .text{@include de-emphasize1}
+      .add_people_button{position:absolute; right:0;}
+    }
+    .participants_list{@include de-emphasize1; line-height:1.6;}
+  }
+}
+

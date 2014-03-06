@@ -1,0 +1,7 @@
+<!-- Deprecate when ftui_header is working -->
+<% 
+  data_theme = defined?(data_theme) && data_theme || "a"
+%>
+<div data-role="header" data-theme="<%= data_theme %>"  data-id="ftui" data-position="fixed">
+  <h1 class="npb-admin"><%= site_name %></h1>
+</div>

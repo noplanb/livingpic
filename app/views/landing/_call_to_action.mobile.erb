@@ -1,0 +1,19 @@
+<% 
+  num_reviews = defined?(num_reviews) && num_reviews || 3
+  type = defined?(type) && type || :default
+ %>
+<ul data-divider-theme="b" data-theme="c" data-inset="<%= data_inset %>" data-role="listview">
+  <li class="npb-wrap npb-medium">
+    <div style="padding:20px 0px">
+      <div class="center">
+        <div class="lighter"><%= call_to_action_text(type) %></div>
+        <h4><em>On <%= site_name %>!</em></h4>
+      </div>
+      <div><a href="#app_store" data-role="button" data-theme="f">Get the App Now!</a></div>
+    </div>
+  </li>
+  <%= render :partial => 'reviews', :locals => {:num_reviews => num_reviews} %>
+</ul>
+
+
+

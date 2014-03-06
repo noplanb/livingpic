@@ -1,0 +1,32 @@
+<div id="landing" class="splash background_cover" 
+     npb_full_height="true"
+     style="background-image:url(<%= @occasion_photo_url %>);">
+  <div class="call_to_action" npb_accomodate_height="1.2">
+    <div class="overlay center">
+      <h2><%= @occasion.name.capitalize_words %>!</h1>
+      
+      <div onclick="window.location='<%= store_link %>'" class="flat_button red large">Get the Mobile App!</div>
+      
+      <h3 style="padding-top:20px">Hey <%= @recipient && @recipient.first_name.capitalize_words %>, Participating in <%= @occasion.name.capitalize_words %>?</h2> 
+      <h3>Interested in seeing photos?</h2>
+      <h3>Get the app!</h2>
+      
+      <p class="vertical_space">
+        <% if @invite %>
+          Invited by <%= @inviter.first_name.capitalize_words %>.
+        <% end %>
+      </p>
+      
+      <p class="vertical_space"><%= site_name %>&nbsp; ~ &nbsp;Android :: iPhone</p>    
+      
+      <p class="vertical_space">
+        <a href="#" class="unsubscribe link">Unsubscribe from these messages</a>
+        <p class="unsubscribed">
+          Done. We won't send you send you anymore texts.<br/><br/>
+          I changed my mind: &nbsp;&nbsp;<a href="#" class="resubscribe link">re-subscribe me!</a>
+        </p>
+      </p>
+      
+    </div>
+  </div>
+</div>

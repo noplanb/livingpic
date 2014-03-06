@@ -1,0 +1,3 @@
+development: 
+  s3_bucket: ff-images.livingpic.com
+  use_s3: true

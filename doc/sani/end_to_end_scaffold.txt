@@ -1,0 +1,14 @@
+Social Action
+
+ 
+-> Notification
+  - Pick the right vector for the user being notified
+  - Word, encode, and send the notification the notification 
+  - Log the open and click
+ 
+-> Landing
+
+-> App load
+
+-> User confirm
+

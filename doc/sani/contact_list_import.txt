@@ -1,0 +1,29 @@
+ x Create a contact list.js.coffee file
+ 
+ x Create a contact list handler class.
+   x Bring in the contact list from the phone
+     x Test pulling just contact id and name see how long it takes. If reasonably short then do before each autocomplete. Otherwise save ids and names for autocomplete. 
+     x Determine if display_name exits for every contact with any name object element. Yes it does so just use displayName.
+  x Sort the contacts by name
+  x Put them in the correct format for the auto_complete
+    
+  x Bring in the contacts list from the web
+    x Save the full directory as well as autocomplete list.
+    x Get rid of the contact_list stuff in localstorage.
+
+  
+  x Check size of name list for mine and put it in local storage
+  
+  x Get autocomplete working again.    
+    x Get rid of name of self. Use instance instead.
+    x Hook up with contacts
+    
+    
+  - Pull contacts from the contact list by id.
+  - Send one or more or all records back to the server.
+    
+  - Test to see how much I can put in local storage. 
+    - Browser 5.5M including entire app dom
+    - My android phone 2.5M including entire app dom and cordova.
+    
+  

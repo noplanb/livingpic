@@ -1,0 +1,21 @@
+<div id="confirm_check_cookies" data-role="page"  data-theme="c">
+  <%= render :partial => 'header', :locals => {:data_theme => "b"} %>
+  
+  <div data-role="content" >    
+    <%= render :partial => '/shared/box_begin' %>
+    <h1>Welcome to <%= site_name %></h1>
+    <p><%= site_name %> lets you participate in shared photo albums with friends.</p>
+    <p style="padding-top:15px">First let's check to see if you were already invited to any photo albums&hellip;</p>
+    <span data-role="button" data-mini="false" data-theme="b" 
+          onclick="$.mobile.changePage('#splash'); UserHandler.check_cookies()">
+      Check for Invites
+    </span>
+    
+    <div class="center" style="padding-top:60px">
+      <span style="font-size:13px" class="pseudo_link" onclick="UserHandler.startup({unknown_user:true})">Don't Check</span>
+    </div>
+    
+    
+    <%= render :partial => '/shared/box_end' %>
+  </div>
+</div>

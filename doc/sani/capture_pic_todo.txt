@@ -1,0 +1,96 @@
+Remaining todo:
+  - Background pic aspect is broken on iphone and doesnt cover entire background.
+  - Captured image size on iphone looks too big need to experiment.
+
+
+Picture.js
+ x capture it on the phone
+ x Get it from gallery.
+ 
+ o Display to see quality and size. 
+ 
+ o Experiment
+   - Quality vs size vs how good it looks.
+   
+
+FILER.js
+ x cd
+ x ls
+ x rm
+ x Upload to server
+ 
+
+UI 
+x go to capture page
+ x create capture
+ 
+- create tags
+  - skip link
+  - why link
+
+- save to occasion?
+ x No current occasion
+   x Add 
+   - None - Alert saved in your private photostream.
+   - Go to occasion gallery with pick highlighted first
+ x Yes current occasion
+   x Accept or 
+   x Change
+   x Upload
+   - Save tags
+   x Change the ftui occasion saving to work the same way. 
+   x Update the current_occasion with the server response. 
+ 
+
+x Upload
+  x When uploading just always send the complete user state. 
+    x Occasion - current_occasion
+    x User - current_user
+    x Contacts - auto_complete picked contacts (tag or invite)
+    x Location
+    x Current_picture info
+  
+x Next page
+  x Go to new occasion gallery with pic highlighted first
+
+Immediate display of newly snapped photos
+-----------------------------------------
+ x When a user snaps a pic he should be able to see the pic in the gallery page for the occasion immediately without waiting for it to be uploaded to the server and pulled down from the server. i.e. post snapping a pic tagging and declaring occasion user is taken to the gallery page for that occasion with the pic highlighted.
+ x Here is the flow that makes use of the existing gallery cache to accomplish this
+   x Snap photo
+   x Tag
+   x Add the just snapped local pic to the front of the cached gallery for that occasion. Create the cached gallery if necessary.
+   x Send the pic to the server with the device_state: user, contacts, current_occasion.
+   x Take user to the gallery page for that occasion with the photo first and highlighted.
+   x Assume the loopback for new occasions to the server will be such that if the user navigagtes to the occasionS page the new occasion will have made it to the server and will appear in the list. The above little trick is just to make sure the photo appears in the gallery for the occasion as soon as it is snapped without the loop delay for a photo. 
+   o On upload pic get a new occasions gallery as well as occasion refresh the occasions gallery cache. 
+  
+  
+x Occasion change autocomplete 
+  x dont use first letter cache. 
+  x Show all if less than 50 on first letter. 
+  x Search field box should cover the enter button as well.
+  
+  
+
+x Add an occasions class in occasion.js
+  x Move the retrieval of occasions from occasions_page.js to that
+
+
+x Add the photo to the front of the cached gallery for the occasion.
+  x Create a cached gallery if necessary. 
+
+x Upload the photo with the new occasion and the tags
+  x Put a debugger in the server to check what is coming back.
+
+x Bugs
+  x Occasion names with quotes broken.
+    x Pick one
+    x Enter one from scratch.
+  x Aspect ratio for local photos
+  x Save photo to an existing occasion that is not current_occasion. 
+    x Only shows the single photo not prepended to the entire gallery. 
+    x When you add a photo then go to all occasions then click on the occasion in the gallery it doesnt show up. Until you hit it twice.
+    x Solution
+      x On boot asynchronously retrieve and cache all galleries that we dont have in the cache.
+      x On create get occasions again and update the gallery cache for the affected occasion

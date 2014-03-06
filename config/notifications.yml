@@ -1,0 +1,15 @@
+email:
+  from: admin@livingpic.com
+  to: sani, ff
+  subject_prefix: LIVINGPIC
+  subject_line_length: 50
+  addresses:
+    sani: sani@livingpic.com
+    ff: ff@livingpic.com
+sms:
+  from: livingPic <admin@livingpic.com>
+  subject_prefix: LVP
+  to: ff, sani
+  addresses:
+    sani: 6502453537@att
+    ff: 4156020256@verizon

@@ -1,0 +1,18 @@
+PROBLEM: When we build with Cordova3.0 it created a new AndroidManifest.xml which eliminated some of the custom stuff we have put in the old AndroidManifest.xml.
+
+SOLUTION: merge the two. 
+
+PROCESS: 
+  x Under vendor/cordova/android create a new AndroidManifest.xml.
+  x For each line in the new file created by cordova and our own line determine how to merge.
+  x Make package_app.rake copy the manifest over from our code base.
+  
+
+PROBLEM: Farhad's new package_app.rake doesn't set version etc for android builds in AndroidManifest.xml.
+
+PROCESS: Make sure all the tasks in the old package_app.rake for android are running in the new package_app.rake.
+  x TODO
+    x versionName in Manifest.xml
+    x versionCode in Manifext.xml
+    
+    

@@ -1,0 +1,71 @@
+body { padding: 10px; margin: 0; background: white; font-family: "Lucida Grande", Helvetica, Arial,Verdana, sans-serif; color: #444340; font-size:12px;}
+h1 { font-size: 1.3em; padding: 15px 10px; margin: 0; }
+h2 { font-size: 1.1em; padding: 10px; margin: 0; }
+img { border: none; }
+a { color: blue; }
+
+
+/* ============== */
+/* = Data Table = */
+/* ============== */
+table.dataTable{
+  border: 1px solid #C2CEB3;
+/*  border: 1px solid #aaa;*/
+}
+table.dataTable.small{
+  td{font-size:9px;}
+  th{font-size:9px;}
+}
+table.dataTable th{
+  background: #E6EBDE none repeat scroll 0 0; /*#E0E0E0*/
+  border-bottom:1px solid #C2CEB3; /*#BABABA;*/
+  border-right:1px solid #B4C997; /*#BABABA;*/
+  border-top:1px solid #FEFEFE;
+  font-weight:normal;
+  padding:6px;
+  text-align:left;
+  white-space:nowrap;
+}
+
+.dataTable td{
+  background:#FFFFFF none repeat scroll 0 0;
+  border-bottom:1px solid #F0F0F0;
+  border-right:1px solid #F5F5F5;
+  padding:8px;
+  text-align:left;
+}
+
+td, td.label {
+  text-align: left; 
+  width: auto;
+  vertical-align: top;
+}
+
+td.label {
+  background-color: #CCE4F3;
+}
+
+.columnHeading {
+/*  font-weight: bold;*/
+  text-align: center;
+  text-decoration: underline;
+  background: #FCF5AD;
+  padding: 10px;
+}
+.evenRow {
+  background-color: #D9EAF7;
+}
+
+#userDetails td.label {
+  width: 300px; 
+}
+
+// =========
+// = Stats =
+// =========
+.participant_stats {
+  .posted_photos td {background: #EBF6FA;}
+  .posted_photos td.photos {background: #C7DDE6;}
+  .viewed_gallery td {background: #EEFAEB;}
+  .viewed_gallery td.gallery_views {background: #CCE6C7;}
+}

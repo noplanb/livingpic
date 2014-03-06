@@ -1,0 +1,32 @@
+<%- 
+  placeholder = defined?(placeholder) && placeholder || "Type a name"
+  margin = defined?(margin) && margin || "0px"
+  
+  done_width = defined?(done_width) && done_width || "140px"
+  done_txt = defined?(done_txt) && done_txt || "Done"
+  done_onclick = defined?(done_onclick) && done_onclick 
+
+  cancel_txt = defined?(cancel_txt) && cancel_txt || "Cancel"
+  cancel_onclick = defined?(cancel_onclick) && cancel_onclick 
+  
+-%>
+<div class="auto_complete_search_bar" style="margin:<%= margin %>">
+  
+  <table border="0" cellspacing="0" cellpadding="0" style="width:100%">
+    <col style="width:auto">
+    <col style="width:<%= done_width %>">
+    <tr>
+      <td>
+        <div class="">
+          <input class="auto_complete_search_input_field" placeholder="<%= placeholder %>">    
+        </div>
+      </td>
+      <td class="right">
+        <span data-instaclick="<%= done_onclick %>" class="flat_button blue done_button medium"><%= done_txt %></span>
+        <span data-instaclick="<%= cancel_onclick %>" class="flat_button grey cancel_button medium"><%= cancel_txt %></span> 
+      </td>
+    </tr>
+  </table>
+  
+  
+</div>

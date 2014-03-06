@@ -1,0 +1,8 @@
+how to distribute the iphone app
+
+Based upon links: 
+  http://www.paradeofrain.com/2010/11/taking-the-pain-out-of-ad-hoc-testing/ 
+  http://jeffreysambells.com/2010/06/22/ios-wireless-app-distribution
+
+we can put the app in a target directory and distribute the app.  However, they're both bogus because they refer to a provisioning profile that 
+is not created or provided.

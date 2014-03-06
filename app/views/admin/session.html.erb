@@ -1,0 +1,13 @@
+<div style="margin: 10px 10px 0px; display:block">
+  <table border="0" style="table-layout:fixed; width:100%;" cellspacing="0">
+    <%- color = '#fff' -%>
+    <%- @session.keys.sort { |a,b| a.to_s <=> b.to_s}.each do |key| -%>
+    <%- color = (color == '#eee') ? '#fff' : '#eee' -%>
+    <tr style="background-color:<%= color %>">
+      <td class="label" style="width:20em" valign = 'top'><%= key %></td>
+      <td><%= key == 'footsteps' ? (@session[key].inspect.gsub("\n","<br>").gsub(" ",'&nbsp;')).html_safe :  @session[key].inspect %>
+      </td>
+    </tr>
+    <%- end -%>
+  </table>
+</div>

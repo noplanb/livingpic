@@ -1,0 +1,34 @@
+<div id="tag_pic" class="auto_complete_page pic_background last_pic_background"  data-role="page"  data-theme="a" >
+  
+  <div class="ui-content" style="background:#333; opacity:0.85">
+    
+    <div class="help">
+      <table border="0" cellspacing="0" cellpadding="0" style="width:100%" >
+        <tr>
+          <td><h2>Who is in this photo?</h2></td>
+          <td class="right">
+            <a class="no_underline" href="#">why</a> | <span class="no_underline ui-link" onclick="tag_done()">skip</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="picked_items_block">
+      <h2>In this photo</h2>
+
+      <div style="margin: 0px -15px"> 
+        <span class="auto_complete_picked_items_box"></span>
+        <span onclick="tag_done()" data-role="button" data-inline="true" data-mini="true" data-theme="b">Done</span>
+      </div> 
+    </div>
+
+    <div class="search_block">
+      <%= render :partial => 'auto_complete_text_input', :locals => {:theme => "a"} %>
+    </div> 
+        
+    <ul class="auto_complete_search_results_box ui-listview" style="height:200px; overflow:scroll"></ul>
+  </div>
+  
+  <%= render :partial => "footer" %>  
+   
+</div>

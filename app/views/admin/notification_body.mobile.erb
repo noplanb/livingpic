@@ -1,0 +1,7 @@
+<a data-role="button" data-rel="back">Back</a>
+<div data-role="content" >
+  
+  <%= render :partial => '/shared/box_begin' %>
+  <%= NoPlanB::TextEncoder.convert_links(@notification.body).html_safe %>
+  <%= render :partial => '/shared/box_end' %>
+</div>

@@ -1,0 +1,205 @@
+Handle the registration for a user after he downloads the app.
+
+  x Left over stuff from landing page todo:
+    x Make max height for dialog longer
+    - When linking to the browser landing page from the notification
+      - Pass params so ‰that we record:
+        - Which notification caused the landing
+        - On the server confirm the phone number or email address that was used to reach him as being good
+        - Save the user and his state in the session on the phone browser
+  
+  x When the app starts:
+  
+  x Determine the registration state from the apps data store.
+  x If not registered 
+    x Send the user to our website and pull his state from his session in the browser.
+    x If we have cookied him as an invitee
+      x Redirect back to the app with params for the user we think he is.
+      x Have the user confirm his name 
+        x If there was a big change in the name then note it.
+      o If we dont have a confirmed phone number due to sms loopback
+        o Have the user enter his phone number else no need.
+      o Have the user select, (edit) confirm his email from a possible list of addresses if available. If none available then no need for email. 
+      o No need for a password. The app will always remember him. 
+    - If Not
+      - Enter name and phone number.  
+      
+    - Rely on the phone number being the unique identifier in the db.
+   
+  - Odds and ends 
+    - Make sure we have a back button at the top of the page wherever appropriate.
+    - Done invite with nobody picked should lead to what do you want to do now.
+    - At another event flow.
+    - Unknown user registration flow:
+      - Get first last and phone.
+    - Why for tagging.
+  
+  - Steps
+    x Create a splash start page for the app 
+      x Check the local store for current_user
+      x Navigate to web page if necessary
+    x Create a mobile web splash page to get the cookie information.
+      x Get current user from the session if one is available
+      x Link back to the app with the current user
+    - In landing
+      - Params for Notification associated with the landing 
+      - Set current user
+      
+    x Create a pages for:
+      x App for registered user
+      x Confirm name 
+      x Enter name and phone number from scratch
+      x Confirm event
+
+    x Contact list
+      x Using my contact list create a dummy contact list object on the server.
+      x App uses an ajax request to get the contact list and puts it in local storage.
+      
+    
+    
+    x Understand how data is stored in jquery.
+    x Create contact_fields model
+      x rails generate model contact_detail user_id:integer type:string field_name:string email:string country_code:integer phone:integer
+      
+      
+    x Registration copy
+      x Welcome
+        Hi Joe, 
+        Welcome to LivingPic!
+        Shall we get you set up?
+        Go for it> (slide)
+      
+      x Confirm_name
+        Great! 
+        First, do we have your name right?
+        Joe Shmo
+        no (dialog fade) yes> (slide)
+      
+      x Edit_name (dialog)
+        Sorry about that. 
+        Please fix it for us.
+        first last save (close dialog fade to confirm occasion)
+        
+      x Confirm_occasion 
+        Perfect!
+        Are you at Suzie's Wedding?
+        no yes> (slide)
+      
+      x confirm_other_occasion
+        Are you at a different event or occasion?
+        no (send to app with no occasion) yes (slide enter diff occasion)
+        
+      x Enter occasion
+        
+      
+      x Estimate_population
+        Excellent!
+        About how many others are here too?
+        number entry.
+      
+      x Invite
+        Great!
+        Who else do you know here? (why)
+        Start typing a name and pick.
+      
+      x Why_dialog
+        x What does your LivingPic app do with this information?
+        x Your LivingPic app shows you beautiful Living Photo Albums of the occasions where you participated that are tailored specifically to you. When you tell your app who you know at an event or occasion it asks them to participate and lets you see pictures of them and by them at the occasion you were in together. 
+        
+      x Confirm invite
+        - Is it ok to let xx see your pictures at xx?
+      
+      x Confirm invite - details dialog
+        x Your LivingPic app lets you contribute to the collaborative album of Muriel's wedding where your friends can see photos you have snapped and vice versa. It will invite those you know at the occasion to participate with you in contributing to this album. Saying yes means that you want to join in the fun of creating and enjoying a collaborative photo album of Muriel's wedding. 
+        x yes - what to do now.
+        x no - dialog.  Sorry you decided not to participate in the Living Album for Muriels Wedding. 
+      
+      x No_invite
+        x Sorry you're not participating.  
+        x Benefits of joining in
+          x Photos are better when shared.
+          x A collaborative album is much more fun.
+          x Your pics effortlessly organized and preserved.
+        
+      x What to do now?
+        x What would you like to do?
+          x Living Album of Muriel's wedding so far.
+          x Snap a photo.
+        
+      
+        
+      
+        
+      
+      
+    x Set up seed data for users
+                Email        Phone       SMSPhone
+                -----        -----       --------
+      - User    2            2           0
+      - User    1            2           0
+      - User    0            2           0
+      
+      - User    2            2           1
+      - User    1            2           1
+      - User    0            2           1
+      
+      - User    2            1           0
+      - User    1            1           0
+      - User    0            1           0
+      
+      - User    2            1           1
+      - User    1            1           1
+      - User    0            1           1
+      
+      - User    2            0           0
+      - User    1            0           0
+      - User    0            0           0
+      
+      
+      
+    - Pull in users from my contact list load up User and Contact details as seed data.
+
+
+Notes on Registration...
+Have we bought ourselves too much trouble by trying to make our registration simpler for the user but non standard?
+
+Typically a site will have a user provide a user_id(email, or phone#) and password on registration. He can then use this to identify himself if the system cannot id him based on some stored cookie.
+
+I have implemented many simplifying features to make the onboarding as smooth as possible like inferring the users name and phone number based on an invite he received previous to downloading the app. I think this is great and I like it much better than the registration process of any of the other photo apps I have tried.
+
+I was also thought about eliminating having him select a password. Is this going too far? 
+
+So thinking out loud here are various use cases that we need to accommodate:
+
+Use Cases
+ 1 User who was registered wipes the app and uploads fresh on the same device and wants to access his old account.
+ 2 User who was registered uploads the app on a different device and keeps it on the old device and wants to access the same account on both devices.
+ 3 User who was registered wipes the app on an old device and uploads it on a new device and wants to access his account on the new device.
+ 4 We have somehow forgotten who the user is because cookies wiped or something that makes it look effectively like he as logged out.
+ 
+ G I suppose these use cases generalize to user has a need to access his account from any device and may at times be logged out on a device he was previously cookied on?
+
+Some thoughts on how the use cases would be handled:
+  Taken together all of these use cases really are begging for a userid(email, or phone) and password so that the user can identify his account if necessary. In general they will never be used because we will always try to keep the user cookied and logged into his account on his device(s). But they might be used to handle all of the above use cases. 
+
+  I suppose we can still eliminate the password and always use a loop back for authentication in the rare cases when it is necessary. Eg please enter the code we sent you via sms to the phone number you are identifying yourself with. Or please click on this link in the email address you used to identify yourself. But is this unnecessarily non-standard for the small benefit of not forcing a user to enter a password on initial registration?
+
+  If we are gonna have a password then I suppose we also have to deal with the lost password case. And so we need to make sure the user_id is has a valid loopback capability like smsable phone or email. 
+
+What to implement for phase 1:
+- Only use phone number for a user_id not email.
+- Infer the phone number from the invite if possible for typical registration flow from invite.
+- Get the user to give us a password when he registers in all cases.
+
+- In cases where the user has loaded the app fresh on a device or for any of the above use cases and where we dont know the phone number based on a previous invite:
+  - Go through a standard register or sign in flow:
+    - Sign-in
+      - Phone number
+      - Password
+      - Lost password (loopback via sms from phone number)
+
+    - Register
+      - Name
+      - Phone number
+      - Choose password
+      - If we detect that this is a phone number for an already registered user then send him to sign in.

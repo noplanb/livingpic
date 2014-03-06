@@ -1,0 +1,32 @@
+<script type="text/javascript" charset="utf-8">
+  $("#edit_name").on('pagebeforeshow', function(event, data) {
+    $("#edit_first_name").val(current_user().first_name);
+    $("#edit_last_name").val(current_user().last_name);
+  });
+</script>
+
+<div id="edit_name" data-role="dialog"  data-theme="c">
+  
+  <div data-role="header" data-theme="b">
+    <h1>Edit Name</h1>
+  </div>  
+  
+  <div data-role="content" >
+    <h1>Sorry about that</h1>
+    Please edit
+    <form>
+      <label for="first_name">First name:</label>
+      <input type="text" name="first_name" id="edit_first_name" value=""  placeholder="First name"/>
+      <label for="last_name">Last name:</label>
+      <input type="text" name="last_name" id="edit_last_name" value=""  placeholder="Last name"/>
+      <div class="button_box">
+        <div 
+        class="needsclick_disabled"
+        onclick="submit_name($(this).closest('form').serializeArray())">Submit</div>
+      </div>
+    </form>
+
+  </div>
+  
+  
+</div>

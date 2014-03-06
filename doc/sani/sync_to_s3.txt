@@ -1,0 +1,1 @@
+rake photos:sync_to_s3[1319,1600] RAILS_ENV=staging

@@ -1,0 +1,21 @@
+<div id="gallery_picker" class="page theme_dark">
+  <div class="icon global icon icon_edit" data-instaclick="GalleryPickerController.edit_caption(this)"></div>
+  <div class="icon global pick" data-instaclick="GalleryPickerController.toggle_pick(this)"></div>
+  
+  <%= render :partial => 'edit_textarea', 
+             :locals => {:id => "gp_edit_caption",
+                         :post_click => "GalleryPickerController.post_caption(text)", 
+                         :cancel_click => "GalleryPickerController.cancel_caption()",
+                         :placeholder => "Type a caption",
+                        } 
+  %>
+  
+  <div class="header">
+    <span class="flat_button grey left cancel" data-instaclick="GalleryPickerController.cancel()">Cancel</span>
+    <span class="flat_button_box center">
+      <%= render :partial => '/shared/selector_button', :locals => {:s1_text => "All", :s1_click => "GalleryPickerController.all()", :s2_text => "Selected", :s2_click => "GalleryPickerController.selected(event)", :width => "10em", :color => "purple"} %>
+    </span>
+    <span class="flat_button purple right done" data-instaclick="GalleryPickerController.done()">Done</span>
+  </div>    
+  <div class="content photos"></div>
+</div>

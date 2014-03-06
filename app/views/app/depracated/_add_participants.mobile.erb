@@ -1,0 +1,30 @@
+<div id="add_participants" class="auto_complete_page" data-role="page"  data-theme="a">
+  
+  <div data-role="header">
+    <h1>Add People</h1>
+    <%= render :partial => 'camera_button_head' %>
+  </div>
+  
+  <div class="ui-content">
+    <div class="help"><p><h2>Who else?</h2>Who else is interested in <span class="current_occasion"></span>?</p></div>
+    
+    <div class="picked_items_block">
+      <h2>Add to <span class="current_occasion"></span></h2>
+      
+      <div style="margin: 0px -15px"> 
+        <span class="auto_complete_picked_items_box"></span>
+      </div> 
+    </div>
+  
+    <div class="search_block">
+      <%= render :partial => 'auto_complete_text_input', :locals => {
+                 :theme => "a", 
+                 :done_onclick => "AddParticipants.INSTANCE.done()",
+                 :cancel_onclick => "AddParticipants.INSTANCE.cancel()",} %>
+    </div> 
+    
+    <ul class="auto_complete_search_results_box ui-listview" style="height:200px; overflow:scroll"></ul>
+      
+  </div>
+    
+</div>

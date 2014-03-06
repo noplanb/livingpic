@@ -1,0 +1,44 @@
+2012-09-10
+
+Conceptually we have the following issue wrt users:
+- an existing user gives us their contacts.  The problem is that they will likely have multiple phones for the invitee and they will not be correctly set (e.g. the mobile phone may be in the home field, etc.).  So we have to guess about whether the user already exists in our system or not.  
+
+We will always save the contact details sent by an existing user.  These will have the source_id set to this user.  Now we need to decide the following
+
+1) do we create a user based upon this contact or does the user already exist in our system?
+2) do we update the invitee's info based upon this contact?  Perhaps we didn't know the user's email previously, but now we think we may know it.  
+3) do we correct what we know of the user based upon this contact?
+
+We have the following fields of interest: phone, email, last_name, first_name
+
+So we need to have a notion of the states of the contact as they apply to a user:
+- they may be associated with this user  - that is, the user_id points to this user
+- they have been confirmed to be associated with this user - that is, we know they're accurate
+  - if they're confirmed, then the user's mobile field and/or the email field match
+
+So when I get in a new contact detail:
+  if the contact is a phone, search user table for that phone.  If it matches:
+  1) the user's info is confirmed so I can bind this contact to that user
+  2) if the user's info has not been confirmed, then 
+  
+
+So contact details are just a proxy for relationships right now.  Not great, but will do.
+
+If a user has registered, then we consider his name, phone number, and other elements to be definitive.  
+If a user has confirmed a contact, for example by clicking on it, then we consider the contact (phone, email) to be true, but not necessarily the name and other parameters. So at that point, if we get another contact to have the same key info (phone or email), we have to figure out what to do.  We just ignore the contact (so we don't assign a contact id, but we do assign the source field)
+
+If the user has not confirmed a contact, then we need to check to see if the contact already exists ()
+
+
+
+
+
+
+2012-09-10
+This is a sample contact from the iPHone:
+
+{"name":{"givenName":"Mitch","formatted":"Mitch DeShields","middleName":null,"familyName":"DeShields","honorificPrefix":null,"honorificSuffix":null},"id":258,"displayName":null,"phoneNumbers":[{"type":"work","value":"415-578-4482","id":0,"pref":false},{"type":"home","value":"415-453-2259","id":1,"pref":false},{"type":"mobile","value":"650-270-6969","id":3,"pref":false},{"type":"home","value":"(208) 450-5105","id":4,"pref":false}],"emails":[{"type":"other","value":"mdeshields@nexxofinancial.com","id":0,"pref":false}]},
+
+
+This is a sample contact from Sani's android:
+{\"id\":\"3193\",\"rawId\":\"3186\",\"displayName\":\"Konstantin Othmer\",\"name\":{\"familyName\":\"Othmer\",\"formatted\":\"Konstantin Othmer \",\"givenName\":\"Konstantin\"},\"nickname\":null,\"phoneNumbers\":[{\"type\":\"mobile\",\"value\":\"(650) 248-4331\",\"id\":\"23721\",\"pref\":false},{\"type\":\"work\",\"value\":\"(650) 603-6620\",\"id\":\"23722\",\"pref\":false},{\"type\":\"home\",\"value\":\"650-962-8000\",\"id\":\"23720\",\"pref\":false}],\"emails\":[{\"type\":\"other\",\"value\":\"kon@cloudcar.com\",\"id\":\"23712\",\"pref\":false},{\"type\":\"other\",\"value\":\"kon@coremobility.com\",\"id\":\"23710\",\"pref\":false},{\"type\":\"other\",\"value\":\"kon@othmer.com\",\"id\":\"23708\",\"pref\":false}],\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null,\"fullname\":\"Konstantin Othmer \"}

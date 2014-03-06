@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  occasion: 
+  user: 
+  value: 1
+
+two:
+  occasion: 
+  user: 
+  value: 1

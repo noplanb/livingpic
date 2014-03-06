@@ -1,0 +1,7 @@
+Photo.verify_photos
+
+Verify that all photos:
+  - Have thumb and phone images
+  - No thumbs are square aspect
+  - All are on Aws
+  - All have aspect_ratio set

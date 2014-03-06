@@ -1,0 +1,7 @@
+I learned from photoswipe a cleaner way to have an instance of a class refer to itself internally rather than passing in name_of_self when you instantiate it.
+
+1) In the instance constructor optionally pass in an id for the instance. If one is not passed in then the instance creates its own id using timestamp for example. 
+
+2) There exists separate object apart from the class that contains all instances created for this class reference by id.
+
+3) The instance references this separate object to get at itself when it needs to.

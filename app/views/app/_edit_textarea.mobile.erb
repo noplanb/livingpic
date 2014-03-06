@@ -1,0 +1,20 @@
+<% 
+  id = defined?(id) && id
+  post_click = defined?(post_click) && post_click
+  post_text = (defined?(post_text) && post_text) || "Post"
+  cancel_click = defined?(cancel_click) && cancel_click
+  cancel_text = (defined?(cancel_text) && cancel_text) || "Cancel"
+  placeholder = (defined?(placeholder) && placeholder) || "Add Text"
+%>
+
+<div id="<%= id %>" class="edit_textarea <%= id %>" data-widget="edit_textarea" data-post_click="<%= post_click %>" data-cancel_click="<%= cancel_click %>" >
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="textarea_col"><textarea class="text" data-enhance="false" placeholder="<%= placeholder %>"></textarea></td>
+      <td class="button_col" valign="center">
+        <div class="flat_button blue" data-instaclick="EditTextarea.instance('<%= id %>').post()"><%= post_text %></div>
+        <div class="flat_button grey" data-instaclick="EditTextarea.instance('<%= id %>').cancel()"><%= cancel_text %></div>
+      </td>
+    </tr>
+  </table>
+</div>

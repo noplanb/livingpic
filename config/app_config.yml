@@ -1,0 +1,51 @@
+defaults: &settings
+  site_url: http://localhost:3000
+  android_store_link: market://details?id=com.noplanbees.livingpic
+  iphone_store_link: https://itunes.apple.com/us/app/livingpic/id585542753?mt=8
+  domain_name: livingpic.com
+  site_name: LivingPic
+  admin_email: admin@livingpic.com
+  support_email: support@livingpic.com
+  save_last_activity_granularity_in_seconds: 10
+  twilio_sender_number: "+14157280387"
+  twilio_receiver_number: "+14156020256"
+  app_schema: "livingpic://"
+  app_photo_directory_name: "LivingPic"
+  encode_notification_id: false
+  default_occasion_name: No Occasion
+  min_time_between_notifications_in_minutes: 30
+  max_notifications_for_inactive_users: 4
+  send_notifications: false
+  app_version: 2.0
+  madatory_version_upgrade_threshold: 2.0
+  android_version_code: 24
+  admin_ids:
+  - 2
+  - 3
+  no_notify_ids:
+  - 104
+  pushwoosh_app_id: 688D6-F0591
+  pushwoosh_auth_token: upvWG5eOMVjICGyte65G46Nkxa/ko7E3TOHaaxLlBs2B3egZbBpyNCPe4p6MKIIwjUfgcuuRqjdyhKOFaqpS
+  pushwoosh_android_project_id: 926360415491
+  s3_bucket: images.livingpic.com
+  use_s3: false
+
+development: 
+  <<: *settings
+  # min_time_between_notifications_in_minutes: 2
+  send_notifications: false
+  use_s3: true
+
+test:
+  <<: *settings
+
+staging:
+  <<: *settings
+  site_url: http://staging.living.com
+
+production:
+  <<: *settings
+  site_url: http://www.livingpic.com
+  send_notifications: true
+  s3_dir_name: production
+

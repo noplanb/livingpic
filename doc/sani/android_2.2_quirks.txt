@@ -1,0 +1,154 @@
+PROBLEM: On the old android Froyo 2.2 device edit_textarea does not respond to css transforms.
+DISCOVERY: position:fixed will not respond to transforms on android 2.2
+SOLUTION: Try changing to position:absolute.
+
+
+PROBLEM: Overflow scroll not available for divs so pages dont scroll as currently set up.
+TRY: 
+  - Change css for page, content, header so that it works for both android < 3.0, ios, android > 3.0
+
+Current css
+  - Page - overflow:hidden, position:absolute
+  - Header - position:absolute, 
+  - Content - position:absolute, overflow-x:hidden; overflow-y:scroll; -webkit-overflow-scrolling:touch;
+
+Change to
+  - Page - overflow:not_specified, position: not_specified
+  - Header - position:fixed
+  - Content - position:absolute, overflow: not_specified, -webkit-overflow-scrolling:touch
+  
+Test
+  Firefox
+    x Occasions
+    x Gallery
+    x Admin
+    x Invite autocomplete
+    - Photo pick occcasion
+  Android < 3or
+    x Occasions
+    x Gallery
+    x Admin - testpages list
+    x Invite autocomplete
+    - Photo pick occcasion
+  Android > 3
+    - Occasions
+    - Gallery - Bug
+    - Admin - testpages list
+    - Invite autocomplete
+    - Photo pick occcasion
+  Ios < 7
+    x Occasions 
+      x scrolling is sluggish. 
+      x fixed by re-adding self.webView.scrollView.decelerationRate = 1.0; to mainviewcontroller.m this was probably removed when we went to cordova3.0
+    x Gallery
+    x Admin - testpages list
+    x Invite autocomplete 
+    x Photo pick occcasion
+  Ios = 7
+    - Occasions
+    - Gallery
+    - Admin - testpages list
+    - Invite autocomplete
+    - Photo pick occcasion
+
+
+PROBLEM: IOS Invite autocomplete not working. After you add a name it doesnt show the search results when you try to add the next.
+Fixed: There was a bug in autocomplete2.
+
+PROBLEM: On android 2.2 after going to the people page then back to the gallery page the header is shifted to the right.
+
+PROBLEM: Clicking on scroller to zoom zooms in then back out immediately.
+  DISCOVERY - Android 2.2 and 2.3 do not handle css transform scale in combination with translate. See this: https://code.google.com/p/android/issues/detail?id=12451
+  SOLUTION - Remove zoom feature for android < 3.0
+  TEST:
+    ios
+      x gallery_picker
+      x gallery
+    android > 3
+      x gallery_picker
+      x gallery
+    android < 3
+      - gallery_picker cant test it crashes phone
+      x gallery
+
+PROBLEM: Autocomplete not working for invite. 
+
+PROBLEM: Gallery picker crashes phone for android < 3
+
+PROBLEM: Autocomplete2.autocomplete_display is adding new event listeners each time you go back to the add_participants page and it doesnt seem to be removing them on android<3.
+
+  - Observation. If i come back to the page and click on the text input field it fires the focus event multiple times. And the number of fires grows by one each time I exit the page then come back.
+  
+  - Try - Change the remove event_listener and add_event listener to jquery on and off. RESULT didnt work.
+  - Try - Make the off in jquery prior to setting the handlers be off() which should remove all event listeners. RESULT - that works.
+  
+PROBLEM: AUTOCOMPLETE - The hide and show actions in the search_input_focused handler cause the input field to lose focus.
+  - Try - use on_touchstart and on_click (in case of browser) rather than on focus. Make the event handler explicitly focus using Keyboard.show() RESULT - Doesnt leave input element focused.
+  - SOLUTION: 
+    - For showing the keyboard make the user click to focus on the input field. This works great for ios and for android > 3. For android < 3
+    - On cancel and done hide the keyboard explicitly for android which  unfocuses as well for ios.
+
+PROBLEM: When adding a comment to the gallery if you click sometimes the background captures the click and tries to zoom the photo behind.
+  TRY 
+    - Freeze the scroller when starting a comment and unfreeze when we post or cancel. Result: Problem still occurs. 
+  QUESTION
+    - Are the mouseup events not being prevented by the stop propagation on touch start and stop on the scroller. I would guess so since the scroller is higher in the dom than the image. 
+    - ANSWER: 
+      - On ios stopping propagation on a touchstart event on 
+    
+PROBLEM: ALBUM INTERFACE
+  - When I do getThumbnail I get a BMP that says it is stored in memory. When I query for the thumbnail after that I get an empty cursor.
+  - EXPERIMENT
+    - Pull in all the thumbnails and images to the server.
+  - RESULT
+    - getThumnail does not cache a thumb for images on the external sd card on android 2.x
+  
+  - Observation i get an error unable to open stack trace file /data/anr/traces.txt this appears not to be related however as I get it even if I do absolutely nothing. 
+  
+  SOLUTION - Do not pull images from the external sd card for living pic.
+    - Todo
+      - Copy Album interface over
+      - Merge farhads code
+      - Query only for photos not on an external card
+    - PROBLEM - ignoring external card is not easy as detecting one varies by manufacturer. Also we really dont know if this is a general problem with external card. 
+ SOLUTION2 - Go base64 thumbs for images.
+   - Todo
+     x Pull base 64 thumbs
+     x Change album controller to sort by datetaken
+     x Change GalleryPicker
+       x Only pull in photos as needed from albuminterface
+       x Remove the pics from the dom when done
+       x Destroy the photos in js when done.
+
+PROBLEM: I used to rely on the width and the height from the thumb_object returned by album interface. When I went to returning a base64 blob I lost that. 
+  SOLUTION - 
+    - Return thumb object if it exists else return base 64
+
+
+PROBLEM: GalleryPicker on_scroll_stop method of detecting near bottom and near top no longer works with css needed to accommodate android with non scrollable divs.
+ - GalleryPicker used to use scrollTop on the content div which used to be position: absolute top:0, bottom:0 to determine the scroll position on a page. Android bug doesnt allow scrollable divs so this no longer works. Since the contents (photoblocks) are all absolutely positioned so they can be loaded and unloaded scrollTop always just returns 0.
+ - WORKAROUND
+   - TRY - use touch events to tell if you are near the bottom or top. 
+     - Todo
+       - Add touchstart to each of the images
+   - PROBLEM - if you scroll fast enough you will scroll to an area where images have been removed and so you wont get a touchevent.
+   - TRY - Make the touchevent on the content div and use pageY to determine position and load using that.
+   - SOLUTION - the above was the final solution.
+   
+STRATEGY - Why do I use the drag event in the scroller to trigger click events to the html for the scroll page?
+  - I want to us a onxxx="handler" in the html for the scroll page rather than add events to the html as I load and unload frames as you scroll up and down because adding these in the html text is much faster than adding and removing the listeners using javascript.
+  - Since I want to use an html handler I need to use a native event like: click, mouseup, etc that is recognized by the html parser.
+  _ In ios mouseup or click would have worked fine. Mouseup has fewer implications in jquery and causes less activity when it is triggered so I chose mouseup at first. 
+  - The added benefit is that in the browser where I dont use the scroller mouseup is generated when you click on an element so mouseup works for both when the scroller is used and when  it isnt.
+  - In ios scroller.freeze() would preventDefault and stopPropagation on touch event which would also prevent the native mouseup from being triggered. This is great because you can use scroller.freeze() to prevent clicks on the edit comments overlay from bleeding through to the img with opacity=0 behind and causing a spurious zoom.
+  - On android < 3 the native mouseup is not prevented by preventDefault on the touchstart events so we would actually get 2 mouseup events when the user clicks. one native and one from the scroller. Also freeze() doesnt work to stop the native events.
+  - So I needed to have a native event that is not triggered by a user clicking for the elements in the scroller to listen to. I chose drag and ondrag.
+  
+  QUESTION - Since I now use drag do I still need the zoom_holdoff in GalleryController2? (Which is sometimes getting stuck)
+  Try:
+    - Remove zoom_holdoff
+      - Test
+        - Ios < 7 RESULT. No I cant remove zoom holdoff since a double click on the occasions page is actually causing a spurious click to be triggered by the scroller as soon as the page changes over. I cant use a doubleclick preventer because the second click is actually not on the same target as the first. 
+        - Ios 7
+        - Android < 3
+        - Android > 3

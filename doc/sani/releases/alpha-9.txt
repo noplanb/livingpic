@@ -1,0 +1,209 @@
+Android Release 1.9 #20  Revision 7553  In store 5/28
+Iphon Release 1.9  Revision 7551 In store xxx
+
+Most important for this release
+-------------------------------
+  
+  SANI
+  S FTUI - after invite last page should say done.  
+  
+  FARHAD
+  f In app notification for android
+  x Update the console.log file on the phone.
+  x Streamline photo create on server
+  x Other bugs from Fadis wedding.
+    x Sanis phone uploading the same photo multiple times.  
+
+  
+  F General invite problems. Learned from alpha 8 at fadis wedding.
+    - Invite someone where I have their mobile number in my contacts under the heading of a non mobile number and a non mobile number under the heading of a mobile number. - Send notification to all numbers kill the ones that dont work. 
+    - Invite someone they dont click on a notification but they load the app and enter their phone number. - compare phone number with contact details.
+    - Limit text notifications to 4 total per contact detail if the user does not activate.
+  
+  - What is the javascript problem 
+    
+
+Done in this release
+--------------------
+  F Create and update a console.log file on the phone.
+  
+  F Streamline photo upload on the server. 
+  
+  S Country code for phone number
+    x Create the UI we want on the phone
+    x Load the country codes
+    x Create a yml array with the country code, name, iso 2 letter, whether it is on the short list or not phone_handling_config.yml
+    x Import the yml in phone_handling.rb
+    x Create the country_code listview using erb in the html
+    x Create the phone_entry_controller.js
+      x Click makes it show the listview.
+      x Select makes it add prefix to text field, disappear pulldown, and put current flag on button. 
+        x Find the id of the list that was clicked
+        x Update the button and the text field in the list appropriately.  
+    x Put the datastructure also into config.js 
+    
+  S Fixed caption for new picture in browser.
+  
+  S Other bugs from Fadis wedding.
+    x Sanis phone uploading the same photo multiple times. Fixed with debounce below
+  
+  S Debounce
+    x Debounce occasion for pic
+      x Save in existing occasion
+      x Create new occasion
+      x Test (with caption)
+        x Save in existing occasion
+        x Pick another old occasion
+        x Create a new occasion
+    x Debounce new occasion
+      x Test
+  
+  S Cruft removal
+    - Delete
+      x Iphone release pages - register, login, store_release_welcome
+      x Device_state_info - js.coffe, view in admin, view in deprecated, render in app.mobile
+      x host - view in admin, view in deprecated, js in deprecated, link in app.mobile
+    - Shortcuts
+      x Eliminate all unused buttons
+      x Rename the file to testpages
+      x Remove deprecated shortcuts
+      x Remove the header and footer 
+        x From from the shorcuts page
+        x Remove the partials
+      x Add the each of the testpages to the single testpages.mobile and remove each of the inividual mobile files
+        x Test images
+          x Add to testpages
+          x Remove files
+        x Test click delay
+          x Add to testpages
+          x remove files
+          x remove from app.mobile
+        x Background_cover
+          x Add to testpages
+          x remove files
+          x remove from app.mobile background_cover_test_pages
+        x Move views for admin under app
+          x Svn move the directory.
+  
+  S Fix the wording in notification messages.
+    x Like notification says someone when it shouldn't. (fixed I think but need to test.)
+    x Commented on YOUR photo. Liked YOUR photo.
+    x Invite non user notification wording
+    x Comment and like notifications. Liked YOUR photo. Commented on YOUR photo.    
+  
+  x FTUI
+    x Wording in what next page needs to be improved. 
+    x One button go to album
+    x You were invited wording is too wordy.
+
+  x Please add your photos - banner needs a table so it doesnt wrap with a long first name.
+ 
+  x Iphone screen width tweaks.
+    x Indicators next to heart and comments showing upload status on pic detail appear on a new line.
+  
+  x Add participants then go back to album doesnt show participant added in list.
+  
+  
+  - Splunk
+    - 
+    
+Test Plan
+---------
+  - FTUI
+    x Landing page
+    x Check for invites
+    - Change name
+    - Enter name and phone (unknown_user)
+    - Enter occasion name
+    x Welcome options
+  - In app
+    x Add album
+    x Save pic to existing album
+    x Save pic to new album name
+    x add pic from gallery
+    x Like pic
+    x Comment on pic
+    x Add participant(s)
+    x Manual refresh
+  - Admin
+    - Start fresh
+  - Notifications
+    x Active 
+      x Comment
+      x Invite
+      x Like
+    - Not active
+      - Comment
+      - Invite
+      - Like
+
+  
+  
+Open
+----
+Farhad
+  - Android Something is blocking when there is poor connectivity causing no device ready and error on android.
+    - Sani and Jills phone android loading html page error cordova popup!
+  - Iphone slows down seemingly swapping memory.
+  - Enhance noifications
+    - Add comment text to notsification.
+    - Add photo to notification.
+  - Queue comments and invites.
+    - Queue comments so UI is instant even in no connectivity.
+    - Queue invites so the UI is instant even in no connectivity.
+    - Allow comments to be added to a brand new photo before it goes to the server - More difficult
+  - Invite takes 6 seconds.
+  - Figure out why use strict in fastclick breaks ajax calls and put strict back in.
+  - Put passing push token in user handler and take it out of boot since the user may not be known at boot.
+  - Background the paperclip tasks on photo create.
+  - Iphone store loads old version then presents an update button.
+  - Bug when you click on a photo notificaiton when the occasion isn't loaded yet
+  - Add a request id to the log file
+  
+  
+Sani
+  - FTUI for ad hoc user make more streamlined a la FTUI for invited userf
+  - Remove unused pages in the ftui - invite, enter other occasion etc
+  - Splunk
+  - Remove all stuff associate with iphone store release
+  
+Bugs
+  - Make the check_cookies page and landing page not cacheable by the browser.
+  o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+  - Livingpic version = undefined version on compile assets.
+  - Bug with broken photo not uploading on android phone 
+  - Bug When you add a new album it temporarily puts it at the bottom of the list.
+    - can't replicate it
+  - Checkin goes into infinite loop if checkin fails to find user on the server.
+  - Also save pics to gallery on android
+  
+
+Enhancements
+  - When a new user shows a big gallery for the first time prepare_for_display blocks the gallery rendering
+  - Slow start-up is there anything we can do.
+  - Slow scroll is there anything we can do.
+  - If phone number is incorrect provide notice to inviter and a method of changing it.
+  - Ambiguity
+    - When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+      - In the gallery indicate somehow that photos are uploading. 
+    - When you have multiple new comments since you last visited you dont know which photos they are on.
+  - Ftui dont ask for current location right away. - Iphone only
+  - Pinch on the photos.
+  - Real photoswipe with fullbleed photos in pic detail.
+  - Allow entry of adhoc contacts for invite.
+  - Make the loading page interesting. 
+  - Migrate to latest cordova.
+  
+  
+Punt  
+  o Register page submit to server is really slow.
+    - Investigation shows that it takes 5 seconds to do a occasions_json on the server due to lots of db calls. Just live with long spinner as this is a one time occurrence during registration. 
+  o Android pictures sometimes dont upload.
+    
+  o Apple photostream nice experience copy it.
+    - Sani and Farhad need to discuss what this means
+      - Immediate appearance after click of notification.
+      - Full bleed of photo
+      - Comment or like displayed immediate.
+  
+  

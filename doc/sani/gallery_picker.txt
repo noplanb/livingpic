@@ -1,0 +1,78 @@
+x Progressive loader
+  x Have placeholders for all pics in a gallery.
+  x When a scroll stop happens  load the pics around the location
+  x Load as background images with cover css
+  
+x Action icons
+  x Select icon 
+    x On click
+      x PickHandler class
+        x Toggles selected class 
+        x Keeps track of which items have been picked
+  x Caption icon
+  x Toggle switch between all pics selected
+
+x Add a caption
+  x Get the comment html from the gallery page
+    x Get it to work in the browser.
+    x Test to make sure it still works on the phone
+    x Generalize the names 
+    x Partialize
+    x Make sure it still works on the browser and the phone
+    x Add the partial to the gallery_picker
+  x Zoom
+  x Figure out what to steal in terms of animations and js from gallery2.js
+    x Create a widget in widgets.js
+    x Attaches to edit_text_areas
+    x Edit, post, cancel
+    x Have the widget drive controller.
+    x test it on the phone and browser
+  x Use widget for caption
+    x Add the widget to the gallery_picker
+    x Make the text from the widget html safe.
+    x Make the edit work from the global button on photo zoom.
+  
+
+  - Make it work pulling thumnails off the phone.
+  - Make it work for zooming large size photo on the phone.
+  
+- Occasion for pics
+
+
+PROBLEM - on the iphone scrolling gets very sluggish with a long list of photos. It is expected that people will potentially have a very long list of photos in their gallery to choose from. 
+  
+  QUESTION - How many photo_block boxes without any background pic can I have before scrolling starts to get sluggish?
+  TRY
+    - 100 - ok
+    - 200 - marginal
+    - 300 - bad 
+  
+  SOLUTION - I need a more sophisticated loader that removes even the photo_blocks when they are not in view.
+  
+  STRATEGY - 
+    x Absolute positioning of the photo_blocks. 
+    x Top and left are calculated based on index and number of columns
+    x They are added and removed as necessary when scrolling up and down 
+  
+    x GalleryPickerView gets list of all photos plus range to load.
+    x It sets top and left based on the index
+    x Simple loader calls GalleryPickerView
+    
+PROBLEM - cant uses instaclick for select and caption buttons in the scroll window because touchstart will be triggered when the user accidentally puts his finger on the button when he is scrolling.
+
+  QUESTION - If I change it to click how long is the delay?
+  TRY 
+    - Measure the delay between an instaclick and a click - RESULT < 200ms good enough. Change it to onclick.
+    
+PROBLEM - Scroll way down the close the gallery picker. When you open even though before the picker page is shown the photos div is cleared and new absolute position photos are added with the first having top=0. When the page is shown (display:block) they actually appear in the dom with their top=way_down not 0. You can actually see the mis-set top values in firebug. 
+
+  DISCOVERY - This is an undocumented bug with at least the firefox browser. Since the div is cleared while it is display: none the browser doesnt seem to go through and actually take care of the all of the cleanup it normally does including adjusting scrollTop of the div. You can see this by querying some of the internal state variables like scrollTop for the div. When the sub divs for photos are added the browser messes up their absolute positioning.
+  
+  SOLUTION - Before leaving the page while it is still display block, clear the photos div to force the browser to reset all its internal state for the div so that new.
+
+PROBLEM - Sometimes when I add photos they appear on top of old photos in the gallery. Scroller seems to be covering and trapping the click somehow. Weird though that it happens in the browser.
+  TRY - 
+    - Move the no photos logic out of the galleryhandler and into the gallery controller.
+    - Hide scroller when showing no photos
+    - Show scroller and hide no photos when initializing the page.
+

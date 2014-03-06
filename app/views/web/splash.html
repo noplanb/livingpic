@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= site_name %></title>
+</head>
+<body id="tall"  style="background-image:linear-gradient(#363AAE, #222570);
+                       color:#e6e6e6; 
+                       font-family: Helvetica, Arial, sans-serif;
+                       text-align:center; ">
+             
+  <div  style="" >
+    <div style=" font-size:100px; 
+                 font-weight:bold;
+                 letter-spacing:4px">
+      <%= site_name %>
+    </div>
+    <div style="padding-top:60px">
+      Coming Soon to iPhone and Android.
+    </div>
+  </div>
+  
+</body>
+
+<script type="text/javascript" charset="utf-8">
+  full_height = window.innerHeight
+  q_height = Math.round(full_height/4)
+  tq_height = full_height - q_height
+  tall = document.getElementById("tall")
+  tall.style.height = tq_height + "px"
+  tall.style.paddingTop = q_height + "px"
+</script>
+</html>
+

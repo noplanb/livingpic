@@ -1,0 +1,10 @@
+Creating sample data.  Things that I am intereseted in checking:
+- Users and occasions that are around the same place
+  - Need to have a set of canned locations that I use, and then create the users to be very close
+    to those locations
+x Contact records
+- A-priori invitations should have been created
+x Dozens of photos, with appropriate mixed data such as
+  x taker
+  x tagging
+  x occasions

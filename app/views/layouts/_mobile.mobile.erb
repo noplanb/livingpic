@@ -1,0 +1,25 @@
+<% 
+  css_manifest = defined?(css_manifest) && css_manifest || "application"
+%>
+<!DOCTYPE html> 
+<html class="mobile"> 
+	<head> 
+	<title><%= site_name %></title> 
+	<script type="text/javascript" charset="utf-8">
+    // Used for debugging weinre itself using the browser as the client.
+    // window.WeinreServerURL = "http://www.trymyui.com:91" + "<%= `hostname`.match(/farhad/i) ? '71' : '70' %>"
+    window.WeinreServerURL = "http://<%= NoPlanB::MyIp.local_ip %>:8080"
+  </script>
+  
+  <%= stylesheet_link_tag    css_manifest, :media => "all" %>
+  <%= javascript_include_tag js_manifest %>
+  <%= csrf_meta_tags %>
+  
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+</head> 
+<body> 
+  <%= yield %>
+</body>
+
+
+</html>

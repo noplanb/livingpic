@@ -1,0 +1,175 @@
+2013-06-18
+- Push images to S3 and see if image loading is any faster
+- Load the images locally and display a sample image in the interim to see if it makes things any faster
+- Fix the notification load problem introduced with webintent reordering
+- If coming in off a notification, put up a message that indicates that we are loading whatever
+
+2013-05-21
+alpha-9 test plan:
+  x Create user with 2 phone numbers
+  x Invite user to an occasion
+  x check that the user's status changes to "contact_attempted"
+  - Check that one of the messages is unreachable - is not
+  x Check that the user got one of the messages
+  x have user click on the message to get to landing page
+    x check that the notification status is "clicked"
+    x check that the user's status is set to contacted
+  - Add photos to the occasion and check that the user gets them, but no more than 4 of them
+
+
+2013-05-09
+x Put the log messages into a file - i.e. replace console.log with Logger.info or Logger.debug and have the logger write to a file, which we can then pull back
+- Push notifications for Android
+- Replace the browser's photo fetching w/ our own so we don't double the bandwidth
+- remove a bunch of the jquery and jquery mobile stuff that we don't use to reduce the size
+- slow invite
+
+2013-02-25
+- Check whether we prefetch assets in the right places in UserHandler.  We should prefetch on startup
+  and maybe on resume
+- In FTUI, ask: "would you like to set-up an album and invite friends to contribute to it?"
+- It's a little jarring to have the app ask you for your contacts on the first view.  Probably better to walk them through the FTUI, and then ask
+  for the contacts
+- Add a format field to the phone number 
+- In FTUI, it lets you see pictures of the album you just created.  
+- Show loader spinner when creating a new occasion. We shouldn't allow the invite page to go through if the occasion hasn't come back.  
+x New user with one occasion and no images doesn't it make it anywhere in the UserHandler
+x Fix bug w/ like double-counting
+- Fix issue with photo status being out of sync w/ network status
+x Make sure comments and likes are stored to local storage
+
+2012-12-12
+Testing the new NetworkHandler
+- commands:
+NetworkHandler.available()
+NetworkHandler.instance().send({url:"/ping"})
+NetworkHandler.instance().send({url:"/ping",success:function(response){alert(this)}.bind(this)})
+NetworkHandler.instance().send({url:"/ping",success:function(response){alert(response)}, retry: 4})
+
+COMMENTS
+  x I really don't like the "how many people do you know here" question - seems invasive and is absolutely not relevant to the user.  Not sure we'll get anything useful out of it either
+  - "who do you know here" seems too invasive, even w/ the "why".  In the "why" remove the sentence "These Living Albums are tailored specifically to you" - doesn't add much value.  Alterntive wording structure would present the value prop to user a bit better, something like "who else here would participate in the occasion album?"
+  x Need a splash page in the very beginning indicating what LivingPic is all about.  It's not obvious as-is.
+  - Why is the query for occasion a dialog when everything else is a flat page?
+  - When we have created a new occasion, the button "see pics of Foobar" doesn't make any sense b/c it's empty
+  - autocomplete is the wrong UI model for selecting occasions
+
+TESTS
+x Start fresh and make sure that the app version is set
+
+
+BUGS:
+  x Make sure there is always a current occasion
+  - gallery if there are no occasion photos
+  - Upload the photo to a default album if no occasion specified
+  x "Details" link on "is it ok for x and y to see" doesn't work.  Why even have this screen?
+    invitees_first_names() does not exist
+
+WEIRD EFFECTS:
+  - You can't really create an occasion a-priori for somewhere else. The location coordinates are hardcoded
+  - What if user creation fails
+  - what to do when the user is first signing up 
+
+CLEANUP
+  - replace errors that show alerts w/ error messages back to us
+  - hide the admin & shortcuts (only show them for us, perhaps by clicking some special pixel)
+  x get rid of stub_user
+
+TODO
+- make sure photo upload works when there is no connectivity
+- try to download the app on Katherine's phone
+x checkin and return the app version number for the user
+x Add an app profile in which we indicate device information and app version
+  - app_version
+  - device
+  - device_version
+- splash page describing it
+- instrument for analytics
+- load photos from photo album
+- invite to occasion
+
+- user who downloads the app from the store
+x Add a PIN for handling lost apps - the combination of mobile number and password/PIN must be unique
+  - a user with a new app can "login" using their mobile number and password/PIN
+  - we can also do it by confirming ownership of the phone by texting a code to them and having them enter it
+x Support different context scenarios
+  - User gets an invite and is already registered to that occasion
+  - User gets an invite, is already registered
+x Create a notifications list and allow cookie to select a notification in the seed data
+- separate the handle registration from the response to incoming url
+  - when we first start, if we don't have a user, then we just check for cookies - that's good enough
+  - when we get a call-in url, then we try to interpret the context and do the appropriate thing
+    - invite: if the user is registered, we can ignore it
+- autocreate an occasion for the user
+- UI to be done
+  - occasion deleting, renaming
+  - inviting someone to an occasion after the fact
+  - returning user
+
+- Push notification using the API
+  - make sure we send a message to server if push notification is enabled
+  - mark the user record indicating that push is enabled
+- Testing
+  - test the new notification model for invitee and taggees
+  x test out exception notification
+  x test out npb_mail and npb_sms stuff on the server
+  - update the cookie check so that if there isn't a cookie it gives a choice of users
+  - create a user status descriptor that I can present in the page
+  - allow the cookie selector to put a user close to a particular occasion
+
+- Fixes
+  - make sure we don't send an invite if the user is already in the system
+  - Should I tie the notification to the participation? YES
+
+x add more sample data
+  x Add a few occasions w/ some indicated locations
+  x Add invites for some users
+  x Add photos
+  x Add some photo tags
+- if an occasion already exists for a user, don't allow the user to create a new one
+x package up npb_mail as gem and add to project
+x exception notification
+x fix the logging so that the user id and other request info is included
+x Sani's backend stuff
+  x population estimate
+  x 
+- methods for logging interesting things
+- write a script that checks on the twilio message status
+- scrape phonevalidator.com to check on cell phones
+x check cookie persistence for phonegap
+- submit app to app store
+- submit a smaller photo on the client side for upload
+- determine optimal photo quality 
+- rudimentary social graph
+- photo tagging
+- splunk logging, user_id, action
+- support scenario where there is no area code
+
+x check trigger for taking picture
+x check that the correct contacts are sent to the backend and that they persist in the invite
+- send the appropriate sms to the people in the contact list
+x Start developing code to determine if a user has already uploaded a contact
+  Cases:
+  - name added, but phone is the same
+  - name changed (update our fields)
+  - phone number the same but descriptor changed (update our fields)
+  - added fields
+  - name is the same but phone changed (update our fields)
+  - last name is the same, first name is "close" (whatever that means) and the phone number is different (mark as new contact)
+  - phone is the same but email changed (update email)
+  - name is the same but phone & email changed (new contact?)
+x Code to determine if the user is the same or we need to create a new user
+  Cases:
+  - mobile number is confirmed and matches => fill in whatever fields are missing (last name, first name), add contact details
+  - mobile number is confirmed but the first name/last name are completely different: incorrect # so ignore?
+  - 
+  
+Match strengths:
+- phone numbers
+  - mobile highest (# portability)
+  - home (people stay in their homes somewhat more than they change jobs)
+  - work
+- email
+  - pretty high but not as high as mobile phone (emails are sometimes for jobs and people change jobs, also switch from yahoo to gmail, for example)
+  - 
+  

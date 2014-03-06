@@ -1,0 +1,24 @@
+  - Landing
+    x Create lp_landing.mobile.erb
+      x background_cover
+      x data-npb-full_height = true
+      x data-npb-accomodate-height = "0.2"
+      
+    x Test
+      x Firefox
+      x Android browser 2.2
+      x Android browser 4.2
+      x Iphone 6.02 browser
+
+  
+  - Check_cookies
+    x Move splash related stuff from landing.css to shared/splash.css
+    x Retest landing above
+    x Make the check_cookie page be full page
+    x Fix the buttons for dev mode start fresh etc.
+    
+  
+  
+  - Splash
+    x Should work if check cookies works.
+  

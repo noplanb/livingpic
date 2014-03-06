@@ -1,0 +1,31 @@
+We need the ability to remove the latency on native phone browser clicks to eliminate the sluggishness of our app when clicking buttons etc.
+
+
+USE FAST_CLICK.JS?
+------------------
+ - Tried using fast click. 
+   - It feels like it is too heavy and general purpose. 
+   - It tends to run a lot of code for each click.
+   - I also had to patch it for the needs_click to work. 
+   
+
+A SIMPLER STRATEGY FOR OUR CASE
+-------------------------------
+
+  x STRATEGY
+    x For javascript running on the phone add an event listener for touchstart
+    x For javascript running on the browser add an event listener for click
+    
+  x IMPLEMENTATION
+    x Add a field to the element called data-instaclick
+    x The field contains the text of the javascript that should be attached to the touchstart or click event 
+      depending on whether we are running in the browser.
+    x On document ready find all elements with this field and attach the appropriate event handler.
+  
+  x TODO 
+    x Create a test page
+    
+KEEP INSTACLICK AS WELL FOR SCROLLABLE PAGES.
+---------------------------------------------
+  - For now I have kept instaclick as well for scrollable pages like the occasions page. 
+  - I am not happy with the click performance from that page but will keep for now.

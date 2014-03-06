@@ -1,0 +1,13 @@
+.mobile .ftui.page{
+  $form_font_size: 18px;
+  .header .text{
+    top:12px;
+    .title{font-size:22px;}
+  }
+  .content{
+    padding:15px;
+    .flat_button{font-size:$form_font_size; }
+    input{font-size:$form_font_size; margin:8px 0px 15px;}
+    label{font-size:$form_font_size; font-weight:bold;}
+  }
+}

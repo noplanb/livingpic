@@ -1,0 +1,14 @@
+<% [{:w => "100%", :h => "50px"}, 
+    {:w => "50px", :h => "300px"}, 
+    {:w => "75px", :h => "50px"},
+    {:w => "300px", :h => "200px"}].each do |dim| %>
+  <div style="width:<%= dim[:w] %>; height:<%= dim[:h] %>;
+              background-image:url('http://dl.dropbox.com/u/515046/www/garfield-interior.jpg');
+              background-repeat:no-repeat; 
+              background-position: center center;
+              background-size: cover;
+              border:1px solid red; 
+              margin:10px 0px">
+    &nbsp;
+  </div>
+<% end %>

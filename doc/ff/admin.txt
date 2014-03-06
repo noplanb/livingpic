@@ -1,0 +1,23 @@
+2012-10-16
+System exception handling using https://github.com/smartinez87/exception_notification
+Has good readme describing how to customize it
+
+2012-08-21
+Generated the Push notification certificate per http://www.pushwoosh.com/programming-push-notification/iphone-configuration-guide/
+with password st@tor@m@123
+
+In the process had to create a new app id for snapshot with the bundle ID com.noplanbees.snapshot
+
+To get the push registration working I had to make sure I had done all of the following:
+- IOS portal/App IDs: Create the appID with the right bundle name (com.noplanbees.snapshot) and make sure it is configured with APN set
+- IOS portal/App IDs: Download the PUSH SSL certificate from (aps_development.cer)
+- Double-click aps_development.cer to make sure it's registered in keychain
+- IOS portal/Provisioning: Create a provisioning profile for that app and my phone, and download.  In my case it's called "FF_iPhone_4S_snapshot_.mobileprovision"
+- Drop FF_iPhone_4S_snapshot_.mobileprovision into xcode.  double check in Organizer/Library to make sure it's there both in general and for my device
+
+So now the registration seems to work, but the push still doesn't work from pushwhoosh
+
+At pushwhoosh I had to enter the Application Code into what is called the appid in the javascript and then it works.
+
+The pushwhoosh interface does not allow me to send a message to a particular customer.  If I want to do that, then I need to use their API.  I can also use their API for registration.
+

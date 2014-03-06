@@ -1,0 +1,17 @@
+<!-- deprecate when what_next2 handles this. -->
+<div id="store_release_welcome" data-role="page"  data-theme="a">
+  <%= render :partial => 'header', :locals => {:data_theme => "a"} %>
+  
+  <div data-role="content" >
+    <h2>Welcome to <%= site_name %></h2>
+    <div>
+      <p><%= site_name %> makes it easy for you and your friends to form a shared photo album that includes everyone's pictures.</p>
+      <p style="padding-bottom:30px">Get started by snapping a photo.</p>
+      <span data-role="button" onclick="window.capture_pic()">Take a Photo!</span>
+    </div>
+      
+  </div>  
+   
+   
+  <%= render :partial => 'footer', :locals => {:data_theme => "a"} %>
+</div>

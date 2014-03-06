@@ -1,0 +1,98 @@
+Notes about asset_path and image_tag helpers
+
+Pipeline ON always
+------------------
+config.assets.enabled = should always be set to true. 
+The server apache webrick will determine if it can find assets in a public directory and serve them from there.
+config.assets.compile just determines whether to back up the server with the pipeline if the server cant find the asset.
+
+
+Links to Assets out of the Box Pipeline
+---------------------------------------
+Testing BROWSER: - Works great for the browser:
+CSS 
+  image-url("rails.png") becomes url(/assets/rails.png)
+  image-path("rails.png") becomes "/assets/rails.png".
+  asset-url("rails.png", image) becomes url(/assets/rails.png)
+  asset-path("rails.png", image) becomes "/assets/rails.png" - image-url, image-path
+
+JS
+  <%= asset_path('logo.png') %>
+
+HTML
+  <%= image_tag "rails.png" %>
+
+
+TESTING DEVICE - Doesnt work.
+Rendering build_page
+  x Remove asset_path from html
+    x Turn pipeline on
+    x Go to the tag pic page on the browser
+  x Turn the pipeline off 
+    x Specify config.asset_path
+    ** HTML works and image_tags work with with the new specified asset_path
+    !! But this is not a good solution. Prefer to hit a web server that is already running with pipeline and have it render the build page properly.
+    
+Precompiling assets tests using rake assets_precompile:
+  x Test_name - pipeline off
+    x State
+      x config.assets = false
+      x rails_env = production or development
+    ! Results
+      ** No output
+  
+  x Test_name - pipeline on production env
+    x State:
+      x config.assets = true
+      x Rails_env = production 
+      x config.assets.compile = true #probably has no effect
+    ! Result 
+      x CSS - image-url links to asset as if it is under a public directly. ie image-url("pic") => url("pic")
+      x JS  - asset_url links to asset as if it is under /assets. ie asset_url("pic") => /assets/pic
+      !! This wont work out of the box for the JS and CSS on the device.
+  
+  x Test_name - pipeline on development env
+    x State:
+      x config.assets = true
+      x Rails_env = development 
+      x config.assets.compile = false #probably has no effect.
+    x Result
+      x exactly the same as production above. 
+      
+Possible Solutions:
+  x Under Images create a directory call img for images that will be packaged with the device.
+  x Test out of the box:
+    Browser
+      x HTML image_tag "img/cam.png" - works
+      x JS image_path "img/cam.png" - works
+      x CSS image-url "img/cam.png" - works
+    Device
+      !! HTML, JS, CSS - NO WORK out of the box.
+      x Path on the device needs to be img/cam.png we are getting /assets/img/img.
+           
+  x Solution to get Browser, Device | HTML, JS, CSS working:
+  x Create a special method and env variable to handle the paths for images that will eventually be compiled with the device:
+    x Create an environment variable e.g. ASSETS_COMPILE_TARGET set it to 'device'
+    x Create a method e.g. device_image_tag. That creates the correct paths for both development browser and device.
+    
+    For an image cam.png under assests/images/img use the following:
+    x CSS - use: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'cam.png' %>)
+    x JS - use: <%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'cam.png' %>
+    x HTML 
+       x use: <img src="<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'cam.png' %>"/>
+       x do not use image_tag for images packaged with the device.
+    
+ x Problem with relative links in CSS being handled differently.
+   x Unfortunately on android webview at least when a relative link like img/cam.png is used in the css it is converted to: 
+     file://android_asset/www/css/img/cam.png not file://android_asset/www/img/cam.png. Whereas the same relative link
+     in HTML or JS is converted to the latter. 
+   x Solution:
+     x Possible solutions:
+       x Use absolute paths on devices - but that means a different process for android and iphone and perhaps problems with different versions of the phones.
+       !! Put the images in both the css directory and the img directory.
+     !! I chose the latter as the simplest and most robust solution. It is implemented in package_app.rake
+    
+Testing
+  - Put the icons in an img folder under the css
+  - Test browser.
+  - In the package app copy the image icons to css img folder.

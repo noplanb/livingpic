@@ -1,0 +1,15 @@
+<div id="app_store" data-role="page" data-theme="c">
+  <div data-role="content">
+    <ul data-divider-theme="b" data-role="listview">
+      <li data-role="list-divider" role="heading">App Store or Google Play</li>
+      <li class="npb-wrap" data-corners="false" data-shadow="false"  data-wrapperels="div" data-theme="d">
+        <h1>Offsite App Store Page</h1>
+        <p>We have sent the customer to our page in the store. Hope he downloads!</p>
+      </li>
+      <li data-role="list-divider" role="heading">Landing Page Types</li>
+      <% @social_actions.each do |sa| %>
+        <li><a href="#<%= sa %>"><%= sa %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<style type="text/css">
+  .listedUser {
+    cursor:pointer;
+  }
+</style>
+<div id="users" data-role="page" data-theme="c">
+<%=  render :partial => "/admin/user", :collection => @users %>
+</div>
+<script type="text/javascript" charset="utf-8">
+  function getUser(e) {
+    var id = $(e.target).closest(".listedUser")[0].id
+    window.location = "<%= app_redirect_base_url(@using_app) %>" + "?u=" + id
+  }
+  $(function() { 
+    $(".listedUser").bind("click",getUser)
+  })
+</script>
+

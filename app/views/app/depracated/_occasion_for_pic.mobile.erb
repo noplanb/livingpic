@@ -1,0 +1,46 @@
+<div id="occasion_for_pic"  class="pic_background last_pic_background" data-role="page"  data-theme="a">
+  
+  <div class="photo_overlay fixed_header">
+    
+    <h3 class="inset instructions no_current_occasion" style="margin-bottom:0px">Caption:</h3>
+    
+    <div style="padding:0px 15px"><input class="caption" data-role="text" placeholder="Caption (optional)"></div>
+    <div class="no_current_occasion">
+      <h3 class="inset instructions" style="margin-bottom:0px">What's the Album or Occasion?</h3>
+
+      <div class="ui-bar-a" >
+        <div class="search_block">
+          <%= # done_click set as an event handler in occasion_for_pic
+              render :partial => 'auto_complete_text_input', :locals => {
+              :theme => "a", 
+              :placeholder => "Type an album name",
+              :margin => "0px",
+              :done_text => "Enter", 
+              :cancel_onclick => "OccasionForPic.INSTANCE.dont_change()"} %>                    
+        </div> 
+      </div> 
+    </div>
+    
+    <div class="yes_current_occasion inset">
+      
+      <div data-role="controlgroup" data-type="horizontal">
+        <span class="save_in_current_occasion_button" data-role="button" data-mini="true" data-inline="true" data-theme="b">
+          Save in <span class="current_occasion"></span>
+        </span>        
+        <span data-role="button" data-mini="true" data-inline="true" onclick="OccasionForPic.INSTANCE.change()">Change</span>
+      </div>
+      
+      <div class="center" style="padding: 15px 0px 5px">
+        <span data-role="button"  data-mini="true" data-inline="true"
+              onclick="OccasionForPic.INSTANCE.cancel()">Cancel</span>
+      </div>
+    </div>
+    
+  </div>  
+  
+  <div class="content_under_fixed_header">
+    <ul class="auto_complete_search_results_box ui-listview" style=""></ul>  
+  </div>
+  
+  <%= render :partial => "footer" %>
+</div>

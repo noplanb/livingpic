@@ -1,0 +1,114 @@
+Android Release 1.7  #16  Revision 7460 In store 5/1/2013 
+
+Open
+----
+Farhad
+  - Android Something is blocking when there is poor connectivity causing no device ready and error on android.
+    - Sani and Jills phone android loading html page error cordova popup!
+  - Iphone slows down seemingly swapping memory.
+  - Add comment to notsification.
+  - Add photo to notification.
+  - Invite takes 6 seconds.
+  - Figure out why use strict in fastclick breaks ajax calls and put strict back in.
+  - Put passing push token in user handler and take it out of boot since the user may not be known at boot.
+  - Background the paperclip tasks on photo create.
+  - Iphone store loads old version then presents an update button.
+  
+  
+Sani
+  - FTUI for ad hoc user make more streamlined a la FTUI for invited userf
+  - Remove unused pages in the ftui - invite, enter other occasion etc
+  - Splunk
+  - Comment and like notifications. Liked YOUR photo. Commented on YOUR photo.
+  
+Bugs
+  - Make sure cordova.js is the correct one depending on the platform android vs iphone.
+  - Make the check_cookies page and landing page not cacheable by the browser.
+  o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+  - Livingpic version = undefined version on compile assets.
+  - Bug with broken photo not uploading on android phone 
+  - Bug When you add a new album it temporarily puts it at the bottom of the list.
+    - can't replicate it
+
+Enhancements
+  - Version update notice to users if they are using an out of date app.
+  - Slow start-up is there anything we can do.
+  - Slow scroll is there anything we can do.
+  - If phone number is incorrect provide notice to inviter and a method of changing it.
+  - Ambiguity
+    - When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+      - In the gallery indicate somehow that photos are uploading. 
+    - When you have multiple new comments since you last visited you dont know which photos they are on.
+  - Pushwoosh plugin for cordova for android.
+  - Ftui dont ask for current location right away. - Iphone only
+  - Ftui dont ask for contacts right away. - Iphone only
+  - Pinch on the photos.
+  - Real photoswipe with fullbleed photos in pic detail.
+  - Allow entry of adhoc contacts for invite.
+  - Make the loading page interesting. 
+  - Migrate to latest cordova.
+  
+  
+Punt  
+  o Register page submit to server is really slow.
+    - Investigation shows that it takes 5 seconds to do a occasions_json on the server due to lots of db calls. Just live with long spinner as this is a one time occurrence during registration. 
+  o Android pictures sometimes dont upload.
+    
+  o Apple photostream nice experience copy it.
+    - Sani and Farhad need to discuss what this means
+      - Immediate appearance after click of notification.
+      - Full bleed of photo
+      - Comment or like displayed immediate.
+
+Test Plan
+---------
+  x FTUI
+    i Landing page
+    i Check for invites
+    i Change name
+    i Enter name and phone (unknown_user)
+    a Enter occasion name
+    - Welcome options
+  x In app
+    ia Add album
+    ia Save pic to existing album
+    a Save pic to new album name
+    a add pic from gallery
+    ia Like pic
+    ia Comment on pic
+    ia Add participant(s)
+    ia Manual refresh
+  x Admin
+    - Start fresh
+  x Notifications
+    - Active 
+      ia Comment
+      ia Invite
+      ia Like
+    - Not active
+      - Comment
+      - Invite
+      - Like
+  
+  
+Done in the Release
+-------------------
+  x Remove unnecessary permissions for android.
+  
+  x Fixed a bug with network handler hanging.
+    x Added a whole timeout mechanism to network handler. Set for 20 seconds for an ajax call and 60 seconds for a file with progress events. 
+  
+  x Save the svn revision number automatically in version.
+  
+  x Enter comment button should be enter
+  
+  ! Figure out why fastclick breaks networkhandler
+    x Got rid use strict and it works.
+  
+  x Make Header and Footer not disappear in gallery and occasions pages.
+  
+  x Gallery page shows all pictures stacked to the left before mosiac spreads them out.
+    x Implemented a fix in masonryhandler dont know if it solves the problem if it doesnt we need to revisit.
+  
+  x Add a refreshing indicator and control to the gallery page
+  

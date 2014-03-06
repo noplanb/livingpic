@@ -1,0 +1,16 @@
+# We test based upon the text "version N" and "type template" being in the actual template so keep them there for every template
+# created for the tests
+blue:
+  2: "<%= @user.name %>: This is version 2 of the blue template! Click <%= @click_link %>"
+  1: "<%= @user.email %>: This is version 1 of the blue template! Click <%= @click_link %>"
+red:
+  1: "This is version 1 of the red template!"
+green:
+  2: "The green template version 2 only references a date <%= date %>"
+purple:
+  5: "the purple template version 5"
+  4: "the purple template version 4"
+  3: "the purple template version 3"
+  2: "the purple template version 2"
+  1: "the purple template version 1"
+  

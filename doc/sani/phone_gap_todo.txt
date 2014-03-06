@@ -1,0 +1,22 @@
+ x Build for iphone as well as others.
+ 
+ - Organize the code. 
+   x Can you compile the contact list command without cordova for example? - yes
+   x Now try putting index.js with the rest of our code and compiling for the phone - Do you see app? - yes
+   
+   x Determine whether we are running on a device or not. - Check if we have Cordova?
+   
+   x Handle document ready and device ready.
+     x Create boot.js.coffee
+     x document ready check if running on device.
+       x If so set device ready handler which calls boot. 
+       x Else call boot
+       
+   - hosthandler
+     - Check that it saves and reuses the host in localstorage between shut downs.
+     
+     
+   
+   
+  
+ 

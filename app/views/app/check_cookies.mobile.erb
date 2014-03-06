@@ -1,0 +1,6 @@
+<%= render :partial => 'splash' %>
+<script type="text/javascript" charset="utf-8">  
+  <% if !dev_mode?  %>
+    window.location = "<%= app_redirect_base_url(@using_app) %>" + "?c=<%= @context_id %>"
+  <% end %>
+</script>

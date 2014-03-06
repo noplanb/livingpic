@@ -1,0 +1,8 @@
+Invite
+- creates notification
+- creates 2 participations
+
+Notification
+- customer that has mobile number
+- customer that has mobile contact
+- customer that has not designated mobile contact

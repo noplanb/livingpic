@@ -1,0 +1,71 @@
+/*
+*= require_tree ./vendor/flags
+
+* NOT USED
+* require_tree ./vendor/jquery_mobile
+* require_tree ./patches
+*/
+<% 
+  # Done this way so that I can use the "@import" command in scss to make globally defined mixins from 1 file to work in others.
+  Dir.chdir("#{Rails.root}/app/assets/stylesheets");
+  all_css_files = Dir.glob("project/*.css*") + Dir.glob("shared/*.css*");
+  this_file = "application.css.scss.erb";
+  globally_required_css_files = ["shared/global_mixins.css.scss"];
+  non_globally_required_css_files = all_css_files - globally_required_css_files - Array(this_file);
+  puts "globally_required_css_files: #{globally_required_css_files.inspect}"
+  puts "non_globally_required_css_files: #{non_globally_required_css_files.inspect}"
+%>
+
+/* These need to also be included in landing_manifest.css.erb. TODO factor these into their own file. */
+@mixin grey_heart_small{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/heart_22_grey.png' %>);}
+@mixin grey_heart_large{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/heart_100_grey.png' %>);}
+@mixin red_heart_small{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/heart_22_red.png' %>);}
+@mixin red_heart_large{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/heart_100_red.png' %>);}
+@mixin icon_check_green{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/check_green.png' %>);}
+@mixin icon_check_grey{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/check_grey.png' %>);}
+@mixin icon_edit{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/edit_white.png' %>);}
+@mixin icon_edit_purple{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/edit.png' %>);}
+@mixin icon_circle_arrow{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/circle_arrow.png' %>);}
+@mixin icon_up_arrow{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/up_arrow.png' %>);}
+@mixin icon_camera{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/camera.png' %>);}
+@mixin icon_large_camera{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/100x100_camera.png' %>);}
+@mixin icon_gallery_pick{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/gallery_pick.png' %>);}
+@mixin icon_bullet_list{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/bullet_list.png' %>);}
+@mixin icon_people{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/people.png' %>);}
+@mixin icon_add{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/add.png' %>);}
+@mixin loader_spinner {background-image: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/loader.gif' %>"); }
+
+<% globally_required_css_files.each do |f| %>
+<% puts "importing #{f}" %>
+@import "<%= f %>";
+<% end %>
+
+<% non_globally_required_css_files.each do |f| %>
+<% puts "importing #{f}" %>
+@import "<%= f %>";
+<% end %>
+
+/*
+ * ERB CSS
+ * CSS that requires erb preprocessing goes here.
+ */
+
+.pic_background, page.pic_background {background-image: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/pic1.jpg' %>"); background-size: cover; background-repeat:no-repeat; background-position:center}
+
+#test_cam_img {background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/camera.png' %>);}
+
+/* goes with npb_extended_icons.css.scss */
+.npb_extended_icon {background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/extended-icons-18-white.png' %>);}
+
+/* goes with photoswipe overide css in gallery.css.scss */
+.npb-ps .back_icon {background-image: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'jquery_mobile/icons-18-white.png' %>")}
+
+/* goes with splash in mobile.css.scss */
+#splash.powderfiesta{
+  background-image: url("<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/powder_splash_no_text.png' %>")
+}
+
+/* goes with flags in vendor/flags/flags16&32.css.scss */
+.f32 .flag{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'flags/flags32.png' %>); background-repeat: no-repeat;}
+.f16 .flag{background-image: url(<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'flags/flags16.png' %>); background-repeat: no-repeat;}
+

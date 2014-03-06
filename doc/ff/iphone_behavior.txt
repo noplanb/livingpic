@@ -1,0 +1,27 @@
+2012-12-17
+
+Normal fresh start:
+  device_ready
+  UserHandler.startup()
+
+Hit home, then hit app again (or double-tap, go to another app, then back to LP):
+  Resume
+
+
+Hit home, cick safari, go to page that shows snapshot://u=7, click on the link
+- livingpic launches but is blocked.  I close it, then restart it and I get the windowHandleUrl() 
+  and 2 resume events.
+
+- close livingpic in the bottom drawer so it's not resident, cick safari, go to page that shows snapshot://u=7, click on the link
+  - device_ready
+  - UserHandler
+
+
+Searching on the web, found ways of correcting both issues:
+http://stackoverflow.com/questions/8204308/phonegap-custom-url-handling-freezing
+and 
+http://stackoverflow.com/questions/12515096/how-do-i-handle-a-custom-url-scheme-in-phonegap-for-a-cold-start
+
+the first introduces a delay so that the webview is visible.
+The second introduces a way to always call window.handleOpenURL() when the app is sleeping.
+

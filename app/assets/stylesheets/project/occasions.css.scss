@@ -1,0 +1,17 @@
+#occasions2{
+  .occasion{height:100px; position:relative; border-bottom:1px solid #ddd; cursor:pointer;}
+  .photo{position:absolute; top:8px; bottom:8px; left:10px; width:100px; 
+         border:1px solid #888;
+         background-size:cover; background-position:center; background-repeat:no-repeat;
+  }
+  .content .text{
+    position:absolute; right:8px; left:125px; top:8px;
+    .title{@include ellipsis; font-weight:bold; font-size:15px;  padding-bottom:8px; color:#5D177F; }
+    .sub_title{font-size:13px; color:#888;}
+    .city_date{position:relative; width:100%; height:25px;}
+    .city{@include de-emphasize_w1; @include hidden;  position:absolute; left:0px; width:55%;}
+    .date{@include de-emphasize_w3; @include hidden; position:absolute; right:0px; width:40%; text-align:right;}
+    .people_pics{@include de-emphasize_w3;}
+    .number{@include de-emphasize_w2}
+  }
+}

@@ -1,0 +1,45 @@
+<div id="gallery2" class="page" >
+  <div class="reveal rev_cover">
+    
+    <%= render :partial => 'edit_textarea', 
+               :locals => {:id => "edit_comment",
+                           :post_click => "GalleryController2.gallery_handler.post_comment(text)", 
+                           :cancel_click => "GalleryController2.gallery_handler.cancel_comment()"} 
+    %>
+  
+    <div class="header left_buttons_1 right_buttons_3">
+      <div class="button left_1 icon icon_bullet_list" data-instaclick="OccasionsController.show()"></div>
+      <div class="text">
+        <div class="title has_sub_title occasion_name npb-admin" data-instaclick="AdminController.enter()"></div>
+        <div class='sub_title people_stats'></div>
+      </div>
+      <div class="button right_3 icon icon_gallery_pick" data-instaclick="GalleryPickerController.show()"></div>
+      <div class="button right_2 icon icon_camera" data-instaclick="capture_pic()"></div>
+      <div class="button right_1 icon icon_people" data-instaclick="GalleryController2.toggle_participants()"></div>
+    </div>
+  
+    <div class="content">
+      <div class="no_photos center">
+        <h1>No Photos Yet</h1>
+        <h3>Add some!</h3>
+        <div style="margin:0px auto;" class="button large_icon icon_large_camera" data-instaclick="capture_pic()"></div>
+      </div>
+      
+      <img class="animated_heart" src="<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/heart_100_red.png' %>">
+      <div class="scroller">
+        <div class="refresh"><div class="icon"></div><div class="text"></div></div>
+        
+        <div class="photos"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="participants reveal rev_right">
+    <div class="title occasion_name"></div>
+    <div class="subtitle">
+      <span class="text">People <span class="smaller">(<span class="num_participants"></span>)</span></span>
+      <span class="flat_button blue medium add_people_button" data-instaclick="new AddParticipants2">Add People</span>
+    </div>
+    <div class="participants_list medium"></div>
+  </div>
+</div>

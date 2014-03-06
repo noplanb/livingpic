@@ -1,0 +1,80 @@
+#=Timestamp 2014-03-01 16:07:45 -0800
+<% puts ">"*5 + "Processing config.js.coffee.erb" %>
+<% version = ( ENV['PRECOMPILE_TARGET'] == 'device' ? ENV['DEVICE_RELEASE_VERSION'] : ENV['BROWSER_RELEASE_VERSION'] ) || 'error_setting_version' %>
+
+<% puts "Version = #{version}"%>
+
+
+@Config = 
+  is_running_on_device: -> <%= ENV['PRECOMPILE_TARGET'] == 'device' %>
+  
+  version: "<%= version %>"
+  max_log_file_size: 20000
+  app_photo_album: "<%= APP_CONFIG[:app_photo_directory_name] %>"
+  
+  # Set to true if you want to log all the pages via calls to backend
+  log_pages: true
+
+  # Set to true if you want to log everything to the console for store release - makes no diff for development release
+  log_to_console: false
+    
+  store_release: -> Config.version.match(/store/)? or Config.version.match(/release/)?
+
+  is_running_in_browser: ->
+    !Config.is_running_on_device()
+  
+  init: ->
+    if host_url()
+      @host_url = host_url()
+    else 
+      @host_url = 
+      if Config.is_running_in_browser()
+        ""
+      else if Config.store_release() && <%= ! ENV["DEBUG"] %>
+        "http://www.livingpic.com"  
+      else
+        "http://<%= NoPlanB::MyIp.local_ip %>:3000"
+
+  set_host_url: (ip) ->
+    @host_url = 
+      if ip is "production"
+        "http://www.livingpic.com"  
+      else if ip is "staging"
+        "http://staging.livingpic.com"  
+      else if ip.toString().match(/^\d+$/)
+         "http://192.168.1.#{ip}:3000"
+      else
+         "http://" + ip
+    set_host(@host_url)
+
+  base_url: ->
+    if NetworkHandler.test_bad_server
+      "http://bad_server_xxx"
+    else
+      @host_url
+
+  full_url: (url) ->
+    LpUrl.full_url(url)
+  
+  platform_version: ->
+    if Config.is_running_on_device() then device.version else navigator.appVersion
+    
+  platform: ->
+    if Config.is_running_on_device() then device.platform else navigator.platform
+  
+  is_android: ->
+    Config.platform().toLowerCase() is "android"
+    
+  is_android_device: ->
+    Config.is_running_on_device() and Config.is_android()
+
+  is_ios_device: ->
+    Config.is_running_on_device() and !Config.is_android()
+
+  print: ->
+    console.log("running_on_device: #{Config.is_running_on_device()}")
+    console.log("version: #{Config.version}")
+    console.log("store_release: #{Config.store_release()}")
+    console.log("base_url: #{Config.base_url()}")
+
+  

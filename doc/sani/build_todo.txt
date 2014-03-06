@@ -1,0 +1,13 @@
+ x Move the cordova framework to app
+ x use cordova/create to create the android platform
+ x copy
+   x css
+   x js
+   x drawables
+   x res
+   x plugin
+
+ - ios build ensure platforms/android/ exists
+ 
+ 
+ - Test f

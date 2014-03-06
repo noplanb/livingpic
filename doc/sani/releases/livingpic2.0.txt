@@ -1,0 +1,110 @@
+ALL
+===
+ - BUGS
+   x HIGH PRIORITY
+     x Android ftui windows dont scroll with keyboard showing. Esp register screen.
+     o Android 4.4 Kons phone pick from gallery crashes. Because he had no photos on phone. Not fixing this.
+     x Showing broken links for thumbs that had an error downloading. Sanis phone.
+       x Gallery
+       x Occasions page
+     x Zoomer freezes in case high res photo link is broken.
+  
+   x Release Testing
+     x HTC one
+     x Motorola
+     - IOS 6 sanis iphone.
+     - Upgrade
+       - Load version from store
+       - Build signed release version
+       
+     
+
+   - LOW PRIORITY
+     - Notification issues
+       - Comment notification should scroll to the comment.
+       - Photo notification should scroll to the photo
+     - Javascript errors
+       - Add a stack trace to email.
+     - mobile.changePage still in the code
+       - window.pick_pic
+       - window.goto_tag_pic_page
+     - When thumbs are downloaded we should clear the cache in the galleryhandler so it starts using the downloaded urls.
+     o Ios zoom rotated photo directly after snapping using camera in app.
+     o Scroll immediately after new photos come in from the web breaks the scroller cant reproduce.
+     o Evas phone. Download from store. "LivingPic" could not be downloaded due to an error. (502) Cant reproduce
+     o Clicking date causes photo data to open twice.
+     o Ios 7 gap at the top of the page expands when you ad a comment.
+     o PhotoResolution handler seems to highres the wrong photo. Cant reproduce
+     o Evas phone should not zoom but it does. Actually it is v4.0.3 and should zoom not sure why she was getting a bug with zooming. Cant reproduce.
+     o Evas phone shows thumb images sideways in gallerypicker. Move to post release.
+     o Android Eva and jills phones - snap a photo in the app landscape. it gets a portrait aspect while it is loading. Move to post release.
+   
+ 
+ - Error handling.
+   - To prevent freezing on a page with no ui when we get a javascript error. Do go_home if we catch an error on the release version.
+  
+  - TWEAKS
+    - Get rid of gallery button and put it on pick from gallery page.
+    - Turn off autocorrect when entering names.
+    - Says new photos when it is really new comments.
+    - Alerts say index.html rather than livingpic.
+    
+  - PERFORMANCE (all post release)
+    - Clicking from occasions page is slow. 
+    - Profile startup to minimize time
+    - Lag between confirming the occasion and showing it in the gallery handler is too long.
+      - Too much seems to be happening syncing gallery etc...
+    x Capture button needs to have an instantaneous response of some sort.
+    - Remove all unused javascript and html css
+    - Streamline startup to minimize latency to current gallery from boot
+    - Reduce possibility of background activity while in scroller.
+    - Remove all unused javascript and html css
+    - Streamline startup to minimize latency to current gallery from boot
+    - Reduce possibility of background activity while in scroller.
+    - Background threads for file etc. using cordova.interface.threadpool
+ 
+
+  - POST RELEASE
+    - GalleryPicker
+      - Dont show thumbnails or photos below a certain size.
+    - Banners to remind users to add people and photos in gallery
+      - Add photos
+      - Add people
+    - Check cookies page on old android layout is fubar
+    - People - Stats on people. Whether they have joined or not.
+    - Notification - Highlighting new items? 
+    - No refresh on occasions page.
+    - Show upload status in gallery.
+    - Streamlined version of jquery.
+    - FF Aesthetics
+      - Still don't care for the "save in ..." when a photo has been taken.  The buttons aren't aligned.  
+      - Don't care for comment window - by erasing the photo it puts you out of context - the experience is jarring for me.  Would be better to open it right there underneath the photo...
+    - Refactor
+      - rename all the xx2 stuff back to xx
+    - Aditya
+       - Grey border around pencil
+    - Eliminate gallery picker icon from header. Camera goes to gallery picker and there is an option to snap a pic from there in the footer.
+    - Android photo to be uploaded is too large.
+    - Remove testpages from store release build
+    - Add pulldown refresh to the occasions page.
+    - Panoramic photos in picker, occasion for pic, gallery2
+    - Zoom with a certain orientation causes photo to do a 270deg spin.
+    - Weird light blue line at top of header in iphone and android.
+    - Flash Notice no longer works because not using mobile.changePage
+    - Clean up deprecated in package_app.rake
+    - Change Error Getting Content to Cant Reach LivingPic Server
+    - Eva android cant zoom locally taken pic. It is too big.
+    - Android display gallery shows the people page first.
+    - Debounce Done button on gallery picker.
+    - Android very large photos take a long time to upload on new phones
+    - If you add a coption in gallerypicker it should add it to the list.
+    - Ios 7 gap at top and bottom of page sometimes grows for each photo you add.
+    - Touch points in header are too small still on ios
+    - When you are out of connectivity and it tries to load a picture from the web it shows a broken link. We should probably change to the model of only showing photos in that have already been downloaded.
+    - Gallery picker zoom sometimes removes the edit and check buttons.
+    - Order albums by date of the last post
+
+   
+
+     
+

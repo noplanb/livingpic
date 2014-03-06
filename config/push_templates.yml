@@ -1,0 +1,23 @@
+# Text Message Strings
+# format:
+#  context:
+#     version: String representing text, referencing the notification object via notification
+#
+# Example
+# invite:
+#   4: "From #{notification.sender.email} - please baby baby please - sign up"
+#   3: "From #{notification.sender.email} - sign up please"
+
+invite:
+  4: "<%== notification.sender.first_li %> invited you to the '<%== notification.occasion.name %>' photo album "
+photo_tagging:
+  1: "<%== notification.sender.first_li %> tagged a photo of you in the '<%== notification.occasion.name %>' photo album"
+occasion:
+  1: "An interesting thing happened in one of your occasion albums!"   
+photo:
+  1: "<%== new_creator_names(notification) %> just added photos to the '<%== notification.occasion.name %>' album"
+comment:
+  2: "<%== new_commenter_names(notification) %> just commented on your photo in the '<%== notification.occasion.name %>' album"
+  1: "<%== new_commenter_names(notification) %> just commented on photos in the '<%== notification.occasion.name %>' album"
+like:
+  1: "<%== new_liker_names(notification) %> liked your photo in the '<%== notification.occasion.name %>' album"

@@ -1,0 +1,16 @@
+<div id="confirm_known_user2" class="page ftui">
+  <%= render :partial => 'ftui_header' %>
+  
+  <div class="content" >
+    
+      <h1>Great!</h1>
+      <p>So, do we have your name right?</p>
+      <h3 class="center"><span class="current_user_fullname"></span></h3>
+      <div class="center button_box">
+        <span class="flat_button grey" data-instaclick="FtuiController.show_edit_name()">No</span>
+        <span class="flat_button blue" data-instaclick="FtuiController.confirmed_name()">Yes</span>
+      </div>
+    
+  </div>  
+   
+</div>

@@ -1,0 +1,59 @@
+<div id="pic_detail" data-role="page" data-theme="a" >
+  <%= render :partial => "gallery_head", :locals => {:back => "Carousel.exit()", :fullscreen => false, :context => :pic_detail} %>
+
+  <div data-role="content">
+    <!-- <span data-role="button" onclick="PhotoView.INSTANCE.next()">Next</span>
+    <span data-role="button" onclick="PhotoView.INSTANCE.prev()">Prev</span> -->
+    <div style="display:none" class="pic_id"></div>
+    <table class="pic_header" style="width:100%" cellspacing="0" cellpadding="0">
+      <col style="width:auto">
+      <col style="width:110px">
+      <td class="creator_block">
+        <span class="de-emphasize1">By </span>
+        <span class="de-emphasize2 creator"></span>
+      </td>
+      <td class="comments_likes" onclick="Carousel.current_photo.jump_to_comments()"></td>
+    </table>
+    
+    <div class="pic loader_spinner"></div>
+    
+    <div class="caption_box"></div>
+    
+    <div class="like_box" style="text-align:center">
+      <div class="likers" style="display:none">
+        <div>
+          <span class="names"></span>
+          liked this photo
+        </div>
+      </div>
+      <span data-role="button" data-inline="true" data-mini="true" data-theme="b" data-icon="plus" class="like_button needsclick_disabled" onclick="Carousel.current_photo.like()">Like</span>
+      <span class="like_status"></span>
+    </div>
+    
+    <ul data-role="listview" class="new_comment">
+      <li data-icon='false'>
+         <p class='user'></p>
+         <table class="new_comment_block" border="0" cellspacing="0" cellpadding="0" style="width:100%">
+          <col style="width:auto">
+          <col style="width:65px">
+          <tr>
+            <td><textarea type="text" placeholder="Leave a comment&hellip;" class="new_comment blurred"></textarea></td>
+            <td style="text-align:right">
+              <span data-role="button" data-inline="true" data-mini="true" data-theme="b" onclick="Carousel.current_photo.save_new_comment()" class="needsclick_disabled">Post</span>
+            </td>
+          </tr>
+         </table>
+      </li>
+    </ul>
+    
+    <ul class="comments" data-role='listview' class='npb-list'></ul>
+    
+  </div>
+  <!-- Removed footer because in android when you click to submit a comment with the keyboard up
+       it actually clicks on the capture photo button which is moved up to overlap the submit comment button -->
+  <%# render :partial => "footer" %>
+</div>
+
+<div id="pic_zoom" data-role="page" data-theme="a" style="overflow:scroll">
+  <img class="pic">
+</div>

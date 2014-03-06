@@ -1,0 +1,177 @@
+<div id="test_pages" class="page">
+
+  <%= render :partial => '/app/admin/header'%>
+  
+  <div class="content inset" >
+    <div class="current_user"></div>
+    <h2>Test Pages</h2>
+    <div class="button_box">
+      <div class="flat_button blue" onclick="TestImages.show()">Test Images</div> 
+      <div class="flat_button blue" onclick="TestClickDelay.show()">Test Click Delay</div> 
+      <div class="flat_button blue" onclick="Pager.change_page('background_cover_test')">Background Cover</div> 
+      <div class="flat_button blue" onclick="TestDebounce.show()" >Debounce</div> 
+      <div class="flat_button blue" onclick="TestCountryController.show()" >Country Codes</div> 
+      <div class="flat_button blue" onclick="TestCustomEvent.show()" >Custom Event</div> 
+      <div class="flat_button blue" onclick="TestParentOffset.show()">Parent Offset</div> 
+      <div class="flat_button blue" onclick="TestImgReload.show()">Image Reload</div> 
+      <div class="flat_button blue" onclick="TestTouchTarget.show()">Touch Target</div> 
+      <div class="flat_button blue" onclick="TestAndroidKeyboard.show()">Android Keyboard</div> 
+      <div class="flat_button blue" onclick="TestStopTransition.show()">Android Stop Transition</div> 
+      <div class="flat_button blue" onclick="TestPhotoOrientation.show()">Photo Orientation</div> 
+    </div>
+  </div>
+</div>
+
+<div id="test_images" class="page">
+
+  <%= render :partial => '/app/admin/header'%>
+  
+  <div class="content inset" >
+    <h1>Test Images</h1>    
+    <h3>Animated icon</h3>
+    <div style="width:100px; height:100px; background:grey; padding:20%">
+      <div class="icon circle_arrow_spinner"></div>
+    </div>
+    <h3>Image tag in HTML</h3>
+    <img src="<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/camera.png' %>"/>
+    <h3>Image with CSS background for tag</h3>
+    <div id="test_cam_img" style="width:100px; height:100px; border:1px solid red"></div>
+    <h3>Image with JS background for tag</h3>
+    <div id="test_cam_img_js" style="width:100px; height:100px; border:1px solid red"></div> 
+  </div>  
+
+</div>
+
+<div id="test_click_delay" class="page">
+
+  <%= render :partial => '/app/admin/header'%>
+
+  <div class="content inset" >
+    <h1>Test Click Delay</h1>
+    <div class="button_box">
+      <div id="slow_button" class="flat_button blue test_button needsclick slow" onclick="TestClickDelay.html_onclick(this)">Test FC Needsclick</div>
+      <div id="fast_button" class="flat_button blue test_button fast" onclick="TestClickDelay.html_onclick(this)">Test FastClick</div>
+      <div id="insta_button" class="flat_button blue test_button insta" data-instaclick="TestClickDelay.html_onclick(this);">Test InstaClick</div>
+    </div>
+    <pre style="padding:20px" class = "timing">
+    </pre>  
+  </div>
+
+</div>
+
+
+<div id="background_cover_test" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  
+  <div class="content inset" >
+    <%= render :partial => '/app/admin/background_cover_test_pics' %>
+  </div>
+  
+</div>
+
+<div id="test_debounce" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="content inset" >
+    <%- [:normal, :debounced, :throttled, :inline].each do |type| -%>
+      <div class="flat_button blue <%= type %>_button" <%= %|onclick="TestDebounce.inline_click('foo')"|.html_safe if type == :inline %>><%= type.to_s.capitalize_words %> button</div>
+      <span class="<%= type %>_result">0</span>
+    <%- end -%>
+  </div>
+</div>
+
+<div id="test_country" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="content inset" >
+    <%= render :partial => '/app/phone_w_country/phone_w_country_entry_field', :locals => {:id => "pwc1"} %>
+    <%= render :partial => '/app/phone_w_country/phone_w_country_entry_field', :locals => {:id => "pwc2"} %>
+  </div>
+</div>
+
+<div id="test_custom_event" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="target" onclick="TestCustomEvent.received()"  style="border:1px solid red; height: 100px; width:100px"></div>
+  <button onclick="TestCustomEvent.fire()">Click</button>
+</div>
+
+<div id="test_parent_offset" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="a">
+      <div class="b">
+          <div class="c">
+              <div class="d">
+              </div>
+          </div>
+      </div>
+  </div>  
+  <pre class="results"></pre>
+</div>
+
+<div id="test_image_reload" class="page inset">
+  <%= render :partial => '/app/admin/header'%>
+  <h2>Image Reload Test</h2>
+  Investigate the flicker on android when changing src of image to high res. It turns out the flicker is not due to the gallery_handler.resolution_handler changing the res when scroll stops.
+  <div class="button_box">
+    <div class="flat_button blue" data-instaclick="TestImgReload.low_res()">Low Res</div>
+    <div class="flat_button blue" data-instaclick="TestImgReload.hi_res()">Hi Res</div>
+  </div>
+  <img style="width:100%" src="">
+</div>
+
+<div id="test_touch_target" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="results">
+    <pre class="fixed">Touch info</pre>
+  </div>
+  <div class="content">
+      <% %w(a b c d e).each_with_index do |l,i| %>
+        <div style="top:<%= (i)*200 %>px" 
+             class="targ <%= l %>"
+             ontouchstart="TestTouchTarget.handle_event(event)"
+             onclick="TestTouchTarget.handle_event(event)">
+               <%= l %>
+               <span class="in_box"></span>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+<div id="test_android_keyboard" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="content inset">
+    <textarea style="width:100%; border:1px solid red;height:100px;"></textarea>
+    <input type="text" style="width:100%; border:1px solid green;"></input>
+  </div>
+</div>
+
+<div id="test_stop_transition" class="page">
+  <%= render :partial => '/app/admin/header'%>
+  <div class="content inset">
+    <div class="button_box">
+      <div class="flat_button blue" data-instaclick="TestStopTransition.move()">Move</div>
+      <div class="flat_button blue" data-instaclick="TestStopTransition.stop()">Stop</div>
+    </div>
+    <div id="test_t_stop" style="height:10px; width:10px; background:red"></div>
+  </div>
+</div>
+
+
+<div id="test_photo_orientation" class="page">
+  <div class="marker"></div>
+  <%= render :partial => '/app/admin/header'%>
+  <div class="content inset">
+    <div class="photo_box">      
+    </div>
+  </div>
+</div>
+
+<div id="test_android_overflow" class="page">
+  <div class="android_head">
+    This is the head
+  </div>
+  <div class="android_content">
+    <% (1..400).each do |i| %>
+      Line <%= i %><br/>
+    <% end %>
+  </div>
+</div>
+

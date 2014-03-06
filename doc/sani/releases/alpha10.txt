@@ -1,0 +1,181 @@
+ Most important for this release
+ -------------------------------
+
+   SANI
+   
+   S Figure out why scroll on iphone is so sluggish
+   
+   S Create a new gallery page with snappy scroll.
+       
+   S Notification text for users who adde photos is wrong. For the Derek trip it says everyone added photos though only 1 did.
+   
+   S How many people used our camera vs upload for lac'd and loaded. 
+   
+   
+   FARHAD
+   
+   F Wake up the phone to download photos in the background.
+   
+   F Move photo.reprocess into model from photo controller.
+   
+   F Upgrade Cordova to 2.7
+   
+   F Save photos in S3
+   
+   F Move server to amazon.
+   
+   F General invite problems.
+     - Invite someone where I have their mobile number in my contacts under the heading of a non mobile number and a non mobile number under the heading of a mobile number. - Send notification to all numbers kill the ones that dont work. 
+     - Invite someone they dont click on a notification but they load the app and enter their phone number. - compare phone number with contact details.
+     - Limit text notifications to 4 total per contact detail if the user does not activate.
+
+
+
+
+
+  Done in this release
+  --------------------
+  F Streamline photo upload. 
+  
+  F Update the console.log file on the phone.
+  
+  S Post mortem on Kon album in splunk stats page - see splunk.txt and livingpic.com/admin/stats/occasions
+  
+  F In app notification for android
+  
+  S Zoom on pic detail
+    - User experience
+      - From detail Click, double_click, pinch_out -> zoom image with width of image set to 2x width of window.
+      - From zoom page click, double_click, pinch_in -> back to detail page
+      - Swipe left or right from zoom page goes to next detail page
+    - Add a zoom page to the detail page
+    - On click of photo changepage to zoom
+
+
+  Test Plan
+  ---------
+    - FTUI
+      x Landing page
+      x Check for invites
+      - Change name
+      - Enter name and phone (unknown_user)
+      - Enter occasion name
+      x Welcome options
+    - In app
+      x Add album
+      x Save pic to existing album
+      x Save pic to new album name
+      x add pic from gallery
+      x Like pic
+      x Comment on pic
+      x Add participant(s)
+      x Manual refresh
+    - Admin
+      - Start fresh
+    - Notifications
+      x Active 
+        x Comment
+        x Invite
+        x Like
+      - Not active
+        - Comment
+        - Invite
+        - Like
+
+
+
+  Open
+  ----
+  - Problems found in Fadi wedding with alpha8
+    - Mike taking forever to upload photos
+    - Danielle stuck on loading screen after going to invite had to reboot app.
+    - Peter wernicke invited the second time had created multiple users.
+    - Should be posted by date the photo was taken not date the photo went to the server. 
+    - James check for invites stuck does not click away.
+    - James would not associate him with his invite.
+    - Cant cancel on first photo if no albums
+    - Reem, james, janine - seems to create another user rather than find the one based on the phone number.
+    - Out of connectivity coming back from snapping a photo it takes you to gallery page briefly before showing occasion for pic.
+    - Check cookies partially loaded. 
+    - Some better indications that your photos havent uploaded.
+    
+  - General invite problems.
+    - Invite someone where I have their mobile number in my contacts under the heading of a non mobile number and a non mobile number under the heading of a mobile number. - Send notification to all numbers. 
+    - Invite someone they dont click on a notification but they load the app and enter their phone number. - compare phone number with contact details.
+
+
+  Farhad
+    - Android Something is blocking when there is poor connectivity causing no device ready and error on android.
+      - Sani and Jills phone android loading html page error cordova popup!
+    - Iphone slows down seemingly swapping memory.
+    - Enhance noifications
+      - Add comment text to notsification.
+      - Add photo to notification.
+    - Queue comments and invites.
+      - Queue comments so UI is instant even in no connectivity.
+      - Queue invites so the UI is instant even in no connectivity.
+      - Allow comments to be added to a brand new photo before it goes to the server - More difficult
+    - Invite takes 6 seconds.
+    - Figure out why use strict in fastclick breaks ajax calls and put strict back in.
+    - Put passing push token in user handler and take it out of boot since the user may not be known at boot.
+    - Background the paperclip tasks on photo create.
+    - Iphone store loads old version then presents an update button.
+    - Bug when you click on a photo notificaiton when the occasion isn't loaded yet
+
+
+  Sani
+    - Photos upside down on jills phone
+    - FTUI for ad hoc user make more streamlined a la FTUI for invited userf
+    - Remove unused pages in the ftui - invite, enter other occasion etc
+    - Splunk
+    - Remove all stuff associate with iphone store release
+    - Add date of photo to detail page.
+    - Make the people banner and add photos tab smaller
+    
+  
+  Speed
+    - Invte takes forever make it local
+    - Comment takes forever make it local
+    - Back to all albums is not responsive to clicks.
+    - 
+    
+  Bugs
+    - Make the check_cookies page and landing page not cacheable by the browser.
+    o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+    - Livingpic version = undefined version on compile assets.
+    - Bug with broken photo not uploading on android phone 
+    - Bug When you add a new album it temporarily puts it at the bottom of the list.
+      - can't replicate it
+    - Checkin goes into infinite loop if checkin fails to find user on the server.
+    - Also save pics to gallery on android
+
+
+  Enhancements
+    - Save all photos on the phone accessible by the native gallery
+      - On android - Folders labled with our app icon and the name of the album.
+      - On iphone - Create a photostream with the name of the album
+    - Slow start-up is there anything we can do.
+    - Slow scroll is there anything we can do.
+    - If phone number is incorrect provide notice to inviter and a method of changing it.
+    - Ambiguity
+      - When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+        - In the gallery indicate somehow that photos are uploading. 
+      - When you have multiple new comments since you last visited you dont know which photos they are on.
+    - Ftui dont ask for current location right away. - Iphone only
+    - Pinch on the photos.
+    - Real photoswipe with fullbleed photos in pic detail.
+    - Allow entry of adhoc contacts for invite.
+    - Make the loading page interesting. 
+    - Migrate to latest cordova.
+
+
+  Punt  
+    o Register page submit to server is really slow.
+      - Investigation shows that it takes 5 seconds to do a occasions_json on the server due to lots of db calls. Just live with long spinner as this is a one time occurrence during registration. 
+    o Android pictures sometimes dont upload.
+
+    o Apple photostream nice experience copy it.
+      - Sani and Farhad need to discuss what this means
+        - Immediate appearance after click of notification.
+        - Full bleed of photo
+        - Comment or like displayed immediate.

@@ -1,0 +1,11 @@
+<h1>All Photos in the Order We Got Them (<%= @photos.length %>)</h1>
+<table class="dataTable small" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <% @photos.first.keys.each do |h| %><th><%= h %></th><% end %>
+  </tr>
+  <% @photos.each do |row| %>
+  <tr>
+    <% row.keys.each do |rk| %><td><%= row[rk] == "null" ? "-" : row[rk] %></td><% end %>
+  </tr>
+  <% end %>
+</table>

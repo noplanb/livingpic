@@ -1,0 +1,18 @@
+Users view
+----------
+I want a quick way to see any user's participation
+Occasions: how has a user participated in a given occasion (Created, Invited to, Invited, Added photo, tagged photo, was tagged in photo)
+Photos: ids of photos added, and occasions they were tagged in
+PhotoTaggings: photos tagged and users tagged in them
+PhotoTagged: photos tagged in and users who tagged them in these photos
+Invites: Occasions invited someone to and ids of users who were invited 
+Invited_to: Occasions and user's who invited him to this occasion
+Notifications: notifications sent to this user, to what contact detail, and why
+
+Occasions:(1) [12] Muriel's Wedding (C,I3, It2, P3, PT2, PTt1)
+Photos: [12] Muriel's Wedding (23,14)
+PhotTaggings: [12] Muriel's Wedding (23:14,15; 19:14,17)
+PhotoTagged: [9]Camping Trip (22:14;15:3)
+Invites: [9]Camping Trip (22,19,13,12)
+Invited To:(3) [9]Camping Trip {22}
+Notifications: [9]Camping Trip ()

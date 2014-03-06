@@ -1,0 +1,23 @@
+Some todos on the User controller and user model.
+ 
+ - Check cookies.
+   - Figure out whether it is possible call an phone gap app to life with params from a link. Probably dont need to implement now as our we have a lot of work to do on the back end browser based before we make a big packaging push.
+   
+ - Session
+   - Need to permanently cookie the webpage and the app.
+   - Do cookies work as normal for the webview in the packaged app? We may just want to check on whether we will have to implement our own cookieing system on the packaged app or whether it comes for free with webview as I expect.
+
+ - Properly encode notifications so that we can detect that they have been clicked when the user clicks the link in the SMS
+   - Detect that an sms link has been clicked to landing page and mark the phone number as loop back confirmed (see landing controller)
+   
+ - Registration.      
+   - For an sms invitee confirmation of name should be enough to mark the user as having a registered app.
+     - Sani: When invitee or organic user confirms spelling of name send user info back to the server (send phone number as well for organic user):
+     - Farhad:
+       - Invitee: mark user record for invitee as having a registered app on his phone. Phone number should have already been confirmed when he landed on the landing page.
+       - Organic user (not from invite): Determine based on the name and the phone number whether we somehow have a record for this user (i.e. he was invited or tagged in the past). If so then update his record as having a registered app. If not then create a new user with name and mobile phone provided and mark as registered.
+       
+  - Merging users
+    - Get the contact list from a bunch of our family members:
+      - Sani, Jill, Eva, Farhad, Katherine, Nasie, Leyla, Kon, Thomas, etc. Perhaps we can create a simple phonegap app that pulls it down to the server.
+      - Devise and test various algorithms for merging them.     

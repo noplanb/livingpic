@@ -1,0 +1,17 @@
+<div id="version_mgt" class="page">
+  <%= render :partial => 'ftui_header' %>
+  
+  <div class="content inset" >
+    
+      <h1>Please Update</h1>
+      <p>You have an old version of <%= site_name %>.</p>
+      <p class="mandatory">It no longer works with our system.</p>
+      
+      <div class="button_box">
+        <span class="store_link flat_button blue">Update Your App</span>
+        &nbsp;&nbsp;
+        <a class="optional" href="#" data-instaclick="VersionMgtController.user_skipped()">Later</a>
+      </div>
+    
+  </div>  
+</div>

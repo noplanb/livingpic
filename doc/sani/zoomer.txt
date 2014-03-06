@@ -1,0 +1,39 @@
+See the file gallery2_w_iphone_scroll.txt for initial information about the zoomer. I started this separate file later when the original file including the scroller got too long.
+
+PROBLEM: 
+  - On Iphone elements that are transformed to scale beyond the boundaries of their enclosing boxes do so without a problem as long as their enclosing boxes carry overflow visible.  
+  - On Android (and Firefox) the transformed items cannot scale up above the pos(top) of or to the left of the pos(left) of a parent box even if overflow is set to visible.
+  
+SOLUTION:
+  - Create a special zoom div that is absolutely positioned at the top left of the body.
+  - When zooming img. 
+    - Get the position width and height of the img.
+    - Set the pos width and height of the zoom div to the same.
+    - Load the image in the zoom div with width set to 100%
+    - Zoom that image. 
+  - The above method is what is used in the gallerypicker. We need to do the same for gallery2
+  - Standardize the zoomer to do this.
+
+TODO: 
+   x Add #zoom_photo to the DOM
+     x Move the zoom photo from gallery_picker.mobile to the top level under body peer with a page.
+     x Move css for it to mobile.css.
+     
+   x Put the code from the GalleryPicker into the zoomer
+     x Zoomer is passed the src of the photo to be zoomed so you can pass it the full hd pic.
+     x Create a ZoomPhotoLoader
+       x Sets the top, left and width of #zoom_photo based on the el which was passed to zoomer.
+       x Sets the z-index
+       x Loads the photo
+     x Zoomer observes the load event on the #zoom_photo and continues with the snap.
+     
+   x Add zoom_photo handler
+      x Add zoom_photo
+
+ANDROID - Older phones
+  - Zoom not working properly
+  
+  PROBLEM - Pinch not working. This is a problem with android os prior to 3.0. https://code.google.com/p/android/issues/detail?id=11909
+  PROBLEM - zoom on scroller page zooms in ad back out immediately.
+  
+

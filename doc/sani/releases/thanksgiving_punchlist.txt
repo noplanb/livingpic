@@ -1,0 +1,38 @@
+Punchlist for thanksgiving alpha in order of importance.
+
+ ] Server
+   - Get it working on the server even in dev mode would be ok if production gives us problems with assets.
+
+ ] App install
+   - Ability to manually get the app on friends phones. 
+   - iphone 
+     - Ideally texting a link.
+     - Also would work:
+       - Connecting phone to mac with cable (need to get that working on sanis machine as well though)
+     - Need to recall how to register devices.
+   - Android texting a link and manually setting the phone to download 3rd party apps.
+ 
+ ] - User registration.
+     - Get the flow to work.
+     - Manual work around? 
+     - We need to get it so that if users in our little group are invited as participants in an occasion the occasion automatically comes up for them. 
+   
+ ] App
+   + Bugs fixed or worked around 
+     + iphone
+     + android
+       x Bug: File upload on photo create.
+       + Bug: my occasions error 
+   + Invite button added under occasion. 
+   + Remove tagging from the flow.
+   + Add exiting occasions as and option when picking an occasion to add a photo to. 
+   
+   - Add meta data to the photoswipe view
+     - Author
+ 
+ 
+=========================================
+
+ ] - Notification - none
+ ] - FTUI - none
+ ] - Tagging - none

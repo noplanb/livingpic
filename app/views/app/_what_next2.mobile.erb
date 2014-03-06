@@ -1,0 +1,30 @@
+<div id="what_next2" class="page ftui">
+  <%= render :partial => 'ftui_header' %>
+  
+  <div class="content" >
+    
+    <div class="yes_current_occasion">
+      <h1><span  class="current_occasion"></span>!</h1>
+      <p class="call_to_action">
+        You are all set up!
+        <br/><br/>You were invited to the shared photo album for <span class="current_occasion bold"></span>. 
+        <br/><br/>Enjoy!
+      </p>
+     
+      <div class="button_box">
+        <div class="flat_button blue" data-instaclick="GalleryController2.show(current_occasion())">Go to the Album</div>
+      </div>
+    </div>
+    
+    <div class="no_current_occasion">
+      <h2>Welcome to <%= site_name %></h2>
+      <div>
+        <p><%= site_name %> makes it easy for you and your friends to form a shared photo album that includes everyone's pictures.</p>
+        <p style="padding-bottom:30px">Get started by snapping a photo.</p>
+        <div class="flat_button blue" data-instaclick="window.capture_pic()">Take a Photo!</div>
+      </div>
+    </div>
+    
+  </div>  
+   
+</div>

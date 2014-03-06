@@ -1,0 +1,31 @@
+<div id="invite" class="auto_complete_page" data-role="page"  data-theme="c">
+  
+  <%# render :partial => 'header', :locals => {:data_theme => "c"} %>
+  <div data-role="header" data-theme="c" >
+    <h1><%= site_name %></h1>
+  </div>
+  
+  <div class="ui-content">
+    <div class="help"><h1>Perfect!</h1><p>Now, who do you want to see this album? <a href="#why_invite">Why?</a></p></div>
+    
+    <div class="picked_items_block">
+      <h2>Add to <span class="current_occasion"></span></h2>
+      
+      <div style="margin: 0px -15px"> 
+        <span class="auto_complete_picked_items_box"></span>
+      </div> 
+    </div>
+
+    <div class="search_block" class="table" style="width:100%">
+      <%= render :partial => 'auto_complete_text_input', :locals => {
+          :theme => "b", 
+          :done_onclick => "invite_done()"} %>                    
+      
+    </div>
+    
+    <ul class="auto_complete_search_results_box ui-listview" style="height:200px; overflow:scroll"></ul>
+    
+      
+  </div>
+    
+</div>

@@ -1,0 +1,75 @@
+// ===========
+// = Gallery =
+// ===========
+.ui-mobile #gallery  {
+  .content { background:#222; }
+  .pics {
+    padding-left:5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    .thumb_box {float:left; background: #353535; margin: 0px 0px 12px 0px; 
+                      border-bottom:1px solid #111; border-right:1px solid #111; 
+                      border-top:1px solid #666; border-left:1px solid #666;
+                      border-radius:4px;}
+    img {border-radius:3px;}
+    .thumb_author, .user, .caption {height:1.3em; overflow:hidden;}
+    .thumb_author, .user, .caption, .body{padding:4px 5px 0px 5px;}
+    .thumb_author, .caption{font-size:11px;}
+    .user, .body{font-size:12px;}
+    .caption {@include de-emphasize1;}
+    .comment {
+      border-top:1px solid #555; padding: 5px 0px;
+      p {margin:0px;}
+      .user {@include de-emphasize1}
+      .body {@include de-emphasize2; @include word-break; padding-top:0px}
+    }
+    .photo_status { 
+      float:right;
+      font-size: 10px;
+      margin: 10px 4px 0px 0px;
+    }
+  }
+}
+
+#gallery .comments_likes_stats{height:30px;}
+.comments_stats, .likes_stats {height:2em; font-size:12px; display: inline-block;}
+.comments_likes_stats .likes_stats{margin-left:10px;}
+.comments_stats .npb_extended_icon, .likes_stats .npb_extended_icon{position:relative; top:5px;}
+
+// ========================
+// = Photoswipe overrides =
+// ========================
+.ps-toolbar .npb-ps .back_btn {
+   .back_icon {margin:6px 4px 0px 0px; height: 18px; width: 18px; 
+              background-repeat: no-repeat;
+              background-position: -396px 50%;
+              background-color: rgba(0,0,0,0.0); 
+              display: inline-block;
+              position:relative; top: 5px;
+              }
+  .btn_text {color:#eee;display: inline-block;}
+}
+
+// ==============
+// = Pic Detail =
+// ==============
+#pic_detail {
+  .pic {width:100%; border: 1px solid white;}
+  .pic img {width:100%; }
+  .pic_header {padding-bottom:4px;}
+  .pic_header .comments_likes {text-align:right;}
+  .new_comment{margin-top:10px;}
+  .caption{@include de-emphasize1; text-align:center; font-size:14px; padding:5px 0px}
+  .likers{@include de-emphasize2; text-align:center; font-size:14px; padding:5px 0px}
+  
+}
+  
+.new_comment {
+  textarea.ui-input-text.blurred{font-size:12px; @include de-emphasize2; height:50px;}
+  .new_comment_block{margin-bottom:8px;}
+  
+}
+
+.comments .user, .new_comment .user{@include de-emphasize1; font-weight:bold;}
+.comments .body{@include de-emphasize2; margin-bottom:4px;}

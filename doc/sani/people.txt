@@ -1,0 +1,64 @@
+TASK Create a people page that is behind the gallery page and is uncovered when you click on it.
+
+ x Requirements
+   x Whole gallery page moves over to reveal.
+   x Scrolling available on the people page
+   x No need for a header on that page.
+ x CSS strategy
+   x .reveal (.cover .left .right) are divs within a page.
+ x Revealer
+   x Reveal
+   x Hide
+   x Revealer touch handler swipe to close
+   
+
+Todo
+  x Create a rough layout for the people page.
+  x Create the revealer.
+  
+AddParticipants Todo
+  x Decided to redo the layout from scratch. See the reasoning for this below.
+  x Create an add participants 2 page
+  x Click from people page
+  x Done
+  x Cancel
+
+QUESTION: HOW TO LAYOUT THE REVEAL AND REVEALED PAGES?
+  PROBLEM - I seem to have broken scrolling on firefox with no scroller of the content when I added reveal divs
+  QUESTION - Did i break it or was it already broken
+  TRY - On firefox revert to the layout without reveal divs and see if I have indeed broken it
+  RESULT - After reverting I find it still doesnt scroll on firefox
+  DISOVERY - I found that in gallery.css I had set .content to overflow:visible overriding the overflow:scroll set in mobile.css in order to allow zoomer to zoom pic to cover the whole gallery page. 
+  
+  QUESTION - is there a way to handle this that doesnt break the scrolling in firefox?
+  TRY - Have the galleryhandler set the overflow to visible when it starts the scroller when running on the phone. 
+  TEST - On browser - works. On phone - works.
+  
+PROBLEM: Revealed page doesnt scroll on iphone
+SPECULATION: Is it due to preventDefault on touchmove on the gallery2 page?
+TEST: Remove prevent default and test on iphone. RESULT - Yes this was causing it not to scroll.
+QUESTION: Is prevent default for touchmove on gallery2 really necessary to prevent scrolling when adding a comment given that we have defined the page to be fullscreen and overflow:hidden - ANSWER - no 
+CONCLUSION: Remove the preventdefault for touchmove on gallery2
+
+QUESTION: What to do about the AddParicipants page?
+  - CONSIDERATIONS:
+    - Much of the design detail is provided by JqueryMobile. 
+    - I cant use jquery mobile to change pages because it doesnt work with the new Pager that is used for gallery and occasions.
+  - OPTION 1:
+    - Try to figure out all the classes divs etc that jqm injects to simulate the existing layout and design detail without using JQM
+    - Will be frustrating.
+    - Probably wont be thrilled with the results.
+  - OPTION 2:
+    - Redo the layout and the design for that add participants from scratch using our own simplified design elements.
+    - Will probably take the same amount of time.
+    - Will be less frustrating.
+    - Probably will be happier with the results.
+  - CONCLUSION:
+    - Redo the layout and design detail of the AddParticipants page from scratch.
+    
+
+
+
+
+  
+  

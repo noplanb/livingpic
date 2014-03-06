@@ -1,0 +1,4 @@
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+  <li id="<%= user.id %>" class="listedUser"><%= "<h3 style='#{user.is_registered? ? 'color:blue' : ''}'>#{user.hs}</h3><p>#{user.oc_i}</p>".html_safe %>
+  </li>
+</ul>

@@ -1,0 +1,202 @@
+Android Release 1.8  #18  Revision 7493 In store 5/11/13
+
+Most important for this release
+-------------------------------
+  
+  s Fix the wording in notification messages.
+    - Like notification says someone when it shouldn't. (fixed I think but need to test.)
+    - Commented on YOUR photo. Liked YOUR photo.
+    
+  
+  
+  f In app notification for android
+  
+  f Update the console.log file on the phone.
+  
+  
+  
+  s Zoom
+  
+  
+  
+  
+  
+Open
+----
+Farhad
+  - Android Something is blocking when there is poor connectivity causing no device ready and error on android.
+    - Sani and Jills phone android loading html page error cordova popup!
+  - Iphone slows down seemingly swapping memory.
+  - Add comment to notsification.
+  - Add photo to notification.
+  - Invite takes 6 seconds.
+  - Figure out why use strict in fastclick breaks ajax calls and put strict back in.
+  c Put passing push token in user handler and take it out of boot since the user may not be known at boot.
+  - Background the paperclip tasks on photo create.
+  - Iphone store loads old version then presents an update button.
+  - Enable pulling back the log files
+  - Remove the thumb_sq processing if we don't use it anymore
+  - See why invite takes so long ....
+  - Remove the files marked for deletion
+  
+  
+Sani
+  - Please add your photos - banner needs a table so it doesnt wrap with a long first name.
+  - FTUI for ad hoc user make more streamlined a la FTUI for invited userf
+  - FTUI
+    - Wording in what next page needs to be improved. 
+    - One button go to album
+    - You were invited wording is too wordy.
+  - Remove unused pages in the ftui - invite, enter other occasion etc
+  - Splunk
+  - Comment and like notifications. Liked YOUR photo. Commented on YOUR photo.
+  - Remove all stuff associate with iphone store release
+  
+Bugs
+  - Make the check_cookies page and landing page not cacheable by the browser.
+  o Invited rick but it wouldnt take because he did not let the landing page fully load before clicking off.
+  - Livingpic version = undefined version on compile assets.
+  - Bug with broken photo not uploading on android phone 
+  - Bug When you add a new album it temporarily puts it at the bottom of the list.
+    - can't replicate it
+  - Checkin goes into infinite loop if checkin fails to find user on the server.
+  - Also save pics to gallery on android
+  - Add participants then go back to album doesnt show participant added in list.
+  
+
+Enhancements
+  - Iphone screen width tweaks.
+    - Indicators next to heart and comments showing upload status on pic detail appear on a new line.
+  - Version update notice to users if they are using an out of date app.
+  - Slow start-up is there anything we can do.
+  - Slow scroll is there anything we can do.
+  - If phone number is incorrect provide notice to inviter and a method of changing it.
+  - Ambiguity
+    - When you check in to see if there is something new. We always show the old gallery first. We should let you know that it is bringing in new photos.
+      - In the gallery indicate somehow that photos are uploading. 
+    - When you have multiple new comments since you last visited you dont know which photos they are on.
+  - Pushwoosh plugin for cordova for android.
+  - Ftui dont ask for current location right away. - Iphone only
+  - Ftui dont ask for contacts right away. - Iphone only
+  - Pinch on the photos.
+  - Real photoswipe with fullbleed photos in pic detail.
+  - Allow entry of adhoc contacts for invite.
+  - Make the loading page interesting. 
+  - Migrate to latest cordova.
+  
+  
+Punt  
+  o Register page submit to server is really slow.
+    - Investigation shows that it takes 5 seconds to do a occasions_json on the server due to lots of db calls. Just live with long spinner as this is a one time occurrence during registration. 
+  o Android pictures sometimes dont upload.
+    
+  o Apple photostream nice experience copy it.
+    - Sani and Farhad need to discuss what this means
+      - Immediate appearance after click of notification.
+      - Full bleed of photo
+      - Comment or like displayed immediate.
+
+Test Plan
+---------
+  - FTUI
+    x Landing page
+    x Check for invites
+    - Change name
+    - Enter name and phone (unknown_user)
+    - Enter occasion name
+    x Welcome options
+  - In app
+    x Add album
+    x Save pic to existing album
+    x Save pic to new album name
+    x add pic from gallery
+    x Like pic
+    x Comment on pic
+    x Add participant(s)
+    x Manual refresh
+  - Admin
+    - Start fresh
+  - Notifications
+    x Active 
+      x Comment
+      x Invite
+      x Like
+    - Not active
+      - Comment
+      - Invite
+      - Like
+  
+  
+Done in the Release
+-------------------
+  x Make sure cordova.js is the correct one depending on the platform android vs iphone.
+
+  x Opt out of sms notifications at the landing page
+    x Test 
+      x Create an album
+      x Invite someone with multiple phones
+      x Go to landing for notification
+        x Check that phone appropriate to notification was updated as the contact number for the user
+      x Don't opt out
+      x Add a photo which should create a notification 
+        x Check that it would be transmitted as sms
+      x Opt out
+      x Add a photo which should create a notification 
+        x Check that it would be transmitted as notification
+      x Opt back in
+        x Check that it would be transmitted as sms
+        
+  x Inducement for new users to add their photos when they visit the album
+  
+  x Remove iphone requests for contacts, and location from the ftui
+    - Test
+  
+  x Scroll causes accidental click in gallery. 
+    x Test 
+    
+  x Fix panorama display
+    x Test
+  
+  x New version available notification in app
+    x Page that lets you know your app is old.
+      x You have an old version of LivingPic.
+        x Please update 
+        x It no longer works with our system
+      x Update Button
+        x Link to store
+    x Check with the server send the version
+      x Compare version.
+        x To mandatory update version
+        x To optional update version
+    x Add the mandatory and optional thresholds to app_config
+    
+    -Test
+      x Set version number to 1.8
+      x Set Mandatory threshold to 1.5
+        x Set Config.version 1.8 - Check response from server Nil
+        x Set Config.version 1.7 - Check response from server Optional
+        x Set Config.version 1.5 - Check response from server Mandatory
+      x Repeat above and call notify_user_if_necessary
+        x Cases browser_android, browser_iphone,
+          bi,ba  skip and test that it doest notify the second time
+          bi,ba verify store link
+     
+      - Insert the notify user if necessary where it belongs on the gallery page render
+      - Insert the checking where it belongs in boot.
+      
+      - Cases: build_iphone, build_store_iphone, build_android, build_store_android
+        - Build with version number 1.8 
+        i,a Change yml: ver 1.8, threshold 1.8
+          i,a  Restart app
+          i,a Check no update required
+        i,a Change yml: ver 1.9 threshold 1.7
+          ia Skip
+          ia Check no warning again
+          ia Restart
+          ia Check optional
+        ia Change yml: ver 1.9 threshold 1.8
+          ia Check madatory
+          ia Check link
+      
+    
+    

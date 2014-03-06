@@ -1,0 +1,6 @@
+x Add backend to accommodate estimates of the population for occasions. I have been calling it pop_estimate or population_estimate in the js.
+
+x See the stubs in occasions_controller.rb and occasion.rb and please create appropriate methods for them.
+
+- Handle occasions that are created. 
+- Client guess at occasion based on time and location. (phase 2?)

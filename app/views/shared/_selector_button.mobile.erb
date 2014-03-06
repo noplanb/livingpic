@@ -1,0 +1,15 @@
+<% 
+width = defined?(width) && width || "12em"
+s1_text = defined?(s1_text) && s1_text || ""
+s1_click = defined?(s1_click) && s1_click || ""
+s2_text = defined?(s2_text) && s2_text || ""
+s2_click = defined?(s2_click) && s2_click || ""
+color = defined?(color) && color || "blue"
+click_event = ENV['PRECOMPILE_TARGET'] == 'device' ? "ontouchstart" : "onclick"
+ %>
+<div class="selector_button <%= color %> n_2" style="width:<%= width %>">
+  <span class="selection s_1 selected" <%= click_event %>="<%= s1_click %>" 
+        data-allow_propagation="true" data-allow_default="true"><%= s1_text %></span>
+  <span class="selection s_2" <%= click_event %>="<%= s2_click %>" 
+        data-allow_propagation="true" data-allow_default="true"><%= s2_text %></span>
+</div>

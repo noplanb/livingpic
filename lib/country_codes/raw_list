@@ -1,0 +1,216 @@
+            <asp:ListItem Value="GB" data-dialcode="44">UK (+44)</asp:ListItem>
+            <asp:ListItem Value="US" data-dialcode="1">USA (+1)</asp:ListItem>
+            <asp:ListItem Value="DZ" data-dialcode="213">Algeria (+213)</asp:ListItem>
+            <asp:ListItem Value="AD" data-dialcode="376">Andorra (+376)</asp:ListItem>
+            <asp:ListItem Value="AO" data-dialcode="244">Angola (+244)</asp:ListItem>
+            <asp:ListItem Value="AI" data-dialcode="1264">Anguilla (+1264)</asp:ListItem>
+            <asp:ListItem Value="AG" data-dialcode="1268">Antigua &amp; Barbuda (+1268)</asp:ListItem>
+            <asp:ListItem Value="AR" data-dialcode="54">Argentina (+54)</asp:ListItem>
+            <asp:ListItem Value="AM" data-dialcode="374">Armenia (+374)</asp:ListItem>
+            <asp:ListItem Value="AW" data-dialcode="297">Aruba (+297)</asp:ListItem>
+            <asp:ListItem Value="AU" data-dialcode="61">Australia (+61)</asp:ListItem>
+            <asp:ListItem Value="AT" data-dialcode="43">Austria (+43)</asp:ListItem>
+            <asp:ListItem Value="AZ" data-dialcode="994">Azerbaijan (+994)</asp:ListItem>
+            <asp:ListItem Value="BS" data-dialcode="1242">Bahamas (+1242)</asp:ListItem>
+            <asp:ListItem Value="BH" data-dialcode="973">Bahrain (+973)</asp:ListItem>
+            <asp:ListItem Value="BD" data-dialcode="880">Bangladesh (+880)</asp:ListItem>
+            <asp:ListItem Value="BB" data-dialcode="1246">Barbados (+1246)</asp:ListItem>
+            <asp:ListItem Value="BY" data-dialcode="375">Belarus (+375)</asp:ListItem>
+            <asp:ListItem Value="BE" data-dialcode="32">Belgium (+32)</asp:ListItem>
+            <asp:ListItem Value="BZ" data-dialcode="501">Belize (+501)</asp:ListItem>
+            <asp:ListItem Value="BJ" data-dialcode="229">Benin (+229)</asp:ListItem>
+            <asp:ListItem Value="BM" data-dialcode="1441">Bermuda (+1441)</asp:ListItem>
+            <asp:ListItem Value="BT" data-dialcode="975">Bhutan (+975)</asp:ListItem>
+            <asp:ListItem Value="BO" data-dialcode="591">Bolivia (+591)</asp:ListItem>
+            <asp:ListItem Value="BA" data-dialcode="387">Bosnia Herzegovina (+387)</asp:ListItem>
+            <asp:ListItem Value="BW" data-dialcode="267">Botswana (+267)</asp:ListItem>
+            <asp:ListItem Value="BR" data-dialcode="55">Brazil (+55)</asp:ListItem>
+            <asp:ListItem Value="BN" data-dialcode="673">Brunei (+673)</asp:ListItem>
+            <asp:ListItem Value="BG" data-dialcode="359">Bulgaria (+359)</asp:ListItem>
+            <asp:ListItem Value="BF" data-dialcode="226">Burkina Faso (+226)</asp:ListItem>
+            <asp:ListItem Value="BI" data-dialcode="257">Burundi (+257)</asp:ListItem>
+            <asp:ListItem Value="KH" data-dialcode="855">Cambodia (+855)</asp:ListItem>
+            <asp:ListItem Value="CM" data-dialcode="237">Cameroon (+237)</asp:ListItem>
+            <asp:ListItem Value="CA" data-dialcode="1">Canada (+1)</asp:ListItem>
+            <asp:ListItem Value="CV" data-dialcode="238">Cape Verde Islands (+238)</asp:ListItem>
+            <asp:ListItem Value="KY" data-dialcode="1345">Cayman Islands (+1345)</asp:ListItem>
+            <asp:ListItem Value="CF" data-dialcode="236">Central African Republic (+236)</asp:ListItem>
+            <asp:ListItem Value="CL" data-dialcode="56">Chile (+56)</asp:ListItem>
+            <asp:ListItem Value="CN" data-dialcode="86">China (+86)</asp:ListItem>
+            <asp:ListItem Value="CO" data-dialcode="57">Colombia (+57)</asp:ListItem>
+            <asp:ListItem Value="KM" data-dialcode="269">Comoros (+269)</asp:ListItem>
+            <asp:ListItem Value="CG" data-dialcode="242">Congo (+242)</asp:ListItem>
+            <asp:ListItem Value="CK" data-dialcode="682">Cook Islands (+682)</asp:ListItem>
+            <asp:ListItem Value="CR" data-dialcode="506">Costa Rica (+506)</asp:ListItem>
+            <asp:ListItem Value="HR" data-dialcode="385">Croatia (+385)</asp:ListItem>
+            <asp:ListItem Value="CU" data-dialcode="53">Cuba (+53)</asp:ListItem>
+            <asp:ListItem Value="CY" data-dialcode="90392">Cyprus North (+90392)</asp:ListItem>
+            <asp:ListItem Value="CY" data-dialcode="357">Cyprus South (+357)</asp:ListItem>
+            <asp:ListItem Value="CZ" data-dialcode="42">Czech Republic (+42)</asp:ListItem>
+            <asp:ListItem Value="DK" data-dialcode="45">Denmark (+45)</asp:ListItem>
+            <asp:ListItem Value="DJ" data-dialcode="253">Djibouti (+253)</asp:ListItem>
+            <asp:ListItem Value="DM" data-dialcode="1809">Dominica (+1809)</asp:ListItem>
+            <asp:ListItem Value="DO" data-dialcode="1809">Dominican Republic (+1809)</asp:ListItem>
+            <asp:ListItem Value="EC" data-dialcode="593">Ecuador (+593)</asp:ListItem>
+            <asp:ListItem Value="EG" data-dialcode="20">Egypt (+20)</asp:ListItem>
+            <asp:ListItem Value="SV" data-dialcode="503">El Salvador (+503)</asp:ListItem>
+            <asp:ListItem Value="GQ" data-dialcode="240">Equatorial Guinea (+240)</asp:ListItem>
+            <asp:ListItem Value="ER" data-dialcode="291">Eritrea (+291)</asp:ListItem>
+            <asp:ListItem Value="EE" data-dialcode="372">Estonia (+372)</asp:ListItem>
+            <asp:ListItem Value="ET" data-dialcode="251">Ethiopia (+251)</asp:ListItem>
+            <asp:ListItem Value="FK" data-dialcode="500">Falkland Islands (+500)</asp:ListItem>
+            <asp:ListItem Value="FO" data-dialcode="298">Faroe Islands (+298)</asp:ListItem>
+            <asp:ListItem Value="FJ" data-dialcode="679">Fiji (+679)</asp:ListItem>
+            <asp:ListItem Value="FI" data-dialcode="358">Finland (+358)</asp:ListItem>
+            <asp:ListItem Value="FR" data-dialcode="33">France (+33)</asp:ListItem>
+            <asp:ListItem Value="GF" data-dialcode="594">French Guiana (+594)</asp:ListItem>
+            <asp:ListItem Value="PF" data-dialcode="689">French Polynesia (+689)</asp:ListItem>
+            <asp:ListItem Value="GA" data-dialcode="241">Gabon (+241)</asp:ListItem>
+            <asp:ListItem Value="GM" data-dialcode="220">Gambia (+220)</asp:ListItem>
+            <asp:ListItem Value="GE" data-dialcode="7880">Georgia (+7880)</asp:ListItem>
+            <asp:ListItem Value="DE" data-dialcode="49">Germany (+49)</asp:ListItem>
+            <asp:ListItem Value="GH" data-dialcode="233">Ghana (+233)</asp:ListItem>
+            <asp:ListItem Value="GI" data-dialcode="350">Gibraltar (+350)</asp:ListItem>
+            <asp:ListItem Value="GR" data-dialcode="30">Greece (+30)</asp:ListItem>
+            <asp:ListItem Value="GL" data-dialcode="299">Greenland (+299)</asp:ListItem>
+            <asp:ListItem Value="GD" data-dialcode="1473">Grenada (+1473)</asp:ListItem>
+            <asp:ListItem Value="GP" data-dialcode="590">Guadeloupe (+590)</asp:ListItem>
+            <asp:ListItem Value="GU" data-dialcode="671">Guam (+671)</asp:ListItem>
+            <asp:ListItem Value="GT" data-dialcode="502">Guatemala (+502)</asp:ListItem>
+            <asp:ListItem Value="GN" data-dialcode="224">Guinea (+224)</asp:ListItem>
+            <asp:ListItem Value="GW" data-dialcode="245">Guinea - Bissau (+245)</asp:ListItem>
+            <asp:ListItem Value="GY" data-dialcode="592">Guyana (+592)</asp:ListItem>
+            <asp:ListItem Value="HT" data-dialcode="509">Haiti (+509)</asp:ListItem>
+            <asp:ListItem Value="HN" data-dialcode="504">Honduras (+504)</asp:ListItem>
+            <asp:ListItem Value="HK" data-dialcode="852">Hong Kong (+852)</asp:ListItem>
+            <asp:ListItem Value="HU" data-dialcode="36">Hungary (+36)</asp:ListItem>
+            <asp:ListItem Value="IS" data-dialcode="354">Iceland (+354)</asp:ListItem>
+            <asp:ListItem Value="IN" data-dialcode="91">India (+91)</asp:ListItem>
+            <asp:ListItem Value="ID" data-dialcode="62">Indonesia (+62)</asp:ListItem>
+            <asp:ListItem Value="IR" data-dialcode="98">Iran (+98)</asp:ListItem>
+            <asp:ListItem Value="IQ" data-dialcode="964">Iraq (+964)</asp:ListItem>
+            <asp:ListItem Value="IE" data-dialcode="353">Ireland (+353)</asp:ListItem>
+            <asp:ListItem Value="IL" data-dialcode="972">Israel (+972)</asp:ListItem>
+            <asp:ListItem Value="IT" data-dialcode="39">Italy (+39)</asp:ListItem>
+            <asp:ListItem Value="JM" data-dialcode="1876">Jamaica (+1876)</asp:ListItem>
+            <asp:ListItem Value="JP" data-dialcode="81">Japan (+81)</asp:ListItem>
+            <asp:ListItem Value="JO" data-dialcode="962">Jordan (+962)</asp:ListItem>
+            <asp:ListItem Value="KZ" data-dialcode="7">Kazakhstan (+7)</asp:ListItem>
+            <asp:ListItem Value="KE" data-dialcode="254">Kenya (+254)</asp:ListItem>
+            <asp:ListItem Value="KI" data-dialcode="686">Kiribati (+686)</asp:ListItem>
+            <asp:ListItem Value="KP" data-dialcode="850">Korea North (+850)</asp:ListItem>
+            <asp:ListItem Value="KR" data-dialcode="82">Korea South (+82)</asp:ListItem>
+            <asp:ListItem Value="KW" data-dialcode="965">Kuwait (+965)</asp:ListItem>
+            <asp:ListItem Value="KG" data-dialcode="996">Kyrgyzstan (+996)</asp:ListItem>
+            <asp:ListItem Value="LA" data-dialcode="856">Laos (+856)</asp:ListItem>
+            <asp:ListItem Value="LV" data-dialcode="371">Latvia (+371)</asp:ListItem>
+            <asp:ListItem Value="LB" data-dialcode="961">Lebanon (+961)</asp:ListItem>
+            <asp:ListItem Value="LS" data-dialcode="266">Lesotho (+266)</asp:ListItem>
+            <asp:ListItem Value="LR" data-dialcode="231">Liberia (+231)</asp:ListItem>
+            <asp:ListItem Value="LY" data-dialcode="218">Libya (+218)</asp:ListItem>
+            <asp:ListItem Value="LI" data-dialcode="417">Liechtenstein (+417)</asp:ListItem>
+            <asp:ListItem Value="LT" data-dialcode="370">Lithuania (+370)</asp:ListItem>
+            <asp:ListItem Value="LU" data-dialcode="352">Luxembourg (+352)</asp:ListItem>
+            <asp:ListItem Value="MO" data-dialcode="853">Macao (+853)</asp:ListItem>
+            <asp:ListItem Value="MK" data-dialcode="389">Macedonia (+389)</asp:ListItem>
+            <asp:ListItem Value="MG" data-dialcode="261">Madagascar (+261)</asp:ListItem>
+            <asp:ListItem Value="MW" data-dialcode="265">Malawi (+265)</asp:ListItem>
+            <asp:ListItem Value="MY" data-dialcode="60">Malaysia (+60)</asp:ListItem>
+            <asp:ListItem Value="MV" data-dialcode="960">Maldives (+960)</asp:ListItem>
+            <asp:ListItem Value="ML" data-dialcode="223">Mali (+223)</asp:ListItem>
+            <asp:ListItem Value="MT" data-dialcode="356">Malta (+356)</asp:ListItem>
+            <asp:ListItem Value="MH" data-dialcode="692">Marshall Islands (+692)</asp:ListItem>
+            <asp:ListItem Value="MQ" data-dialcode="596">Martinique (+596)</asp:ListItem>
+            <asp:ListItem Value="MR" data-dialcode="222">Mauritania (+222)</asp:ListItem>
+            <asp:ListItem Value="YT" data-dialcode="269">Mayotte (+269)</asp:ListItem>
+            <asp:ListItem Value="MX" data-dialcode="52">Mexico (+52)</asp:ListItem>
+            <asp:ListItem Value="FM" data-dialcode="691">Micronesia (+691)</asp:ListItem>
+            <asp:ListItem Value="MD" data-dialcode="373">Moldova (+373)</asp:ListItem>
+            <asp:ListItem Value="MC" data-dialcode="377">Monaco (+377)</asp:ListItem>
+            <asp:ListItem Value="MN" data-dialcode="976">Mongolia (+976)</asp:ListItem>
+            <asp:ListItem Value="MS" data-dialcode="1664">Montserrat (+1664)</asp:ListItem>
+            <asp:ListItem Value="MA" data-dialcode="212">Morocco (+212)</asp:ListItem>
+            <asp:ListItem Value="MZ" data-dialcode="258">Mozambique (+258)</asp:ListItem>
+            <asp:ListItem Value="MN" data-dialcode="95">Myanmar (+95)</asp:ListItem>
+            <asp:ListItem Value="NA" data-dialcode="264">Namibia (+264)</asp:ListItem>
+            <asp:ListItem Value="NR" data-dialcode="674">Nauru (+674)</asp:ListItem>
+            <asp:ListItem Value="NP" data-dialcode="977">Nepal (+977)</asp:ListItem>
+            <asp:ListItem Value="NL" data-dialcode="31">Netherlands (+31)</asp:ListItem>
+            <asp:ListItem Value="NC" data-dialcode="687">New Caledonia (+687)</asp:ListItem>
+            <asp:ListItem Value="NZ" data-dialcode="64">New Zealand (+64)</asp:ListItem>
+            <asp:ListItem Value="NI" data-dialcode="505">Nicaragua (+505)</asp:ListItem>
+            <asp:ListItem Value="NE" data-dialcode="227">Niger (+227)</asp:ListItem>
+            <asp:ListItem Value="NG" data-dialcode="234">Nigeria (+234)</asp:ListItem>
+            <asp:ListItem Value="NU" data-dialcode="683">Niue (+683)</asp:ListItem>
+            <asp:ListItem Value="NF" data-dialcode="672">Norfolk Islands (+672)</asp:ListItem>
+            <asp:ListItem Value="NP" data-dialcode="670">Northern Marianas (+670)</asp:ListItem>
+            <asp:ListItem Value="NO" data-dialcode="47">Norway (+47)</asp:ListItem>
+            <asp:ListItem Value="OM" data-dialcode="968">Oman (+968)</asp:ListItem>
+            <asp:ListItem Value="PW" data-dialcode="680">Palau (+680)</asp:ListItem>
+            <asp:ListItem Value="PA" data-dialcode="507">Panama (+507)</asp:ListItem>
+            <asp:ListItem Value="PG" data-dialcode="675">Papua New Guinea (+675)</asp:ListItem>
+            <asp:ListItem Value="PY" data-dialcode="595">Paraguay (+595)</asp:ListItem>
+            <asp:ListItem Value="PE" data-dialcode="51">Peru (+51)</asp:ListItem>
+            <asp:ListItem Value="PH" data-dialcode="63">Philippines (+63)</asp:ListItem>
+            <asp:ListItem Value="PL" data-dialcode="48">Poland (+48)</asp:ListItem>
+            <asp:ListItem Value="PT" data-dialcode="351">Portugal (+351)</asp:ListItem>
+            <asp:ListItem Value="PR" data-dialcode="1787">Puerto Rico (+1787)</asp:ListItem>
+            <asp:ListItem Value="QA" data-dialcode="974">Qatar (+974)</asp:ListItem>
+            <asp:ListItem Value="RE" data-dialcode="262">Reunion (+262)</asp:ListItem>
+            <asp:ListItem Value="RO" data-dialcode="40">Romania (+40)</asp:ListItem>
+            <asp:ListItem Value="RU" data-dialcode="7">Russia (+7)</asp:ListItem>
+            <asp:ListItem Value="RW" data-dialcode="250">Rwanda (+250)</asp:ListItem>
+            <asp:ListItem Value="SM" data-dialcode="378">San Marino (+378)</asp:ListItem>
+            <asp:ListItem Value="ST" data-dialcode="239">Sao Tome &amp; Principe (+239)</asp:ListItem>
+            <asp:ListItem Value="SA" data-dialcode="966">Saudi Arabia (+966)</asp:ListItem>
+            <asp:ListItem Value="SN" data-dialcode="221">Senegal (+221)</asp:ListItem>
+            <asp:ListItem Value="CS" data-dialcode="381">Serbia (+381)</asp:ListItem>
+            <asp:ListItem Value="SC" data-dialcode="248">Seychelles (+248)</asp:ListItem>
+            <asp:ListItem Value="SL" data-dialcode="232">Sierra Leone (+232)</asp:ListItem>
+            <asp:ListItem Value="SG" data-dialcode="65">Singapore (+65)</asp:ListItem>
+            <asp:ListItem Value="SK" data-dialcode="421">Slovak Republic (+421)</asp:ListItem>
+            <asp:ListItem Value="SI" data-dialcode="386">Slovenia (+386)</asp:ListItem>
+            <asp:ListItem Value="SB" data-dialcode="677">Solomon Islands (+677)</asp:ListItem>
+            <asp:ListItem Value="SO" data-dialcode="252">Somalia (+252)</asp:ListItem>
+            <asp:ListItem Value="ZA" data-dialcode="27">South Africa (+27)</asp:ListItem>
+            <asp:ListItem Value="ES" data-dialcode="34">Spain (+34)</asp:ListItem>
+            <asp:ListItem Value="LK" data-dialcode="94">Sri Lanka (+94)</asp:ListItem>
+            <asp:ListItem Value="SH" data-dialcode="290">St. Helena (+290)</asp:ListItem>
+            <asp:ListItem Value="KN" data-dialcode="1869">St. Kitts (+1869)</asp:ListItem>
+            <asp:ListItem Value="SC" data-dialcode="1758">St. Lucia (+1758)</asp:ListItem>
+            <asp:ListItem Value="SD" data-dialcode="249">Sudan (+249)</asp:ListItem>
+            <asp:ListItem Value="SR" data-dialcode="597">Suriname (+597)</asp:ListItem>
+            <asp:ListItem Value="SZ" data-dialcode="268">Swaziland (+268)</asp:ListItem>
+            <asp:ListItem Value="SE" data-dialcode="46">Sweden (+46)</asp:ListItem>
+            <asp:ListItem Value="CH" data-dialcode="41">Switzerland (+41)</asp:ListItem>
+            <asp:ListItem Value="SI" data-dialcode="963">Syria (+963)</asp:ListItem>
+            <asp:ListItem Value="TW" data-dialcode="886">Taiwan (+886)</asp:ListItem>
+            <asp:ListItem Value="TJ" data-dialcode="7">Tajikstan (+7)</asp:ListItem>
+            <asp:ListItem Value="TH" data-dialcode="66">Thailand (+66)</asp:ListItem>
+            <asp:ListItem Value="TG" data-dialcode="228">Togo (+228)</asp:ListItem>
+            <asp:ListItem Value="TO" data-dialcode="676">Tonga (+676)</asp:ListItem>
+            <asp:ListItem Value="TT" data-dialcode="1868">Trinidad &amp; Tobago (+1868)</asp:ListItem>
+            <asp:ListItem Value="TN" data-dialcode="216">Tunisia (+216)</asp:ListItem>
+            <asp:ListItem Value="TR" data-dialcode="90">Turkey (+90)</asp:ListItem>
+            <asp:ListItem Value="TM" data-dialcode="7">Turkmenistan (+7)</asp:ListItem>
+            <asp:ListItem Value="TM" data-dialcode="993">Turkmenistan (+993)</asp:ListItem>
+            <asp:ListItem Value="TC" data-dialcode="1649">Turks &amp; Caicos Islands (+1649)</asp:ListItem>
+            <asp:ListItem Value="TV" data-dialcode="688">Tuvalu (+688)</asp:ListItem>
+            <asp:ListItem Value="UG" data-dialcode="256">Uganda (+256)</asp:ListItem>
+            <asp:ListItem Value="GB" data-dialcode="44">UK (+44)</asp:ListItem>
+            <asp:ListItem Value="UA" data-dialcode="380">Ukraine (+380)</asp:ListItem>
+            <asp:ListItem Value="AE" data-dialcode="971">United Arab Emirates (+971)</asp:ListItem>
+            <asp:ListItem Value="UY" data-dialcode="598">Uruguay (+598)</asp:ListItem>
+            <asp:ListItem Value="US" data-dialcode="1">USA (+1)</asp:ListItem>
+            <asp:ListItem Value="UZ" data-dialcode="7">Uzbekistan (+7)</asp:ListItem>
+            <asp:ListItem Value="VU" data-dialcode="678">Vanuatu (+678)</asp:ListItem>
+            <asp:ListItem Value="VA" data-dialcode="379">Vatican City (+379)</asp:ListItem>
+            <asp:ListItem Value="VE" data-dialcode="58">Venezuela (+58)</asp:ListItem>
+            <asp:ListItem Value="VN" data-dialcode="84">Vietnam (+84)</asp:ListItem>
+            <asp:ListItem Value="VG" data-dialcode="84">Virgin Islands - British (+1284)</asp:ListItem>
+            <asp:ListItem Value="VI" data-dialcode="84">Virgin Islands - US (+1340)</asp:ListItem>
+            <asp:ListItem Value="WF" data-dialcode="681">Wallis &amp; Futuna (+681)</asp:ListItem>
+            <asp:ListItem Value="YE" data-dialcode="969">Yemen (North)(+969)</asp:ListItem>
+            <asp:ListItem Value="YE" data-dialcode="967">Yemen (South)(+967)</asp:ListItem>
+            <asp:ListItem Value="ZM" data-dialcode="260">Zambia (+260)</asp:ListItem>
+            <asp:ListItem Value="ZW" data-dialcode="263">Zimbabwe (+263)</asp:ListItem>

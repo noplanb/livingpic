@@ -1,0 +1,70 @@
+#=Timestamp 2014-03-01 16:07:45 -0800
+<% puts ">"*5 + "Processing picture.js.coffee.erb" %>
+
+class window.Picture
+
+  @last_pic: {}
+  @QUALITY: 100
+    
+  @last: => if Config.is_running_in_browser() then Picture.LAST_PIC_FOR_BROWSER else Picture.last_pic
+  
+  @LAST_PIC_FOR_BROWSER: {
+    pic: "<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/pic1.jpg' %>"
+    time: (new Date).toUTCString()
+    caption: ""
+    }
+    
+  @EMPTY_OCCASION_THUMBNAIL_PATH = "<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/empty_occasion_thumbnail.png' %>"
+  @LOADING_THUMB_PATH = "<%= NoPlanB::Helpers::DeviceAssetPathHelper.device_image_path 'livingpic/loading_thumb.png' %>"
+  
+  @capture: (callback, error_callback) =>
+    if Config.is_running_in_browser()
+      callback(Picture.last())
+    else
+      Picture.capture_callback = callback or (p) -> console.log p
+      Picture.capture_error_callback = error_callback or (e) -> console.log e
+      navigator.camera.getPicture( Picture.capture_success, Picture.capture_error, 
+        {
+          quality: Picture.QUALITY
+          destinationType: Camera.DestinationType.FILE_URI
+          correctOrientation: true
+          saveToPhotoAlbum: true
+          # FF 2014-03-01: This is for debugging cordova 3.4
+          # sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+        })
+      
+  @update_caption: (caption) => 
+    if Config.is_running_on_device() then Picture.last_pic.caption = caption else Picture.LAST_PIC_FOR_BROWSER.caption = caption
+    
+  @capture_error: (error) =>
+    Picture.capture_error_callback "Picture: capture error"
+
+  @capture_success: (imageDataUrl) =>
+    Logger.log "Picture: captured from camera"
+    Picture.last_pic = pic:imageDataUrl, time: (new Date).toUTCString(), caption: ""
+    Picture.capture_callback(imageDataUrl)
+    
+  @pick: (callback, error_callback) =>
+    if Config.is_running_on_device()
+      Picture.pick_callback = callback or (p) -> console.log p
+      Picture.pick_error_callback = error_callback or (e) -> console.log e
+      navigator.camera.getPicture( Picture.pick_success, Picture.pick_error,
+      {
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: Camera.DestinationType.FILE_URI,
+        correctOrientation: true
+      })
+    else
+      callback(Picture.last())
+    
+  @pick_success: (imageDataUrl) =>
+    Logger.log "Picture: picked #{imageDataUrl}"
+    Picture.last_pic = pic:imageDataUrl, time: (new Date).toUTCString(), caption: ""
+    Picture.pick_callback(imageDataUrl)
+      
+  @pick_error: (errorMessage) =>
+    Picture.pick_error_callback "Picture: pick error"
+    
+  
+  
+  

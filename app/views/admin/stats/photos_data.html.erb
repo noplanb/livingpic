@@ -1,0 +1,17 @@
+<h1>All Photos Data (<%= @photos.length %>)</h1>
+<% @buckets.keys.each do |key| %>
+  <h2><%= @buckets[key].first["bucket_display_name"] %> (<%= @buckets[key].length %>)</h2>
+    <table class="dataTable small" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <% @buckets[key].first.keys.each do |h| %><th><%= h %></th><% end %>
+      </tr>
+      <% @buckets[key].sort{|a,b| b["date_added"] <=> a["date_added"]}.each do |row| %>
+      <tr>
+        <% row.keys.each do |rk| %><td><%= row[rk] == "null" ? "-" : row[rk] %></td><% end %>
+      </tr>
+      <% end %>
+    </table>
+<% end %>
+<pre>
+  <%= @pretty %>
+</pre>

@@ -1,0 +1,14 @@
+// ==================================
+// = Invite page css and animations =
+// ==================================
+
+// Static
+.auto_complete_page .ui-listview-filter { margin:0px -15px;}
+.auto_complete_page .ui-content .ui-listview { margin-top:0px; margin-bottom: 0px;}
+
+// After search_started
+.auto_complete_page.search_started {
+  .ui-header { display: none };
+  .ui-footer { display: none };
+  .ui-content { padding-top: 0px; }
+} 

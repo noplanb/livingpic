@@ -1,0 +1,4 @@
+2012-12-06
+x Device for user is added on checkin correctly, and only once
+x device_state(), which references the device, works on browser as well as device
+x system resumed works for Android

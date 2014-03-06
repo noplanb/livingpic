@@ -1,0 +1,22 @@
+<div id="edit_name2" class="page ftui">
+  
+  <%= render :partial => "ftui_header" %>
+  
+  <div class="content" >
+    <h1>Sorry about that</h1>
+    <div style="padding-bottom:20px">Please edit</div>
+    <form>
+      <label for="first_name">First name:</label>
+      <input type="text" name="first_name" class="edit_first_name" value=""  placeholder="First name"/>
+      <label for="last_name">Last name:</label>
+      <input type="text" name="last_name" class="edit_last_name" value=""  placeholder="Last name"/>
+      <div class="button_box">
+        <div class="flat_button blue"    
+        onclick="FtuiController.submit_name($(this).closest('form').serializeArray())">Submit</div>
+      </div>
+    </form>
+
+  </div>
+  
+  
+</div>

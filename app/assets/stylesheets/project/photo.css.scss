@@ -1,0 +1,36 @@
+// Place all the styles related to the photo controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$thumbnail_border_color: #555;
+
+
+.thumbnail{
+  padding: 5px;
+  img {
+    border: 1px solid $thumbnail_border_color;
+    width: 100%;
+    padding: 0px;
+    @include box_shadow;
+  }
+} 
+
+.album_photo{
+  margin:2px;
+  float:left;
+
+  img {
+    border: 1px solid black;
+  }
+
+  img.selected {
+    border: 1px solid yellow;
+  }
+}
+
+#native_album .buttonRow {
+  clear:both;
+  margin-top: 10px;
+  text-align: center;
+}
+

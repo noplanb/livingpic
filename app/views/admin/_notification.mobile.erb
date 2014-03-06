@@ -1,0 +1,8 @@
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+  <li id="<%= notification.id %>" class="listedNotification" >
+    <a class="backToApp">
+      <%= "<h3>#{notification.hs_s}</h3><p>#{notification.sender && notification.sender.hs} to #{notification.recipient && notification.recipient.hs}</p>".html_safe %>
+    </a>
+    <a href="<%= view_notification_url(notification.id) %>"></a>
+  </li>
+</ul>

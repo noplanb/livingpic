@@ -1,0 +1,17 @@
+http://smus.com/android-phonegap-plugins/
+
+http://www.prowebx.net/how-to-launch-android-app-from-web-page-with-parameters/
+
+http://pervasivecode.blogspot.com/2011/11/phonegap-build-editing.html  **
+
+
+
+x Build cordova app with command line tools.
+
+x Build our living pic with command line tools.
+  - cordova create
+  - Move html, js, css, img over. 
+  - cordova debug
+  - corova emulate
+
+x Build our app with plugin

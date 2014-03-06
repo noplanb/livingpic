@@ -1,0 +1,38 @@
+USE brake app:build_android_release  #look for the signed LivingPic-release-signed_aligned.apk in the android/bin directory
+
+Dev Console:
+https://play.google.com/apps/publish
+
+
+Manifest and permissions:
+I edit the AndroidManifest.xml in the relevant cordova framework directory under app in order to trim the permissions. Need to remember to do that when migrating to a new cordova.
+
+This command generates a new key but it only needs to be done once. 
+app:generate_android_key 
+it uses the following command:
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+
+signing:
+app:build_android_release should automatically sign with the correct key with the task app:sign_for_android_release
+which uses this command:
+jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias_name
+
+
+I have generated the following keys:
+app/android_keys/livingpic_1.0.keystore
+---------------------------------------
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA1withRSA) with a validity of 20,000 days
+	for: CN=Sani Elfishawy, OU=LivingPic, O=No Plan B, L=Woodside, ST=California, C=US
+pw: S*a1
+
+app/android_keys/powderfiesta_1.0.keystore
+---------------------------------------
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA1withRSA) with a validity of 10,000 days
+	for: CN=Sani Elfishawy, OU=Powder Fiesta, O=No Plan B, L=Woodside, ST=California, C=CA
+for <PowderFiesta>
+
+
+
+
+Production signed release:
+http://developer.android.com/tools/publishing/app-signing.html

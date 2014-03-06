@@ -1,0 +1,18 @@
+eztexting.com
+  has an API
+  starter @ $29/mo gives you 100 express or 200 standard text messages, then 2.3 or 4.7 per message
+  
+clickatell.com
+<2c a message but couldn't sign up
+
+redrabbit.com
+about $0.05/message and based in europe. Doesn't seem to support http (although I read it did).  Extremely lame website
+
+www.aerialink.com/
+Too much verbiage on the website but nothing useful.  Couldn't figure out what product I would be using or what the price point would be for it.
+
+openmarket.com 
+seems to have an http api and support the services we want, but it doesn't seem to have a reasonable API
+
+twilio.com
+has the nicest website and 1c/message

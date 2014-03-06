@@ -1,0 +1,4 @@
+2012-12-05
+- Trying to get the app signed w/ Sani's provisioning profile, but was unable to do so b/c I couldn't get his private key downloaded.  Also, I read that it's kind of tough to have 2 different xcode developer profiles b/c it uses the keychain login entry for dav.apple.com to pull resources from your developer profile, so it gets kind of funky if that is different.
+
+But I did create a push-enabled provisioning profile for livingpic, changed the snapshot signature to com.noplanbees.livingpic and the name to livingpic, and updated the app and everything seems to work.

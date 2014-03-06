@@ -1,0 +1,57 @@
+
+$.mobile.changePage PERFORMANCE ISSUES
+-------------------------------------- 
+
+  QUESTION - What is the performance of $.mobile.chagePage() 
+  TEST - run in profiler on Sani's Iphone
+  RESULTS - 
+    - From #occasions to #gallery2 using $.mobile.changePage() with no on change events of any kind running    
+      callback application.js:8529
+      64.07ms
+    
+      handle application.js:2746
+      1.17s
+    
+      (anonymous function) application.js:13661
+      0.07ms
+      
+      evaluate
+      1.17s  *** This is the culprit.
+      
+    - Looking deeper in evaluate we see:
+      changePage application.js:14442
+      1.15s
+    
+    - Looking deeper in changePage we see: a jquery find() that takes 640ms and a jqm transitionPages() that takes 275ms
+    
+    
+  QUESTION - what is the performance of a simple show and hide of the pages.
+  TEST - run profiler on Sani's iphone
+  RESULTS - From #occasions to #gallery using hide() and show() of the pages RESULTS - 10ms.
+  
+  
+  STRATEGY
+  --------
+  Rather than trying to figure out how to improve the performance of JQM let us just make our own simple pager.
+  
+  Considerations on eliminating JQM
+    x Changing pages adds classes to data-role page that control css 
+      x On data-role page
+        x ui-page 
+        x ui-body-c 
+        x ui-page-active
+      x On body
+        x ui-mobile
+        x ui-mobile-viewport 
+        x ui-overlay-a
+    x Add css to mobile.css for pager
+    x Create a class called page
+    x Add the css from ui-page, ui-body-c, ui-page-active classes to the pager.css for page
+    x Add a class for our body called mobile
+      x Add css from ui-mobile, ui-mobile-viewport, ui-overlay-c to the pager.css for the body
+  
+  TODO:
+    x Make the occasions2 page in our theme with a header
+      x Header
+      x Content
+    
